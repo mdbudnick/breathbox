@@ -1,3 +1,4 @@
+const box = document.querySelector('.breath-box');
 const circle = document.querySelector('.circle');
 
 function animateBreathing() {
@@ -5,20 +6,20 @@ function animateBreathing() {
   const inhaleDuration = 1000;
   const exhaleDuration = 1000;
 
-  circle.style.transition = `transform ${animationDuration}ms linear`;
-  circle.style.transform = 'rotate(0deg)';
+  circle.style.margin = `0 0 0 ${box.clientWidth}px`
+  circle.style.transition = `margin 4s`;
 
   setTimeout(() => {
-    circle.style.transition = `transform ${inhaleDuration}ms linear`;
-    circle.style.transform = 'rotate(90deg)';
+    circle.style.margin = `${box.clientHeight}px 0 0 ${box.clientHeight}px`
+    circle.style.transition = `margin 4s`;
     
     setTimeout(() => {
-      circle.style.transition = `transform ${exhaleDuration}ms linear`;
-      circle.style.transform = 'rotate(180deg)';
+      circle.style.margin = `${box.clientHeight}px ${box.clientHeight}px 0 0`
+      circle.style.transition = `margin 4s`;
 
       setTimeout(() => {
-        circle.style.transition = `transform ${inhaleDuration}ms linear`;
-        circle.style.transform = 'rotate(270deg)';
+        circle.style.margin = `0 ${box.clientHeight}px ${box.clientHeight}px 0`
+        circle.style.transition = `margin 4s`;
 
         setTimeout(() => {
           animateBreathing(); // Restart the cycle
