@@ -1,7 +1,7 @@
 const box = document.querySelector('.breath-box');
 const circle = document.querySelector('.circle');
 
-const SMOOTH_PATH_TIMING = 700
+const SMOOTH_PATH_TIMING = 1000
 const BREATH_RATIO = 2
 const HOLD_RATIO = 2
 
@@ -13,29 +13,27 @@ function animateBreathing() {
   const holdOutDuration = HOLD_RATIO;
 
   // Inhale (up)
-  circle.style.top = `-${circle.clientHeight}px`
-  circle.style.right = ""
-  circle.style.bottom = ""
-  circle.style.left = `-${circle.clientHeight}px`
-  circle.style.transition = `top ${inhaleDuration}s`;
+  circle.style.transition = `bottom ${inhaleDuration}s`;
+  circle.style.bottom = `${box.clientHeight - circle.clientHeight/2}px`
+  circle.style.left = `-${circle.clientWidth/2}px`
 
   // Hold In (right)
   setTimeout(() => {
-    circle.style.top = `-${circle.clientHeight}px`
-    circle.style.right = `${box.clientWidth + (circle.clientWidth)}px`
-    circle.style.bottom = ""
-    circle.style.left = ""
-    circle.style.transition = `right ${holdInDuration}s`;
+    circle.style.transition = `left ${holdInDuration}s`;
+    circle.style.bottom = `${box.clientHeight - circle.clientHeight/2}px`
+    circle.style.left = `${box.clientWidth - (circle.clientWidth/2)}px`
     
     // Exhale (down)
     setTimeout(() => {
-      circle.style.margin = `${box.clientHeight}px 0 0 ${box.clientWidth}px`
-      circle.style.transition = `margin ${exhaleDuration}s`;
+      circle.style.transition = `bottom ${exhaleDuration}s`;
+      circle.style.bottom = `-${circle.clientHeight/2}px`
+      circle.style.left = `${box.clientWidth - (circle.clientWidth/2)}px`
       
       // Hold out (left)
       setTimeout(() => {
-        circle.style.margin = `${box.clientHeight}px ${box.clientWidth}px 0 0`
-        circle.style.transition = `margin ${holdOutDuration}s`;
+        circle.style.transition = `left ${holdOutDuration}s`;
+        circle.style.bottom = `-${circle.clientHeight/2}px`
+        circle.style.left = `-${circle.clientWidth/2}px`
         
         setTimeout(() => {
           animateBreathing(); // Restart the cycle
