@@ -21,8 +21,11 @@ function animateBreathing() {
 
   // Hold In (right)
   setTimeout(() => {
-    circle.style.margin = `0 0 0 ${box.clientWidth}px`
-    circle.style.transition = `margin ${holdInDuration}s`;
+    circle.style.top = `-${circle.clientHeight}px`
+    circle.style.right = `${box.clientWidth + (circle.clientWidth)}px`
+    circle.style.bottom = ""
+    circle.style.left = ""
+    circle.style.transition = `right ${holdInDuration}s`;
     
     // Exhale (down)
     setTimeout(() => {
