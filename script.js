@@ -1,11 +1,16 @@
 const box = document.querySelector('.breath-box');
 const circle = document.querySelector('.circle');
 
+const SMOOTH_PATH_TIMING = 700
+const BREATH_RATIO = 2
+const HOLD_RATIO = 2
+
+
 function animateBreathing() {
-  const inhaleDuration = 1;
-  const holdInDuration = 1;
-  const exhaleDuration = 1;
-  const holdOutDuration = 1;
+  const inhaleDuration = BREATH_RATIO;
+  const holdInDuration = HOLD_RATIO;
+  const exhaleDuration = BREATH_RATIO;
+  const holdOutDuration = HOLD_RATIO;
 
   // Inhale (up)
   circle.style.margin = `0 0 ${box.clientHeight}px 0`
@@ -28,11 +33,10 @@ function animateBreathing() {
         
         setTimeout(() => {
           animateBreathing(); // Restart the cycle
-          // 675 gives smooth pathing
-        },  holdOutDuration * 675);
-      }, exhaleDuration * 675);
-    }, holdInDuration * 675);
-  }, inhaleDuration * 675);
+        },  holdOutDuration * SMOOTH_PATH_TIMING);
+      }, exhaleDuration * SMOOTH_PATH_TIMING);
+    }, holdInDuration * SMOOTH_PATH_TIMING);
+  }, inhaleDuration * SMOOTH_PATH_TIMING);
 }
 
 animateBreathing();
