@@ -13,8 +13,11 @@ function animateBreathing() {
   const holdOutDuration = HOLD_RATIO;
 
   // Inhale (up)
-  circle.style.margin = `0 0 ${box.clientHeight}px 0`
-  circle.style.transition = `margin ${inhaleDuration}s`;
+  circle.style.top = `-${circle.clientHeight}px`
+  circle.style.right = ""
+  circle.style.bottom = ""
+  circle.style.left = `-${circle.clientHeight}px`
+  circle.style.transition = `top ${inhaleDuration}s`;
 
   // Hold In (right)
   setTimeout(() => {
