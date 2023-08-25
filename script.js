@@ -16,8 +16,11 @@ function animateBreathing() {
 
   // Inhale (up)
   action.textContent = "INHALE"
-  action.style.transition = `font-size ${inhaleDuration}s ${BREATH_CURVE}`
+  action.style.transitionProperty = 'font-size color'
+  action.style.transitionDuration = `${inhaleDuration}s`
+  action.style.transitionTimingFunction = `${BREATH_CURVE}`
   action.style.fontSize = '15vh'
+  action.style.color = '#4B0082'
 
   circle.style.transition = `bottom ${inhaleDuration}s ${BREATH_CURVE}`;
   circle.style.bottom = `${box.clientHeight - circle.clientHeight/2}px`
@@ -34,9 +37,10 @@ function animateBreathing() {
     
     // Exhale (down)
     setTimeout(() => {
-      action.style.transition = `font-size ${inhaleDuration}s ${BREATH_CURVE}`
-      action.style.fontSize = '5vh'
       action.textContent = "EXHALE"
+      action.style.fontSize = '5vh'
+      action.style.color = '#FFA07A'
+      
 
       circle.style.transition = `bottom ${exhaleDuration}s  ${BREATH_CURVE}`;
       circle.style.bottom = `-${circle.clientHeight/2}px`
