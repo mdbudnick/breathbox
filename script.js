@@ -22,7 +22,12 @@ function animateBreathing() {
   action.style.fontSize = '15vh'
   action.style.color = '#4B0082'
 
-  circle.style.transition = `bottom ${inhaleDuration}s ${BREATH_CURVE}`;
+  circle.style.transitionProperty = 'height width background-color left bottom'
+  circle.style.transitionDuration = `${inhaleDuration}s`
+  circle.style.transitionTimingFunction = `${BREATH_CURVE}`
+  circle.style.backgroundColor = '#4B0082'
+  circle.style.height = '6vh'
+  circle.style.width = '6vh'
   circle.style.bottom = `${box.clientHeight - circle.clientHeight/2}px`
   circle.style.left = `-${circle.clientWidth/2}px`
 
@@ -31,8 +36,8 @@ function animateBreathing() {
   setTimeout(() => {
     action.textContent = "HOLD"
 
-    circle.style.transition = `left ${holdInDuration}s linear`;
-    circle.style.bottom = `${box.clientHeight - circle.clientHeight/2}px`
+    circle.style.transitionDuration = `${holdInDuration}s`;
+    circle.style.transitionTimingFunction = 'linear'
     circle.style.left = `${box.clientWidth - (circle.clientWidth/2)}px`
     
     // Exhale (down)
@@ -42,17 +47,23 @@ function animateBreathing() {
       action.style.color = '#FFA07A'
       
 
-      circle.style.transition = `bottom ${exhaleDuration}s  ${BREATH_CURVE}`;
+      circle.style.transitionProperty = 'height width color left bottom'
+      circle.style.transitionDuration = `${exhaleDuration}s`
+      circle.style.transitionTimingFunction = `${BREATH_CURVE}`
+      circle.style.backgroundColor = '#FFA07A'
+      circle.style.height = '2vh'
+      circle.style.width = '2vh'
       circle.style.bottom = `-${circle.clientHeight/2}px`
-      circle.style.left = `${box.clientWidth - (circle.clientWidth/2)}px`
+      circle.style.left = `${box.clientWidth}px`
       
       // Hold out (left)
       setTimeout(() => {
         action.textContent = "HOLD"
 
-        circle.style.transition = `left ${holdOutDuration}s linear`;
-        circle.style.bottom = `-${circle.clientHeight/2}px`
-        circle.style.left = `-${circle.clientWidth/2}px`
+        circle.style.transitionDuration = `${holdInDuration}s`;
+        circle.style.transitionTimingFunction = 'linear'
+        circle.style.bottom = `-${circle.clientHeight/3}px`
+        circle.style.left = `-${circle.clientWidth/3}px`
         
         
         setTimeout(() => {
