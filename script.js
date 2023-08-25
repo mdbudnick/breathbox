@@ -15,21 +15,29 @@ function animateBreathing() {
   const holdOutDuration = HOLD_RATIO;
 
   // Inhale (up)
+  action.textContent = "INHALE"
+  action.style.transition = `font-size ${inhaleDuration}s ${BREATH_CURVE}`
+  action.style.fontSize = '15vh'
+
   circle.style.transition = `bottom ${inhaleDuration}s ${BREATH_CURVE}`;
   circle.style.bottom = `${box.clientHeight - circle.clientHeight/2}px`
   circle.style.left = `-${circle.clientWidth/2}px`
-  action.textContent = "INHALE"
+
 
   // Hold In (right)
   setTimeout(() => {
     action.textContent = "HOLD"
+
     circle.style.transition = `left ${holdInDuration}s linear`;
     circle.style.bottom = `${box.clientHeight - circle.clientHeight/2}px`
     circle.style.left = `${box.clientWidth - (circle.clientWidth/2)}px`
     
     // Exhale (down)
     setTimeout(() => {
+      action.style.transition = `font-size ${inhaleDuration}s ${BREATH_CURVE}`
+      action.style.fontSize = '5vh'
       action.textContent = "EXHALE"
+
       circle.style.transition = `bottom ${exhaleDuration}s  ${BREATH_CURVE}`;
       circle.style.bottom = `-${circle.clientHeight/2}px`
       circle.style.left = `${box.clientWidth - (circle.clientWidth/2)}px`
@@ -37,9 +45,11 @@ function animateBreathing() {
       // Hold out (left)
       setTimeout(() => {
         action.textContent = "HOLD"
+
         circle.style.transition = `left ${holdOutDuration}s linear`;
         circle.style.bottom = `-${circle.clientHeight/2}px`
         circle.style.left = `-${circle.clientWidth/2}px`
+        
         
         setTimeout(() => {
           animateBreathing(); // Restart the cycle

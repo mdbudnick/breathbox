@@ -9,7 +9,7 @@ body {
 
 .action {
   position: absolute;
-  font-size: x-large;
+  font-size: 15vh;
   font-weight: bold;
   color: blueviolet;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
