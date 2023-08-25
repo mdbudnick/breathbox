@@ -7,6 +7,14 @@ body {
   background-color: #f0f0f0;
 }
 
+.action {
+  position: absolute;
+  font-size: x-large;
+  font-weight: bold;
+  color: blueviolet;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
 .breath-box {
   position: relative;
   width: 50vw;
