@@ -1,3 +1,9 @@
+/* Copyright Michael Budnick - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Michael Budnick, August 2023
+ */
+
 const box = document.querySelector('.breath-box');
 const circle = document.querySelector('.circle');
 const action = document.querySelector('.action');
@@ -26,8 +32,8 @@ function animateBreathing() {
   circle.style.transitionDuration = `${inhaleDuration}s`
   circle.style.transitionTimingFunction = `${BREATH_CURVE}`
   circle.style.backgroundColor = '#4B0082'
-  circle.style.height = '6vh'
-  circle.style.width = '6vh'
+  circle.style.height = '8vh'
+  circle.style.width = '8vh'
   circle.style.bottom = `${box.clientHeight - circle.clientHeight/2}px`
   circle.style.left = `-${circle.clientWidth/2}px`
 
@@ -51,8 +57,8 @@ function animateBreathing() {
       circle.style.transitionDuration = `${exhaleDuration}s`
       circle.style.transitionTimingFunction = `${BREATH_CURVE}`
       circle.style.backgroundColor = '#FFA07A'
-      circle.style.height = '2vh'
-      circle.style.width = '2vh'
+      circle.style.height = '3vh'
+      circle.style.width = '3vh'
       circle.style.bottom = `-${circle.clientHeight/2}px`
       circle.style.left = `${box.clientWidth}px`
       
