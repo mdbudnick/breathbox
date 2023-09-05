@@ -29,5 +29,7 @@ body {
   background-color: #007bff;
   border-radius: 50%;
   transform-origin: center;
+  bottom: -1vh;
+  left: -1vh;
 }
 
