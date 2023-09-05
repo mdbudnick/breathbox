@@ -2,10 +2,10 @@ const box = document.querySelector('.breath-box');
 const circle = document.querySelector('.circle');
 const action = document.querySelector('.action');
 
-const SMOOTH_PATH_TIMING = 1000
-const BREATH_RATIO = 5
+const SMOOTH_PATH_TIMING = 1000;
+const BREATH_RATIO = 5;
 const BREATH_CURVE = "cubic-bezier(.13,.38,.48,1.02)"
-const HOLD_RATIO = 2
+const HOLD_RATIO = 2;
 
 
 function animateBreathing() {
@@ -28,8 +28,8 @@ function animateBreathing() {
   circle.style.backgroundColor = '#4B0082'
   circle.style.height = '6vh'
   circle.style.width = '6vh'
-  circle.style.bottom = `${box.clientHeight - circle.clientHeight/2}px`
-  circle.style.left = `-${circle.clientWidth/2}px`
+  circle.style.bottom = `${box.clientHeight - vh(6)/2}px`
+  circle.style.left = `-${vw(6)/3}px`
 
 
   // Hold In (right)
@@ -38,7 +38,7 @@ function animateBreathing() {
 
     circle.style.transitionDuration = `${holdInDuration}s`;
     circle.style.transitionTimingFunction = 'linear'
-    circle.style.left = `${box.clientWidth - (circle.clientWidth/2)}px`
+    circle.style.left = `${box.clientWidth - (vw(6)/3)}px`
     
     // Exhale (down)
     setTimeout(() => {
@@ -53,8 +53,8 @@ function animateBreathing() {
       circle.style.backgroundColor = '#FFA07A'
       circle.style.height = '2vh'
       circle.style.width = '2vh'
-      circle.style.bottom = `-${circle.clientHeight/2}px`
-      circle.style.left = `${box.clientWidth}px`
+      circle.style.bottom = `-${vh(2)/2}px`
+      circle.style.left = `${box.clientWidth - vw(2)/3}px`
       
       // Hold out (left)
       setTimeout(() => {
@@ -62,8 +62,8 @@ function animateBreathing() {
 
         circle.style.transitionDuration = `${holdInDuration}s`;
         circle.style.transitionTimingFunction = 'linear'
-        circle.style.bottom = `-${circle.clientHeight/3}px`
-        circle.style.left = `-${circle.clientWidth/3}px`
+        circle.style.bottom = `-${vh(2)/2}px`
+        circle.style.left = `-${vw(2)/3}px`
         
         
         setTimeout(() => {
