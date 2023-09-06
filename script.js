@@ -32,7 +32,7 @@ function animateBreathing() {
   circle.style.height = `${LARGE_CIRCLE_SIZE}vh`
   circle.style.width = `${LARGE_CIRCLE_SIZE}vh`
   circle.style.bottom = `${box.clientHeight - vh(LARGE_CIRCLE_SIZE)/2}px`
-  circle.style.left = `-${vw(LARGE_CIRCLE_SIZE)/3}px`
+  circle.style.left = `-${LARGE_CIRCLE_SIZE/2}vh`
 
 
   // Hold In (right)
@@ -56,7 +56,7 @@ function animateBreathing() {
       circle.style.backgroundColor = '#FFA07A'
       circle.style.height = `${SMALL_CIRCLE_SIZE}vh`
       circle.style.width = `${SMALL_CIRCLE_SIZE}vh`
-      circle.style.bottom = `-${vh(SMALL_CIRCLE_SIZE)/2}px`
+      circle.style.bottom = `-${SMALL_CIRCLE_SIZE/2}vh`
       circle.style.left = `${box.clientWidth - vh(SMALL_CIRCLE_SIZE)/2}px`
       
       // Hold out (left)
@@ -65,8 +65,8 @@ function animateBreathing() {
 
         circle.style.transitionDuration = `${holdInDuration}s`;
         circle.style.transitionTimingFunction = 'linear'
-        circle.style.bottom = `-${vh(SMALL_CIRCLE_SIZE)/2}px`
-        circle.style.left = `-${vh(SMALL_CIRCLE_SIZE)/2}px`
+        circle.style.bottom = `-${SMALL_CIRCLE_SIZE/2}vh`
+        circle.style.left = `-${SMALL_CIRCLE_SIZE/2}vh`
         
         
         setTimeout(() => {
