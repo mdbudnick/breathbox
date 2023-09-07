@@ -17,6 +17,11 @@ body {
   padding: 0.5vw;
 }
 
+.invisible {
+  color: #f0f0f0;
+  opacity: 0;
+}
+
 .action {
   position: absolute;
   font-size: 7.5vh;
