@@ -1,6 +1,7 @@
 const box = document.querySelector('.breath-box');
 const circle = document.querySelector('.circle');
 const action = document.querySelector('.action');
+const invisible = document.querySelector('.invisible');
 
 const LARGE_CIRCLE_SIZE = 6;
 const SMALL_CIRCLE_SIZE = 2;
@@ -10,6 +11,18 @@ const BREATH_RATIO = 5;
 const BREATH_CURVE = "cubic-bezier(.13,.38,.48,1.02)"
 const HOLD_RATIO = 2;
 
+const INHALE = "INHALE";
+const EXHALE = "EXHALE";
+const HOLD = "HOLD";
+
+// We have to do this each time because the window can be resized
+function calculateTextWidth(text) {
+  invisible.textContent = text;
+  let width = invisible.clientWidth;
+  invisible.textContent = "";
+  
+  return width;
+}
 
 function animateBreathing() {
   const inhaleDuration = BREATH_RATIO;
@@ -18,12 +31,13 @@ function animateBreathing() {
   const holdOutDuration = HOLD_RATIO;
 
   // Inhale (up)
-  action.textContent = "INHALE"
-  action.style.transitionProperty = 'font-size color'
+  action.textContent = INHALE
+  action.style.transitionProperty = 'font-size color left'
   action.style.transitionDuration = `${inhaleDuration}s`
   action.style.transitionTimingFunction = `${BREATH_CURVE}`
   action.style.fontSize = '15vh'
   action.style.color = '#4B0082'
+  action.style.left = `${50 - pxToVw(calculateTextWidth(INHALE))/2}vw`
 
   circle.style.transitionProperty = 'height width background-color left bottom'
   circle.style.transitionDuration = `${inhaleDuration}s`
@@ -37,7 +51,8 @@ function animateBreathing() {
 
   // Hold In (right)
   setTimeout(() => {
-    action.textContent = "HOLD"
+    action.textContent = HOLD
+    action.style.left = `${50 - pxToVw(calculateTextWidth(HOLD))}vw`
 
     circle.style.transitionDuration = `${holdInDuration}s`;
     circle.style.transitionTimingFunction = 'linear'
@@ -45,9 +60,10 @@ function animateBreathing() {
     
     // Exhale (down)
     setTimeout(() => {
-      action.textContent = "EXHALE"
+      action.textContent = EXHALE
       action.style.fontSize = '5vh'
       action.style.color = '#FFA07A'
+      action.style.left = `${50 - pxToVw(calculateTextWidth(EXHALE))}vw`
       
 
       circle.style.transitionProperty = 'height width color left bottom'
@@ -61,7 +77,8 @@ function animateBreathing() {
       
       // Hold out (left)
       setTimeout(() => {
-        action.textContent = "HOLD"
+        action.textContent = HOLD
+        action.style.left = `${50 - pxToVw(calculateTextWidth(HOLD))}vw`
 
         circle.style.transitionDuration = `${holdInDuration}s`;
         circle.style.transitionTimingFunction = 'linear'
