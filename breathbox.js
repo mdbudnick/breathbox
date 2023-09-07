@@ -31,7 +31,7 @@ function animateBreathing() {
   circle.style.backgroundColor = '#4B0082'
   circle.style.height = `${LARGE_CIRCLE_SIZE}vh`
   circle.style.width = `${LARGE_CIRCLE_SIZE}vh`
-  circle.style.bottom = `${box.clientHeight - vh(LARGE_CIRCLE_SIZE)/2}px`
+  circle.style.bottom = `${box.clientHeight - vhToPx(LARGE_CIRCLE_SIZE)/2}px`
   circle.style.left = `-${LARGE_CIRCLE_SIZE/2}vh`
 
 
