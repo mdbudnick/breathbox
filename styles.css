@@ -34,7 +34,7 @@ body {
   color: blueviolet;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   margin-top: 2vh;
-  transition-property: 'font-size color';
+  transition-property: font-size, color, left;
 }
 
 .breath-box {
