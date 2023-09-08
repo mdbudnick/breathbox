@@ -122,4 +122,23 @@ function animateBreathing() {
   }, inhaleDuration * SMOOTH_PATH_TIMING);
 }
 
-start.onclick = animateBreathing;
+function startTimer() {
+  start.textContent = "0:00";
+}
+
+function addPauseButton() {
+
+}
+
+function addStopButton() {
+  
+}
+
+function beginBreathBox() {
+  startTimer();
+  addPauseButton();
+  addStopButton();
+  animateBreathing();
+}
+
+start.onclick = beginBreathBox;
