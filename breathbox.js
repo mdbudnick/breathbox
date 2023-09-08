@@ -18,6 +18,13 @@ const EXHALE = "EXHALE";
 const HOLD = "HOLD";
 const INHALE_SIZE = 15;
 const EXHALE_SIZE = 5;
+const DEFAULT_ACTION_TEXT = "Breath Box";
+function resetActionText() {
+  action.style.left = `${50 - pxToVw(calculateTextWidth(DEFAULT_ACTION_TEXT, EXHALE_SIZE))/2}vw`
+  action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(DEFAULT_ACTION_TEXT, EXHALE_SIZE))}vh`
+  action.style.color = '#007BFF';
+}
+resetActionText();
 
 // We have to do this each time because the window can be resized
 function calculateTextWidth(text, size) {
