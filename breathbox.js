@@ -45,12 +45,7 @@ function calculateTextHeight(text, size) {
   return height;
 }
 
-let started = false;
 function animateBreathing() {
-  if (started) {
-    return;
-  }
-  started = true;
   const inhaleDuration = BREATH_RATIO;
   const holdInDuration = HOLD_RATIO;
   const exhaleDuration = BREATH_RATIO;
@@ -113,7 +108,6 @@ function animateBreathing() {
         circle.style.bottom = `-${SMALL_CIRCLE_SIZE/2}vh`
         circle.style.left = `-${SMALL_CIRCLE_SIZE/2}vh`
         
-        
         setTimeout(() => {
           animateBreathing(); // Restart the cycle
         },  holdOutDuration * SMOOTH_PATH_TIMING);
@@ -122,23 +116,45 @@ function animateBreathing() {
   }, inhaleDuration * SMOOTH_PATH_TIMING);
 }
 
+let minutes = 0;
+let seconds = 0;
 function startTimer() {
+  minutes = 0;
+  seconds = 0;
   start.textContent = "0:00";
   start.style.backgroundColor = "#f0f0f0";
   start.style.color = "black";
   start.style.border = "none";
   start.style.marginBottom = "6vh"
+  setInterval(incrementTimer, 1000);
+}
+
+function incrementTimer() {
+  ++seconds;
+  if (seconds == 60) {
+    ++minutes;
+    seconds = 0;
+  }
+  start.textContent = "" + minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
 }
 
 function addPauseButton() {
 
+  resetActionText();
 }
 
 function addStopButton() {
-
+  minutes = 0;
+  seconds = 0;
+  resetActionText();
 }
 
+let started = false;
 function beginBreathBox() {
+  if (started) {
+    return;
+  }
+  started = true;
   startTimer();
   addPauseButton();
   addStopButton();
