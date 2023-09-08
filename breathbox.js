@@ -124,6 +124,10 @@ function animateBreathing() {
 
 function startTimer() {
   start.textContent = "0:00";
+  start.style.backgroundColor = "#f0f0f0";
+  start.style.color = "black";
+  start.style.border = "none";
+  start.style.marginBottom = "6vh"
 }
 
 function addPauseButton() {
@@ -131,7 +135,7 @@ function addPauseButton() {
 }
 
 function addStopButton() {
-  
+
 }
 
 function beginBreathBox() {
