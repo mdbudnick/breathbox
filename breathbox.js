@@ -45,7 +45,12 @@ function calculateTextHeight(text, size) {
   return height;
 }
 
+let started = false;
 function animateBreathing() {
+  if (started) {
+    return;
+  }
+  started = true;
   const inhaleDuration = BREATH_RATIO;
   const holdInDuration = HOLD_RATIO;
   const exhaleDuration = BREATH_RATIO;
