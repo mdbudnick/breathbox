@@ -3,6 +3,7 @@ const boxRect = box.getBoundingClientRect();
 const circle = document.querySelector('.circle');
 const action = document.querySelector('.action');
 const invisible = document.querySelector('.invisible');
+const start = document.querySelector('.timer');
 
 const LARGE_CIRCLE_SIZE = 6;
 const SMALL_CIRCLE_SIZE = 2;
@@ -109,5 +110,4 @@ function animateBreathing() {
   }, inhaleDuration * SMOOTH_PATH_TIMING);
 }
 
-animateBreathing();
-
+start.onclick = animateBreathing;
