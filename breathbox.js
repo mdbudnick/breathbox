@@ -4,7 +4,7 @@ const circle = document.querySelector('.circle');
 const action = document.querySelector('.action');
 const invisible = document.querySelector('.invisible');
 const start = document.querySelector('.timer');
-const stop = document.querySelector('.stop');
+const stopButton = document.querySelector('.stop');
 
 const RESET_BLUE = "#007bff";
 const LARGE_CIRCLE_SIZE = 6;
@@ -15,6 +15,14 @@ function resetCircle() {
   circle.style.backgroundColor = RESET_BLUE;
   circle.style.bottom = "-1vh";
   circle.style.left = "-1vh";
+}
+
+function resetStartButton() {
+  start.style.color = "white";
+  start.style.border = "4px solid green";
+  start.style.backgroundColor = "lightgreen";
+  start.style.borderRadius = "5vw";
+  start.textContent = "Start";
 }
 
 const SMOOTH_PATH_TIMING = 1000;
@@ -161,7 +169,7 @@ function addPauseButton() {
 }
 
 function addStopButton() {
-  stop.style.display = "flex";
+  stopButton.style.display = "flex";
 }
 
 let started = false;
@@ -189,7 +197,9 @@ function stopBreathBox() {
   console.log("resetting")
   resetActionText();
   resetCircle();
+  resetStartButton();
+  stopButton.style.display = "none";
 }
 
 start.onclick = startBreathBox;
-stop.onclick = stopBreathBox;
+stopButton.onclick = stopBreathBox;
