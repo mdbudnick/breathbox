@@ -153,7 +153,6 @@ function startTimer() {
   start.style.backgroundColor = DEFAULT_BACKGROUND_COLOR;
   start.style.color = "black";
   start.style.border = "none";
-  start.style.marginBottom = "6vh"
   incrementAnimation = setInterval(incrementTimer, 1000);
 }
 
