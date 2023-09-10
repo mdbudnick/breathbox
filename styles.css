@@ -34,10 +34,12 @@ body {
   position: relative;
   float: left;
   font-size: 4.5vh;
-  margin-top: 3vh;
+  margin-top: 4vh;
   left: 47%;
   color: #007bff;
   font-weight: 900;
+  height: 2vh;
+  border-style: double;
   /* display: none; */
 }
 
@@ -46,8 +48,8 @@ body {
   float: left;
   height: 3vh;
   width: 3vh;
-  margin-top: 4vh;
-  left: 50%;
+  margin-top: 5vh;
+  left: 48%;
   background-color: red;
   display: none;
 }

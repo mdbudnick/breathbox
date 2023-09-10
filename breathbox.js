@@ -7,6 +7,8 @@ const start = document.querySelector('.timer');
 const stopButton = document.querySelector('.stop');
 const pauseButton = document.querySelector('.pause');
 
+const DEFAULT_BACKGROUND_COLOR = "#f0f0f0";
+
 const RESET_BLUE = "#007bff";
 const LARGE_CIRCLE_SIZE = 6;
 const SMALL_CIRCLE_SIZE = 2;
@@ -148,7 +150,7 @@ let seconds = 0;
 let incrementAnimation;
 function startTimer() {
   incrementTimer();
-  start.style.backgroundColor = "#f0f0f0";
+  start.style.backgroundColor = DEFAULT_BACKGROUND_COLOR;
   start.style.color = "black";
   start.style.border = "none";
   start.style.marginBottom = "6vh"
@@ -165,7 +167,7 @@ function incrementTimer() {
 }
 
 function addPauseButton() {
-
+  pauseButton.style.display = "flex";
 }
 
 function addStopButton() {
@@ -212,6 +214,9 @@ function pauseBreathBox() {
   resetActionText("Paused");
   action.style.color = "#ff8c00"; // dark orange
   resetCircle();
+
+  pauseButton.style.color = "green";
+  pauseButton.textContent = "▶";
 }
 
 start.onclick = startBreathBox;
