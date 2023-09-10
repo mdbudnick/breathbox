@@ -205,6 +205,7 @@ function stopBreathBox() {
   resetCircle();
   resetStartButton();
   stopButton.style.display = "none";
+  pauseButton.style.display = "none";
 }
 
 function pauseBreathBox() {
@@ -217,6 +218,17 @@ function pauseBreathBox() {
 
   pauseButton.style.color = "green";
   pauseButton.textContent = "▶";
+
+  pauseButton.onclick = resumeBreathBox;
+}
+
+function resumeBreathBox() {
+  pauseButton.style.color = RESET_BLUE;
+  pauseButton.textContent = "||";
+
+  pauseButton.onclick = pauseBreathBox;
+
+  startBreathBox();
 }
 
 start.onclick = startBreathBox;
