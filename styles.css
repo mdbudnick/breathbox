@@ -30,6 +30,17 @@ body {
   padding: 2vw;
 }
 
+.pause {
+  position: relative;
+  float: left;
+  font-size: 4.5vh;
+  margin-top: 3vh;
+  left: 47%;
+  color: #007bff;
+  font-weight: 900;
+  /* display: none; */
+}
+
 .stop {
   position: relative;
   float: left;
