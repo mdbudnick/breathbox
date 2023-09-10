@@ -4,9 +4,18 @@ const circle = document.querySelector('.circle');
 const action = document.querySelector('.action');
 const invisible = document.querySelector('.invisible');
 const start = document.querySelector('.timer');
+const stop = document.querySelector('.stop');
 
+const RESET_BLUE = "#007bff";
 const LARGE_CIRCLE_SIZE = 6;
 const SMALL_CIRCLE_SIZE = 2;
+function resetCircle() {
+  circle.style.width = SMALL_CIRCLE_SIZE + "vh";
+  circle.style.height = SMALL_CIRCLE_SIZE + "vh";
+  circle.style.backgroundColor = RESET_BLUE;
+  circle.style.bottom = "-1vh";
+  circle.style.left = "-1vh";
+}
 
 const SMOOTH_PATH_TIMING = 1000;
 const BREATH_RATIO = 5;
@@ -23,7 +32,7 @@ const DEFAULT_ACTION_TEXT = "Breath Box";
 function resetActionText() {
   action.style.left = `${50 - pxToVw(calculateTextWidth(DEFAULT_ACTION_TEXT, EXHALE_SIZE))/2}vw`
   action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(DEFAULT_ACTION_TEXT, EXHALE_SIZE)*1.5)}vh`
-  action.style.color = '#007BFF';
+  action.style.color = RESET_BLUE;
 }
 resetActionText();
 
@@ -59,7 +68,7 @@ function animateBreathing() {
   action.style.fontSize = `${INHALE_SIZE}vh`
   action.style.color = '#4B0082'
   action.style.left = `${50 - pxToVw(calculateTextWidth(INHALE, INHALE_SIZE))/2}vw`
-  action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(INHALE, INHALE_SIZE)*1.1)}vh`
+  action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(INHALE, INHALE_SIZE)/1.5)}vh`
 
   circle.style.transitionProperty = 'height width background-color left bottom'
   circle.style.transitionDuration = `${inhaleDuration}s`
@@ -75,7 +84,7 @@ function animateBreathing() {
   setTimeout(() => {
     action.textContent = HOLD
     action.style.left = `${50 - pxToVw(calculateTextWidth(HOLD, INHALE_SIZE)/2)}vw`
-    action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(HOLD, INHALE_SIZE)*1.1)}vh`
+    action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(HOLD, INHALE_SIZE)/1.5)}vh`
 
     circle.style.transitionDuration = `${holdInDuration}s`;
     circle.style.transitionTimingFunction = 'linear'
@@ -141,17 +150,14 @@ function incrementTimer() {
 
 function addPauseButton() {
 
-  resetActionText();
 }
 
 function addStopButton() {
-  minutes = 0;
-  seconds = 0;
-  resetActionText();
+  stop.style.display = "flex";
 }
 
 let started = false;
-function beginBreathBox() {
+function startBreathBox() {
   if (started) {
     return;
   }
@@ -159,7 +165,17 @@ function beginBreathBox() {
   startTimer();
   addPauseButton();
   addStopButton();
+  resetActionText();
   animateBreathing();
 }
 
-start.onclick = beginBreathBox;
+function stopBreathBox() {
+  started = false;
+  minutes = 0;
+  seconds = 0;
+  resetActionText();
+  resetCircle();
+}
+
+start.onclick = startBreathBox;
+stop.onclick = stopBreathBox;
