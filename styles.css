@@ -15,7 +15,7 @@ body {
   height: fit-content;
 }
 
-.timer {
+.timer-start {
   position: relative;
   float: left;
   font-size: 5vh;
@@ -27,7 +27,7 @@ body {
   background-color: lightgreen;
   border-radius: 5vw;
   margin-bottom: 5vh;
-  padding: 2vw;
+  padding: 1vw;
 }
 
 .pause {

@@ -3,7 +3,7 @@ const boxRect = box.getBoundingClientRect();
 const circle = document.querySelector('.circle');
 const action = document.querySelector('.action');
 const invisible = document.querySelector('.invisible');
-const start = document.querySelector('.timer');
+const start = document.querySelector('.timer-start');
 const stopButton = document.querySelector('.stop');
 const pauseButton = document.querySelector('.pause');
 
