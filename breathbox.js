@@ -5,6 +5,7 @@ const action = document.querySelector('.action');
 const invisible = document.querySelector('.invisible');
 const start = document.querySelector('.timer');
 const stopButton = document.querySelector('.stop');
+const pauseButton = document.querySelector('.pause');
 
 const RESET_BLUE = "#007bff";
 const LARGE_CIRCLE_SIZE = 6;
@@ -38,8 +39,9 @@ const EXHALE_SIZE = 5;
 const DEFAULT_ACTION_TEXT = "Breath Box";
 const DEFAULT_ACTION_FONT_SIZE = "5vh";
 
-function resetActionText() {
-  action.textContent = DEFAULT_ACTION_TEXT;
+function resetActionText(text) {
+  text = text || DEFAULT_ACTION_TEXT;
+  action.textContent = text;
   action.style.fontSize = DEFAULT_ACTION_FONT_SIZE;
   action.style.left = `${50 - pxToVw(calculateTextWidth(DEFAULT_ACTION_TEXT, EXHALE_SIZE))/2}vw`
   action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(DEFAULT_ACTION_TEXT, EXHALE_SIZE)*1.5)}vh`
@@ -145,9 +147,7 @@ let minutes = 0;
 let seconds = 0;
 let incrementAnimation;
 function startTimer() {
-  minutes = 0;
-  seconds = 0;
-  start.textContent = "0:00";
+  incrementTimer();
   start.style.backgroundColor = "#f0f0f0";
   start.style.color = "black";
   start.style.border = "none";
@@ -185,21 +185,35 @@ function startBreathBox() {
   animateBreathing();
 }
 
-function stopBreathBox() {
-  started = false;
-  minutes = 0;
-  seconds = 0;
+function resetAnimations() {
   clearTimeout(inhaleAnimation);
   clearTimeout(holdInAnimation);
   clearTimeout(exhaleAnimation);
   clearTimeout(holdOutAnimation);
   clearInterval(incrementAnimation);
-  console.log("resetting")
+}
+
+function stopBreathBox() {
+  started = false;
+  minutes = 0;
+  seconds = 0;
+
+  resetAnimations();
   resetActionText();
   resetCircle();
   resetStartButton();
   stopButton.style.display = "none";
 }
 
+function pauseBreathBox() {
+  started = false;
+
+  resetAnimations();
+  resetActionText("Paused");
+  action.style.color = "#ff8c00"; // dark orange
+  resetCircle();
+}
+
 start.onclick = startBreathBox;
 stopButton.onclick = stopBreathBox;
+pauseButton.onclick = pauseBreathBox;
