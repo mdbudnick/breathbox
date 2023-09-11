@@ -179,13 +179,13 @@ function animateBreathing() {
 
 let minutes = 0;
 let seconds = 0;
-let incrementAnimation;
+let timerInterval;
 function startTimer() {
   incrementTimer();
   start.style.backgroundColor = DEFAULT_BACKGROUND_COLOR;
   start.style.color = "black";
   start.style.border = "none";
-  incrementAnimation = setInterval(incrementTimer, 1000);
+  timerInterval = setInterval(incrementTimer, 1000);
 }
 
 function incrementTimer() {
@@ -229,8 +229,8 @@ function resetAnimations() {
   exhaleAnimation = null;
   clearTimeout(holdOutAnimation);
   holdOutAnimation = null;
-  clearInterval(incrementAnimation);
-  incrementAnimation = null;
+  clearInterval(timerInterval);
+  timerInterval = null;
 }
 
 function stopBreathBox() {
