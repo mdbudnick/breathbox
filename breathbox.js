@@ -131,8 +131,6 @@ function animateBreathing() {
 
   // Hold In (right)
   holdInAnimation = setTimeout(() => {
-    let holdInLast = holdInDuration + 1;
-    action.textContent = INHALE + ' ' + calculateCountdown(holdInLast);
     action.textContent = HOLD
     action.style.left = `${50 - pxToVw(calculateTextWidth(HOLD, INHALE_SIZE)/2)}vw`
     action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(HOLD, INHALE_SIZE))}vh`
