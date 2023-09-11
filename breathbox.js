@@ -70,7 +70,12 @@ function calculateTextHeight(text, size) {
   return height;
 }
 
+function calculateCountdown(last) {
+  return --last
+}
+
 let inhaleAnimation;
+let inhaleCountdown;
 let holdInAnimation;
 let exhaleAnimation;
 let holdOutAnimation;
@@ -81,7 +86,17 @@ function animateBreathing() {
   const holdOutDuration = HOLD_RATIO;
 
   // Inhale (up)
-  action.textContent = INHALE
+  // We add a countdown timer for every second
+  inhaleCountdown = setTimeout(() => {
+    inhaleCountdown = calculateCountdown(inhaleLast);
+    if (inhaleCountdown) {
+      action.textContent = INHALE + ' ' + inhaleCountdown;
+    }
+    clearTimeout(inhaleCountdown);
+  }, 1000);
+  
+
+  
   action.style.transitionDuration = `${inhaleDuration}s`
   action.style.transitionTimingFunction = `${BREATH_CURVE}`
   action.style.fontSize = `${INHALE_SIZE}vh`
@@ -101,6 +116,8 @@ function animateBreathing() {
 
   // Hold In (right)
   holdInAnimation = setTimeout(() => {
+    let holdInLast = holdInDuration + 1;
+    action.textContent = INHALE + ' ' + calculateCountdown(holdInLast);
     action.textContent = HOLD
     action.style.left = `${50 - pxToVw(calculateTextWidth(HOLD, INHALE_SIZE)/2)}vw`
     action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(HOLD, INHALE_SIZE))}vh`
