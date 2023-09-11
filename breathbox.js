@@ -70,12 +70,13 @@ function calculateTextHeight(text, size) {
   return height;
 }
 
-function calculateCountdown(last) {
-  return --last
+function calculateCountdown(countdown) {
+  console.log('inhale countdown ' + countdown)
+  return countdown - 1;
 }
 
 let inhaleAnimation;
-let inhaleCountdown;
+let inhaleCountdownTimer;
 let holdInAnimation;
 let exhaleAnimation;
 let holdOutAnimation;
@@ -85,17 +86,31 @@ function animateBreathing() {
   const exhaleDuration = BREATH_RATIO;
   const holdOutDuration = HOLD_RATIO;
 
-  // Inhale (up)
-  // We add a countdown timer for every second
-  inhaleCountdown = setTimeout(() => {
-    inhaleCountdown = calculateCountdown(inhaleLast);
-    if (inhaleCountdown) {
-      action.textContent = INHALE + ' ' + inhaleCountdown;
-    }
-    clearTimeout(inhaleCountdown);
-  }, 1000);
-  
 
+  // Inhale (up)
+  
+  // Start the countdown timer
+  console.log('inhaleCountdownTimer ' + inhaleCountdownTimer);
+  if (!inhaleCountdownTimer) {
+    // + 1 duration because we -- countdown
+    let inhaleLast = inhaleDuration + 1;
+
+    inhaleCountdownTimer = setTimeout(() => {
+      inhaleLast = calculateCountdown(inhaleLast);
+      if (inhaleLast) {
+        action.textContent = INHALE + ' ' + inhaleLast;
+      } else {
+        // It cancels itself on 0
+        clearTimeout(inhaleCountdownTimer);
+        inhaleCountdownTimer = null;
+      }
+    }, 500);
+    // Do it the first time
+    console.log('first inhale ' + inhaleLast);
+    inhaleLast = calculateCountdown(inhaleLast);
+    console.log('after first inhale ' + inhaleLast);
+    action.textContent = INHALE + ' ' + inhaleLast ;
+  }
   
   action.style.transitionDuration = `${inhaleDuration}s`
   action.style.transitionTimingFunction = `${BREATH_CURVE}`
@@ -205,10 +220,17 @@ function startBreathBox() {
 
 function resetAnimations() {
   clearTimeout(inhaleAnimation);
+  inhaleAnimation = null;
+  clearTimeout(inhaleCountdownTimer);
+  inhaleCountdownTimer = null;
   clearTimeout(holdInAnimation);
+  holdInAnimation = null;
   clearTimeout(exhaleAnimation);
+  exhaleAnimation = null;
   clearTimeout(holdOutAnimation);
+  holdOutAnimation = null;
   clearInterval(incrementAnimation);
+  incrementAnimation = null;
 }
 
 function stopBreathBox() {
