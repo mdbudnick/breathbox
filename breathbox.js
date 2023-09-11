@@ -71,12 +71,11 @@ function calculateTextHeight(text, size) {
 }
 
 function calculateCountdown(countdown) {
-  console.log('inhale countdown ' + countdown)
   return countdown - 1;
 }
 
 let inhaleAnimation;
-let inhaleCountdownTimer;
+let inhaleCountdownInterval;
 let holdInAnimation;
 let exhaleAnimation;
 let holdOutAnimation;
@@ -90,26 +89,26 @@ function animateBreathing() {
   // Inhale (up)
   
   // Start the countdown timer
-  console.log('inhaleCountdownTimer ' + inhaleCountdownTimer);
-  if (!inhaleCountdownTimer) {
+  if (!inhaleCountdownInterval) {
     // + 1 duration because we -- countdown
     let inhaleLast = inhaleDuration + 1;
+    let inhaleCountdownTs  = Date.now();
 
-    inhaleCountdownTimer = setTimeout(() => {
-      inhaleLast = calculateCountdown(inhaleLast);
-      if (inhaleLast) {
-        action.textContent = INHALE + ' ' + inhaleLast;
-      } else {
-        // It cancels itself on 0
-        clearTimeout(inhaleCountdownTimer);
-        inhaleCountdownTimer = null;
+    inhaleCountdownInterval = setInterval(() => {
+      if (Date.now() - inhaleCountdownTs > 1000) {
+        --inhaleLast;
+        if (inhaleLast) {
+          action.textContent = INHALE + ' ' + inhaleLast;
+        } else {
+          action.textContent = INHALE
+          // It cancels itself on 0
+          clearTimeout(inhaleCountdownInterval);
+          inhaleCountdownInterval = null;
+        }
       }
-    }, 500);
+    }, 1000);
     // Do it the first time
-    console.log('first inhale ' + inhaleLast);
-    inhaleLast = calculateCountdown(inhaleLast);
-    console.log('after first inhale ' + inhaleLast);
-    action.textContent = INHALE + ' ' + inhaleLast ;
+    action.textContent = INHALE + ' ' + --inhaleLast;
   }
   
   action.style.transitionDuration = `${inhaleDuration}s`
@@ -219,8 +218,8 @@ function startBreathBox() {
 function resetAnimations() {
   clearTimeout(inhaleAnimation);
   inhaleAnimation = null;
-  clearTimeout(inhaleCountdownTimer);
-  inhaleCountdownTimer = null;
+  clearTimeout(inhaleCountdownInterval);
+  inhaleCountdownInterval = null;
   clearTimeout(holdInAnimation);
   holdInAnimation = null;
   clearTimeout(exhaleAnimation);
