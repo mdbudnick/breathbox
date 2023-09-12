@@ -88,7 +88,7 @@ function startCountdownDecrement(text, time) {
         }
     }, 1000);
     // Do it the first time
-    action.textContent = text + ' ' + --time;
+    action.textContent = text + ' ' + time;
 
     return countdownInterval;
 }
@@ -109,7 +109,7 @@ function animateBreathing() {
 
 
   // Inhale (up)
-  inhaleCountdownInterval = startCountdownDecrement(INHALE, inhaleDuration + 1);
+  inhaleCountdownInterval = startCountdownDecrement(INHALE, inhaleDuration);
   action.style.transitionDuration = `${inhaleDuration}s`
   action.style.transitionTimingFunction = `${BREATH_CURVE}`
   action.style.fontSize = `${INHALE_SIZE}vh`
@@ -129,7 +129,7 @@ function animateBreathing() {
 
   // Hold In (right)
   holdInAnimation = setTimeout(() => {
-    holdInCountdownInterval = startCountdownDecrement(HOLD, holdInDuration + 1);
+    holdInCountdownInterval = startCountdownDecrement(HOLD, holdInDuration);
     action.style.left = `${50 - pxToVw(calculateTextWidth(HOLD, INHALE_SIZE)/2)}vw`
     action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(HOLD, INHALE_SIZE))}vh`
 
@@ -139,7 +139,7 @@ function animateBreathing() {
     
     // Exhale (down)
     exhaleAnimation = setTimeout(() => {
-      exhaleCountdownInterval = startCountdownDecrement(EXHALE, exhaleDuration + 1);
+      exhaleCountdownInterval = startCountdownDecrement(EXHALE, exhaleDuration);
       action.style.fontSize = `${EXHALE_SIZE}vh`
       action.style.color = '#FFA07A'
       action.style.left = `${50 - pxToVw(calculateTextWidth(EXHALE, EXHALE_SIZE)/2)}vw`
@@ -156,7 +156,7 @@ function animateBreathing() {
       
       // Hold out (left)
       holdOutAnimation = setTimeout(() => {
-        holdOutCountdownInterval = startCountdownDecrement(HOLD, holdOutDuration + 1);
+        holdOutCountdownInterval = startCountdownDecrement(HOLD, holdOutDuration);
         action.style.left = `${50 - pxToVw(calculateTextWidth(HOLD, EXHALE_SIZE)/2)}vw`
         action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(HOLD, EXHALE_SIZE)*1.5)}vh`
 
