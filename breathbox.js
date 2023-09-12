@@ -74,11 +74,33 @@ function calculateCountdown(countdown) {
   return countdown - 1;
 }
 
+function startCountdownDecrement(text, time) {
+    let countdownInterval = setInterval(() => {
+        --time;
+        countdownNs = Date.now();
+        if (time > 1) {
+          action.textContent = text + ' ' + time;
+        } else {
+          action.textContent = text;
+          // It cancels itself
+          clearInterval(countdownInterval);
+          countdownInterval = null;
+        }
+    }, 1000);
+    // Do it the first time
+    action.textContent = text + ' ' + --time;
+
+    return countdownInterval;
+}
+
 let inhaleAnimation;
 let inhaleCountdownInterval;
 let holdInAnimation;
+let holdInCountdownInterval;
 let exhaleAnimation;
+let exhaleCountdownInterval;
 let holdOutAnimation;
+let holdOutCountdownInterval;
 function animateBreathing() {
   const inhaleDuration = BREATH_RATIO;
   const holdInDuration = HOLD_RATIO;
@@ -87,30 +109,7 @@ function animateBreathing() {
 
 
   // Inhale (up)
-  
-  // Start the countdown timer
-  if (!inhaleCountdownInterval) {
-    // + 1 duration because we -- countdown
-    let inhaleLast = inhaleDuration + 1;
-    let inhaleCountdownTs  = Date.now();
-
-    inhaleCountdownInterval = setInterval(() => {
-      if (Date.now() - inhaleCountdownTs > 1000) {
-        --inhaleLast;
-        if (inhaleLast > 1) {
-          action.textContent = INHALE + ' ' + inhaleLast;
-        } else {
-          action.textContent = INHALE
-          // It cancels itself on 0
-          clearTimeout(inhaleCountdownInterval);
-          inhaleCountdownInterval = null;
-        }
-      }
-    }, 1000);
-    // Do it the first time
-    action.textContent = INHALE + ' ' + --inhaleLast;
-  }
-  
+  inhaleCountdownInterval = startCountdownDecrement(INHALE, inhaleDuration + 1);
   action.style.transitionDuration = `${inhaleDuration}s`
   action.style.transitionTimingFunction = `${BREATH_CURVE}`
   action.style.fontSize = `${INHALE_SIZE}vh`
@@ -130,7 +129,7 @@ function animateBreathing() {
 
   // Hold In (right)
   holdInAnimation = setTimeout(() => {
-    action.textContent = HOLD
+    holdInCountdownInterval = startCountdownDecrement(HOLD, holdInDuration + 1);
     action.style.left = `${50 - pxToVw(calculateTextWidth(HOLD, INHALE_SIZE)/2)}vw`
     action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(HOLD, INHALE_SIZE))}vh`
 
@@ -140,7 +139,7 @@ function animateBreathing() {
     
     // Exhale (down)
     exhaleAnimation = setTimeout(() => {
-      action.textContent = EXHALE
+      exhaleCountdownInterval = startCountdownDecrement(EXHALE, exhaleDuration + 1);
       action.style.fontSize = `${EXHALE_SIZE}vh`
       action.style.color = '#FFA07A'
       action.style.left = `${50 - pxToVw(calculateTextWidth(EXHALE, EXHALE_SIZE)/2)}vw`
@@ -157,7 +156,7 @@ function animateBreathing() {
       
       // Hold out (left)
       holdOutAnimation = setTimeout(() => {
-        action.textContent = HOLD
+        holdOutCountdownInterval = startCountdownDecrement(HOLD, holdOutDuration + 1);
         action.style.left = `${50 - pxToVw(calculateTextWidth(HOLD, EXHALE_SIZE)/2)}vw`
         action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(HOLD, EXHALE_SIZE)*1.5)}vh`
 
@@ -218,14 +217,20 @@ function startBreathBox() {
 function resetAnimations() {
   clearTimeout(inhaleAnimation);
   inhaleAnimation = null;
-  clearTimeout(inhaleCountdownInterval);
+  clearInterval(inhaleCountdownInterval);
   inhaleCountdownInterval = null;
   clearTimeout(holdInAnimation);
   holdInAnimation = null;
+  clearInterval(holdInCountdownInterval);
+  holdInCountdownInterval = null;
   clearTimeout(exhaleAnimation);
   exhaleAnimation = null;
+  clearInterval(exhaleCountdownInterval);
+  exhaleCountdownInterval = null;
   clearTimeout(holdOutAnimation);
   holdOutAnimation = null;
+  clearInterval(holdOutCountdownInterval);
+  holdOutCountdownInterval = null;
   clearInterval(timerInterval);
   timerInterval = null;
 }
