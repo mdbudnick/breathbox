@@ -29,14 +29,14 @@ function resetStartButton() {
 }
 
 const SMOOTH_PATH_TIMING = 1000;
-const BREATH_RATIO = 5;
+const BREATH_RATIO = 6;
 const BREATH_CURVE = "cubic-bezier(.13,.38,.48,1.02)"
-const HOLD_RATIO = 2;
+const HOLD_RATIO = 3;
 
 const INHALE = "INHALE";
 const EXHALE = "EXHALE";
 const HOLD = "HOLD";
-const INHALE_SIZE = 15;
+const INHALE_SIZE = 10;
 const EXHALE_SIZE = 5;
 const DEFAULT_ACTION_TEXT = "Breath Box";
 const DEFAULT_ACTION_FONT_SIZE = "5vh";
@@ -78,8 +78,8 @@ function startCountdownDecrement(text, time) {
     let countdownInterval = setInterval(() => {
         --time;
         countdownNs = Date.now();
-        if (time > 1) {
-          action.textContent = text + ' ' + time;
+        if (time) {
+          action.textContent = text + "\r\n" + time;
         } else {
           action.textContent = text;
           // It cancels itself
@@ -88,7 +88,7 @@ function startCountdownDecrement(text, time) {
         }
     }, 1000);
     // Do it the first time
-    action.textContent = text + ' ' + time;
+    action.textContent = text + "\r\n" + time;
 
     return countdownInterval;
 }
@@ -115,7 +115,7 @@ function animateBreathing() {
   action.style.fontSize = `${INHALE_SIZE}vh`
   action.style.color = '#4B0082'
   action.style.left = `${50 - pxToVw(calculateTextWidth(INHALE, INHALE_SIZE))/2}vw`
-  action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(INHALE, INHALE_SIZE))}vh`
+  action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(INHALE, INHALE_SIZE) * 1.25)}vh`
 
   circle.style.transitionProperty = 'height width background-color left bottom'
   circle.style.transitionDuration = `${inhaleDuration}s`
@@ -131,7 +131,7 @@ function animateBreathing() {
   holdInAnimation = setTimeout(() => {
     holdInCountdownInterval = startCountdownDecrement(HOLD, holdInDuration);
     action.style.left = `${50 - pxToVw(calculateTextWidth(HOLD, INHALE_SIZE)/2)}vw`
-    action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(HOLD, INHALE_SIZE))}vh`
+    action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(HOLD, INHALE_SIZE) * 1.25)}vh`
 
     circle.style.transitionDuration = `${holdInDuration}s`;
     circle.style.transitionTimingFunction = 'linear'

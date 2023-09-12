@@ -71,6 +71,8 @@ body {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   margin-top: 2vh;
   transition-property: font-size, color, top, left;
+  white-space: pre;
+  text-align: center;
 }
 
 .breath-box {
