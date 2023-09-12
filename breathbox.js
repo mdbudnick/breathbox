@@ -97,7 +97,7 @@ function animateBreathing() {
     inhaleCountdownInterval = setInterval(() => {
       if (Date.now() - inhaleCountdownTs > 1000) {
         --inhaleLast;
-        if (inhaleLast) {
+        if (inhaleLast > 1) {
           action.textContent = INHALE + ' ' + inhaleLast;
         } else {
           action.textContent = INHALE
