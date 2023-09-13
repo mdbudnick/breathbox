@@ -26,6 +26,7 @@ function resetStartButton() {
   start.style.backgroundColor = "lightgreen";
   start.style.borderRadius = "5vw";
   start.textContent = "Start";
+  start.classList.add('button');
 }
 
 const SMOOTH_PATH_TIMING = 1000;
@@ -181,6 +182,7 @@ function startTimer() {
   start.style.backgroundColor = DEFAULT_BACKGROUND_COLOR;
   start.style.color = "black";
   start.style.border = "none";
+  start.classList.remove('button');
   timerInterval = setInterval(incrementTimer, 1000);
 }
 
