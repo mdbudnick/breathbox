@@ -46,8 +46,6 @@ function resetActionText(text) {
   text = text || DEFAULT_ACTION_TEXT;
   action.textContent = text;
   action.style.fontSize = DEFAULT_ACTION_FONT_SIZE;
-  action.style.left = `${50 - pxToVw(calculateTextWidth(DEFAULT_ACTION_TEXT, EXHALE_SIZE))/2}vw`
-  action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(DEFAULT_ACTION_TEXT, EXHALE_SIZE)*1.5)}vh`
   action.style.color = RESET_BLUE;
 }
 resetActionText();
@@ -115,8 +113,6 @@ function animateBreathing() {
   action.style.transitionTimingFunction = `${BREATH_CURVE}`
   action.style.fontSize = `${INHALE_SIZE}vh`
   action.style.color = '#4B0082'
-  action.style.left = `${50 - pxToVw(calculateTextWidth(INHALE, INHALE_SIZE))/2}vw`
-  action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(INHALE, INHALE_SIZE) * 1.25)}vh`
 
   circle.style.transitionProperty = 'height width background-color left bottom'
   circle.style.transitionDuration = `${inhaleDuration}s`
@@ -131,8 +127,6 @@ function animateBreathing() {
   // Hold In (right)
   holdInAnimation = setTimeout(() => {
     holdInCountdownInterval = startCountdownDecrement(HOLD, holdInDuration);
-    action.style.left = `${50 - pxToVw(calculateTextWidth(HOLD, INHALE_SIZE)/2)}vw`
-    action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(HOLD, INHALE_SIZE) * 1.25)}vh`
 
     circle.style.transitionDuration = `${holdInDuration}s`;
     circle.style.transitionTimingFunction = 'linear'
@@ -143,8 +137,6 @@ function animateBreathing() {
       exhaleCountdownInterval = startCountdownDecrement(EXHALE, exhaleDuration);
       action.style.fontSize = `${EXHALE_SIZE}vh`
       action.style.color = '#FFA07A'
-      action.style.left = `${50 - pxToVw(calculateTextWidth(EXHALE, EXHALE_SIZE)/2)}vw`
-      action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(EXHALE, EXHALE_SIZE)*1.5)}vh`
       
       circle.style.transitionProperty = 'height width color left bottom'
       circle.style.transitionDuration = `${exhaleDuration}s`
@@ -158,8 +150,6 @@ function animateBreathing() {
       // Hold out (left)
       holdOutAnimation = setTimeout(() => {
         holdOutCountdownInterval = startCountdownDecrement(HOLD, holdOutDuration);
-        action.style.left = `${50 - pxToVw(calculateTextWidth(HOLD, EXHALE_SIZE)/2)}vw`
-        action.style.top = `${pxToVh(boxRect.top) + pxToVh(box.clientHeight)/2 - pxToVw(calculateTextHeight(HOLD, EXHALE_SIZE)*1.5)}vh`
 
         circle.style.transitionDuration = `${holdInDuration}s`;
         circle.style.transitionTimingFunction = 'linear'
