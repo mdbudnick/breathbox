@@ -55,23 +55,23 @@ body {
   font-weight: bold;
   color: blueviolet;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  margin-top: 2vh;
   transition-property: font-size, color, top, left;
   white-space: pre;
   text-align: center;
+  align-self: center;
+  width: 100%;
 }
 
 .breath-box {
   position: relative;
-  width: 50vw;
-  height: 25vh;
+  width: 30vw;
+  height: 60vh;
   border: 2px solid #333;
 }
 
 .breath-box-inner {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   height: 100%;
 }
