@@ -114,19 +114,19 @@ function animateBreathing() {
 
   // Inhale (up)
   inhaleCountdownInterval = startCountdownDecrement(INHALE, inhaleDuration);
-  action.style.transitionDuration = `${inhaleDuration}s`
-  action.style.transitionTimingFunction = `${BREATH_CURVE}`
-  action.style.fontSize = `${INHALE_SIZE}vh`
-  action.style.color = INHALE_COLOR
+  action.style.transitionDuration = `${inhaleDuration}s`;
+  action.style.transitionTimingFunction = `${BREATH_CURVE}`;
+  action.style.fontSize = `${INHALE_SIZE}vh`;
+  action.style.color = INHALE_COLOR;
 
-  circle.style.transitionProperty = 'height width background-color left bottom'
-  circle.style.transitionDuration = `${inhaleDuration}s`
-  circle.style.transitionTimingFunction = `${BREATH_CURVE}`
-  circle.style.backgroundColor = INHALE_COLOR
-  circle.style.height = `${LARGE_CIRCLE_SIZE}vh`
-  circle.style.width = `${LARGE_CIRCLE_SIZE}vh`
-  circle.style.bottom = `${box.clientHeight - vhToPx(LARGE_CIRCLE_SIZE)/2}px`
-  circle.style.left = `-${LARGE_CIRCLE_SIZE/2}vh`
+  circle.style.transitionProperty = 'height width background-color left bottom';
+  circle.style.transitionDuration = `${inhaleDuration}s`;
+  circle.style.transitionTimingFunction = `${BREATH_CURVE}`;
+  circle.style.backgroundColor = INHALE_COLOR;
+  circle.style.height = `${LARGE_CIRCLE_SIZE}vh`;
+  circle.style.width = `${LARGE_CIRCLE_SIZE}vh`;
+  circle.style.bottom = `${box.clientHeight - vhToPx(LARGE_CIRCLE_SIZE)/2}px`;
+  circle.style.left = `-${LARGE_CIRCLE_SIZE/2}vh`;
 
 
   // Hold In (right)
@@ -134,32 +134,32 @@ function animateBreathing() {
     holdInCountdownInterval = startCountdownDecrement(HOLD, holdInDuration);
 
     circle.style.transitionDuration = `${holdInDuration}s`;
-    circle.style.transitionTimingFunction = 'linear'
-    circle.style.left = `${box.clientWidth - (vhToPx(LARGE_CIRCLE_SIZE)/2)}px`
+    circle.style.transitionTimingFunction = 'linear';
+    circle.style.left = `${box.clientWidth - (vhToPx(LARGE_CIRCLE_SIZE)/2)}px`;
     
     // Exhale (down)
     exhaleAnimation = setTimeout(() => {
       exhaleCountdownInterval = startCountdownDecrement(EXHALE, exhaleDuration);
-      action.style.fontSize = `${EXHALE_SIZE}vh`
-      action.style.color = EXHALE_COLOR
+      action.style.fontSize = `${EXHALE_SIZE}vh`;
+      action.style.color = EXHALE_COLOR;
       
-      circle.style.transitionProperty = 'height width color left bottom'
-      circle.style.transitionDuration = `${exhaleDuration}s`
-      circle.style.transitionTimingFunction = `${BREATH_CURVE}`
-      circle.style.backgroundColor = EXHALE_COLOR
-      circle.style.height = `${SMALL_CIRCLE_SIZE}vh`
-      circle.style.width = `${SMALL_CIRCLE_SIZE}vh`
-      circle.style.bottom = `-${SMALL_CIRCLE_SIZE/2}vh`
-      circle.style.left = `${box.clientWidth - vhToPx(SMALL_CIRCLE_SIZE)/2}px`
+      circle.style.transitionProperty = 'height width color left bottom';
+      circle.style.transitionDuration = `${exhaleDuration}s`;
+      circle.style.transitionTimingFunction = `${BREATH_CURVE}`;
+      circle.style.backgroundColor = EXHALE_COLOR;
+      circle.style.height = `${SMALL_CIRCLE_SIZE}vh`;
+      circle.style.width = `${SMALL_CIRCLE_SIZE}vh`;
+      circle.style.bottom = `-${SMALL_CIRCLE_SIZE/2}vh`;
+      circle.style.left = `${box.clientWidth - vhToPx(SMALL_CIRCLE_SIZE)/2}px`;
       
       // Hold out (left)
       holdOutAnimation = setTimeout(() => {
         holdOutCountdownInterval = startCountdownDecrement(HOLD, holdOutDuration);
 
         circle.style.transitionDuration = `${holdInDuration}s`;
-        circle.style.transitionTimingFunction = 'linear'
-        circle.style.bottom = `-${SMALL_CIRCLE_SIZE/2}vh`
-        circle.style.left = `-${SMALL_CIRCLE_SIZE/2}vh`
+        circle.style.transitionTimingFunction = 'linear';
+        circle.style.bottom = `-${SMALL_CIRCLE_SIZE/2}vh`;
+        circle.style.left = `-${SMALL_CIRCLE_SIZE/2}vh`;
         
         inhaleAnimation = setTimeout(() => {
           animateBreathing(); // Restart the cycle
