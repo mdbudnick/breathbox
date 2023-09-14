@@ -2,8 +2,13 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #f0f0f0;
-  margin-top: 10%;
+  background-color: #1e3250;
+  height: 90vh;
+  width: 100vw;
+}
+
+.control-bar {
+  margin: 10% 10px 10px 10px;
 }
 
 .control-bar div {
@@ -53,34 +58,49 @@ body {
 .action {
   font-size: 5vh;
   font-weight: bold;
-  color: blueviolet;
+  color: #f6786e;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   transition-property: font-size, color, top, left;
   white-space: pre;
-  text-align: center;
   align-self: center;
-  width: 100%;
+  text-align: center;
+  width: fit-content;
+  background-color: gainsboro;
+  border-radius: 3vw;
+  opacity: 0.7;
+  padding: 1vw;
+
+}
+
+.central {
+  width: 50vh;
+  height: 70vh;
 }
 
 .breath-box {
   position: relative;
-  width: 30vw;
-  height: 60vh;
-  border: 2px solid #333;
+  height: 100%;
+  width: 100%;
+  border: 2px solid #f6786e;
 }
 
 .breath-box-inner {
   display: flex;
   align-items: flex-start;
-  width: 100%;
   height: 100%;
+  width: 100%;
+  background-image: url("../img/buddha-gnome.jpeg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  justify-content: center;
 }
 
 .circle {
   position: absolute;
   width: 2vh;
   height: 2vh;
-  background-color: #007bff;
+  background-color: #f6786e;
   border-radius: 50%;
   transform-origin: center;
   bottom: -1vh;

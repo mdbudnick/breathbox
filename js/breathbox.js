@@ -7,15 +7,17 @@ const start = document.querySelector('.timer-start');
 const stopButton = document.querySelector('.stop');
 const pauseButton = document.querySelector('.pause');
 
-const DEFAULT_BACKGROUND_COLOR = "#f0f0f0";
+const DEFAULT_BACKGROUND_COLOR = "#1e3250";
+const INHALE_COLOR = "#0f5362";
+const EXHALE_COLOR = "#c08845";
+const RESET_ORANGE = "#f6786e";
 
-const RESET_BLUE = "#007bff";
 const LARGE_CIRCLE_SIZE = 6;
 const SMALL_CIRCLE_SIZE = 2;
 function resetCircle() {
   circle.style.width = SMALL_CIRCLE_SIZE + "vh";
   circle.style.height = SMALL_CIRCLE_SIZE + "vh";
-  circle.style.backgroundColor = RESET_BLUE;
+  circle.style.backgroundColor = RESET_ORANGE;
   circle.style.bottom = "-1vh";
   circle.style.left = "-1vh";
 }
@@ -46,7 +48,7 @@ function resetActionText(text) {
   text = text || DEFAULT_ACTION_TEXT;
   action.textContent = text;
   action.style.fontSize = DEFAULT_ACTION_FONT_SIZE;
-  action.style.color = RESET_BLUE;
+  action.style.color = RESET_ORANGE;
 }
 resetActionText();
 
@@ -112,12 +114,12 @@ function animateBreathing() {
   action.style.transitionDuration = `${inhaleDuration}s`
   action.style.transitionTimingFunction = `${BREATH_CURVE}`
   action.style.fontSize = `${INHALE_SIZE}vh`
-  action.style.color = '#4B0082'
+  action.style.color = INHALE_COLOR
 
   circle.style.transitionProperty = 'height width background-color left bottom'
   circle.style.transitionDuration = `${inhaleDuration}s`
   circle.style.transitionTimingFunction = `${BREATH_CURVE}`
-  circle.style.backgroundColor = '#4B0082'
+  circle.style.backgroundColor = INHALE_COLOR
   circle.style.height = `${LARGE_CIRCLE_SIZE}vh`
   circle.style.width = `${LARGE_CIRCLE_SIZE}vh`
   circle.style.bottom = `${box.clientHeight - vhToPx(LARGE_CIRCLE_SIZE)/2}px`
@@ -136,12 +138,12 @@ function animateBreathing() {
     exhaleAnimation = setTimeout(() => {
       exhaleCountdownInterval = startCountdownDecrement(EXHALE, exhaleDuration);
       action.style.fontSize = `${EXHALE_SIZE}vh`
-      action.style.color = '#FFA07A'
+      action.style.color = EXHALE_COLOR
       
       circle.style.transitionProperty = 'height width color left bottom'
       circle.style.transitionDuration = `${exhaleDuration}s`
       circle.style.transitionTimingFunction = `${BREATH_CURVE}`
-      circle.style.backgroundColor = '#FFA07A'
+      circle.style.backgroundColor = EXHALE_COLOR
       circle.style.height = `${SMALL_CIRCLE_SIZE}vh`
       circle.style.width = `${SMALL_CIRCLE_SIZE}vh`
       circle.style.bottom = `-${SMALL_CIRCLE_SIZE/2}vh`
@@ -170,7 +172,6 @@ let timerInterval;
 function startTimer() {
   incrementTimer();
   start.style.backgroundColor = DEFAULT_BACKGROUND_COLOR;
-  start.style.color = "black";
   start.style.border = "none";
   start.classList.remove('button');
   timerInterval = setInterval(incrementTimer, 1000);
@@ -255,7 +256,7 @@ function pauseBreathBox() {
 }
 
 function resumeBreathBox() {
-  pauseButton.style.color = RESET_BLUE;
+  pauseButton.style.color = RESET_ORANGE;
   pauseButton.textContent = "||";
 
   pauseButton.onclick = pauseBreathBox;
