@@ -72,10 +72,20 @@ body {
 
 }
 
-.central {
-  width: 50vh;
-  height: 70vh;
+@media (max-width: 600px) {
+  .central {
+    width: 75vw;
+    height: 150vw;
+  }
 }
+
+@media (min-width: 600px) {
+  .central {
+    width: 50vh;
+    height: 70vh;
+  }
+}
+
 
 .breath-box {
   position: relative;
