@@ -171,7 +171,7 @@ let seconds = 0;
 let timerInterval;
 function startTimer() {
   incrementTimer();
-  start.style.backgroundColor = DEFAULT_BACKGROUND_COLOR;
+  start.style.backgroundColor = "transparent";
   start.style.border = "none";
   start.classList.remove('button');
   timerInterval = setInterval(incrementTimer, 1000);
