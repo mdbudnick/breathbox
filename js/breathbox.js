@@ -18,6 +18,9 @@ function resetCircle() {
   circle.style.width = SMALL_CIRCLE_SIZE + "vh";
   circle.style.height = SMALL_CIRCLE_SIZE + "vh";
   circle.style.backgroundColor = RESET_ORANGE;
+  circle.style.transitionProperty = "";
+  circle.style.transitionDuration = "";
+  circle.style.transitionTimingFunction = "";
   circle.style.bottom = "-1vh";
   circle.style.left = "-1vh";
 }
@@ -204,6 +207,7 @@ function startBreathBox() {
   addPauseButton();
   addStopButton();
   resetActionText();
+  resetCircle();
   animateBreathing();
 }
 
