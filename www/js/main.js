@@ -94,4 +94,4 @@ function resumeBreathBox() {
 start.onclick = startBreathBox;
 stopButton.onclick = stopBreathBox;
 pauseButton.onclick = pauseBreathBox;
-//# sourceMappingURL=breathbox.js.map
+//# sourceMappingURL=main.js.map
