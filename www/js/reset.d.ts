@@ -1,3 +1,12 @@
 declare function resetCircle(): void;
 declare function resetStartButton(): void;
 declare function resetActionText(text: string): void;
+declare let inhaleAnimation: number;
+declare let inhaleCountdownInterval: number;
+declare let holdInAnimation: number;
+declare let holdInCountdownInterval: number;
+declare let exhaleAnimation: number;
+declare let exhaleCountdownInterval: number;
+declare let holdOutAnimation: number;
+declare let holdOutCountdownInterval: number;
+declare function resetAnimations(): void;

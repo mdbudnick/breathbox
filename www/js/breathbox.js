@@ -1,48 +1,4 @@
 "use strict";
-// We have to do this each time because the window can be resized
-function calculateTextWidth(text, size) {
-    invisible.style.fontSize = `${size}vh`;
-    invisible.textContent = text;
-    let width = invisible.clientWidth;
-    invisible.textContent = "";
-    return width;
-}
-function calculateTextHeight(text, size) {
-    invisible.style.fontSize = `${size}vh`;
-    invisible.textContent = text;
-    let height = invisible.clientHeight;
-    invisible.textContent = "";
-    return height;
-}
-function calculateCountdown(countdown) {
-    return countdown - 1;
-}
-function startCountdownDecrement(text, time) {
-    let countdownInterval = setInterval(() => {
-        --time;
-        let countdownNs = Date.now();
-        if (time) {
-            action.textContent = text + "\r\n" + time;
-        }
-        else {
-            action.textContent = text;
-            // It cancels itself
-            clearInterval(countdownInterval);
-            countdownInterval = -1;
-        }
-    }, 1000);
-    // Do it the first time
-    action.textContent = text + "\r\n" + time;
-    return countdownInterval;
-}
-let inhaleAnimation;
-let inhaleCountdownInterval;
-let holdInAnimation;
-let holdInCountdownInterval;
-let exhaleAnimation;
-let exhaleCountdownInterval;
-let holdOutAnimation;
-let holdOutCountdownInterval;
 function animateBreathing() {
     const inhaleDuration = BREATH_RATIO;
     const holdInDuration = HOLD_RATIO;
@@ -131,26 +87,6 @@ function startBreathBox() {
     resetActionText("");
     resetCircle();
     animateBreathing();
-}
-function resetAnimations() {
-    clearTimeout(inhaleAnimation);
-    inhaleAnimation = -1;
-    clearInterval(inhaleCountdownInterval);
-    inhaleCountdownInterval = -1;
-    clearTimeout(holdInAnimation);
-    holdInAnimation = -1;
-    clearInterval(holdInCountdownInterval);
-    holdInCountdownInterval = -1;
-    clearTimeout(exhaleAnimation);
-    exhaleAnimation = -1;
-    clearInterval(exhaleCountdownInterval);
-    exhaleCountdownInterval = -1;
-    clearTimeout(holdOutAnimation);
-    holdOutAnimation = -1;
-    clearInterval(holdOutCountdownInterval);
-    holdOutCountdownInterval = -1;
-    clearInterval(timerInterval);
-    timerInterval = -1;
 }
 function stopBreathBox() {
     started = false;

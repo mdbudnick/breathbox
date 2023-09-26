@@ -24,4 +24,32 @@ function resetActionText(text) {
     action.style.color = RESET_ORANGE;
 }
 resetActionText("");
+let inhaleAnimation;
+let inhaleCountdownInterval;
+let holdInAnimation;
+let holdInCountdownInterval;
+let exhaleAnimation;
+let exhaleCountdownInterval;
+let holdOutAnimation;
+let holdOutCountdownInterval;
+function resetAnimations() {
+    clearTimeout(inhaleAnimation);
+    inhaleAnimation = -1;
+    clearInterval(inhaleCountdownInterval);
+    inhaleCountdownInterval = -1;
+    clearTimeout(holdInAnimation);
+    holdInAnimation = -1;
+    clearInterval(holdInCountdownInterval);
+    holdInCountdownInterval = -1;
+    clearTimeout(exhaleAnimation);
+    exhaleAnimation = -1;
+    clearInterval(exhaleCountdownInterval);
+    exhaleCountdownInterval = -1;
+    clearTimeout(holdOutAnimation);
+    holdOutAnimation = -1;
+    clearInterval(holdOutCountdownInterval);
+    holdOutCountdownInterval = -1;
+    clearInterval(timerInterval);
+    timerInterval = -1;
+}
 //# sourceMappingURL=reset.js.map
