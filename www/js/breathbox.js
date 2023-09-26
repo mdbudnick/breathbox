@@ -17,17 +17,6 @@ function resetStartButton() {
     start.textContent = "Start";
     start.classList.add('button');
 }
-const SMOOTH_PATH_TIMING = 1000;
-const BREATH_RATIO = 6;
-const BREATH_CURVE = "cubic-bezier(.13,.38,.48,1.02)";
-const HOLD_RATIO = 3;
-const INHALE = "INHALE";
-const EXHALE = "EXHALE";
-const HOLD = "HOLD";
-const INHALE_SIZE = 8;
-const EXHALE_SIZE = 4;
-const DEFAULT_ACTION_TEXT = "Breath Box";
-const DEFAULT_ACTION_FONT_SIZE = "5vh";
 function resetActionText(text) {
     text = text || DEFAULT_ACTION_TEXT;
     action.textContent = text;

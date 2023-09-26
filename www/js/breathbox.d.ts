@@ -1,16 +1,5 @@
 declare function resetCircle(): void;
 declare function resetStartButton(): void;
-declare const SMOOTH_PATH_TIMING = 1000;
-declare const BREATH_RATIO = 6;
-declare const BREATH_CURVE = "cubic-bezier(.13,.38,.48,1.02)";
-declare const HOLD_RATIO = 3;
-declare const INHALE = "INHALE";
-declare const EXHALE = "EXHALE";
-declare const HOLD = "HOLD";
-declare const INHALE_SIZE = 8;
-declare const EXHALE_SIZE = 4;
-declare const DEFAULT_ACTION_TEXT = "Breath Box";
-declare const DEFAULT_ACTION_FONT_SIZE = "5vh";
 declare function resetActionText(text: string): void;
 declare function calculateTextWidth(text: string, size: number): number;
 declare function calculateTextHeight(text: string, size: number): number;
