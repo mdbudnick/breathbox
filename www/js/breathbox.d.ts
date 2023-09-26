@@ -1,6 +1,3 @@
-declare function resetCircle(): void;
-declare function resetStartButton(): void;
-declare function resetActionText(text: string): void;
 declare function calculateTextWidth(text: string, size: number): number;
 declare function calculateTextHeight(text: string, size: number): number;
 declare function calculateCountdown(countdown: number): number;
