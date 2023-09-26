@@ -1,11 +1,11 @@
-const box = document.querySelector('.breath-box');
+const box = document.querySelector('.breath-box') as HTMLElement;
 const boxRect = box.getBoundingClientRect();
-const circle = document.querySelector('.circle');
-const action = document.querySelector('.action');
-const invisible = document.querySelector('.invisible');
-const start = document.querySelector('.timer-start');
-const stopButton = document.querySelector('.stop');
-const pauseButton = document.querySelector('.pause');
+const circle = document.querySelector('.circle') as HTMLElement;
+const action = document.querySelector('.action') as HTMLElement;
+const invisible = document.querySelector('.invisible') as HTMLElement;
+const start = document.querySelector('.timer-start') as HTMLElement;
+const stopButton = document.querySelector('.stop') as HTMLElement;
+const pauseButton = document.querySelector('.pause') as HTMLElement;
 
 const DEFAULT_BACKGROUND_COLOR = "#1e3250";
 const INHALE_COLOR = "#0f5362";
@@ -14,6 +14,7 @@ const RESET_ORANGE = "#f6786e";
 
 const LARGE_CIRCLE_SIZE = 6;
 const SMALL_CIRCLE_SIZE = 2;
+
 function resetCircle() {
   circle.style.width = SMALL_CIRCLE_SIZE + "vh";
   circle.style.height = SMALL_CIRCLE_SIZE + "vh";
@@ -47,70 +48,67 @@ const EXHALE_SIZE = 4;
 const DEFAULT_ACTION_TEXT = "Breath Box";
 const DEFAULT_ACTION_FONT_SIZE = "5vh";
 
-function resetActionText(text) {
+function resetActionText(text: string) {
   text = text || DEFAULT_ACTION_TEXT;
   action.textContent = text;
   action.style.fontSize = DEFAULT_ACTION_FONT_SIZE;
   action.style.color = RESET_ORANGE;
 }
-resetActionText();
+resetActionText("");
 
 // We have to do this each time because the window can be resized
-function calculateTextWidth(text, size) {
-  invisible.style.fontSize = `${size}vh`
+function calculateTextWidth(text: string, size: number): number {
+  invisible.style.fontSize = `${size}vh`;
   invisible.textContent = text;
   let width = invisible.clientWidth;
   invisible.textContent = "";
-  
   return width;
 }
 
-function calculateTextHeight(text, size) {
-  invisible.style.fontSize = `${size}vh`
+function calculateTextHeight(text: string, size: number): number {
+  invisible.style.fontSize = `${size}vh`;
   invisible.textContent = text;
   let height = invisible.clientHeight;
   invisible.textContent = "";
-  
   return height;
 }
 
-function calculateCountdown(countdown) {
+function calculateCountdown(countdown: number): number {
   return countdown - 1;
 }
 
-function startCountdownDecrement(text, time) {
-    let countdownInterval = setInterval(() => {
-        --time;
-        countdownNs = Date.now();
-        if (time) {
-          action.textContent = text + "\r\n" + time;
-        } else {
-          action.textContent = text;
-          // It cancels itself
-          clearInterval(countdownInterval);
-          countdownInterval = null;
-        }
-    }, 1000);
-    // Do it the first time
-    action.textContent = text + "\r\n" + time;
+function startCountdownDecrement(text: string, time: number): number {
+  let countdownInterval = setInterval(() => {
+    --time;
+    let countdownNs = Date.now();
+    if (time) {
+      action.textContent = text + "\r\n" + time;
+    } else {
+      action.textContent = text;
+      // It cancels itself
+      clearInterval(countdownInterval);
+      countdownInterval = -1;
+    }
+  }, 1000);
+  // Do it the first time
+  action.textContent = text + "\r\n" + time;
 
-    return countdownInterval;
+  return countdownInterval;
 }
 
-let inhaleAnimation;
-let inhaleCountdownInterval;
-let holdInAnimation;
-let holdInCountdownInterval;
-let exhaleAnimation;
-let exhaleCountdownInterval;
-let holdOutAnimation;
-let holdOutCountdownInterval;
+let inhaleAnimation: number;
+let inhaleCountdownInterval: number;
+let holdInAnimation: number;
+let holdInCountdownInterval: number;
+let exhaleAnimation: number;
+let exhaleCountdownInterval: number;
+let holdOutAnimation: number;
+let holdOutCountdownInterval: number;
 function animateBreathing() {
   const inhaleDuration = BREATH_RATIO;
   const holdInDuration = HOLD_RATIO;
   const exhaleDuration = BREATH_RATIO;
   const holdOutDuration = HOLD_RATIO;
-
 
   // Inhale (up)
   inhaleCountdownInterval = startCountdownDecrement(INHALE, inhaleDuration);
@@ -128,7 +126,6 @@ function animateBreathing() {
   circle.style.bottom = `${box.clientHeight - vhToPx(LARGE_CIRCLE_SIZE)/2}px`;
   circle.style.left = `-${LARGE_CIRCLE_SIZE/2}vh`;
 
-
   // Hold In (right)
   holdInAnimation = setTimeout(() => {
     holdInCountdownInterval = startCountdownDecrement(HOLD, holdInDuration);
@@ -136,13 +133,13 @@ function animateBreathing() {
     circle.style.transitionDuration = `${holdInDuration}s`;
     circle.style.transitionTimingFunction = 'linear';
     circle.style.left = `${box.clientWidth - (vhToPx(LARGE_CIRCLE_SIZE)/2)}px`;
-    
+
     // Exhale (down)
     exhaleAnimation = setTimeout(() => {
       exhaleCountdownInterval = startCountdownDecrement(EXHALE, exhaleDuration);
       action.style.fontSize = `${EXHALE_SIZE}vh`;
       action.style.color = EXHALE_COLOR;
-      
+
       circle.style.transitionProperty = 'height width color left bottom';
       circle.style.transitionDuration = `${exhaleDuration}s`;
       circle.style.transitionTimingFunction = `${BREATH_CURVE}`;
@@ -151,7 +148,7 @@ function animateBreathing() {
       circle.style.width = `${SMALL_CIRCLE_SIZE}vh`;
       circle.style.bottom = `-${SMALL_CIRCLE_SIZE/2}vh`;
       circle.style.left = `${box.clientWidth - vhToPx(SMALL_CIRCLE_SIZE)/2}px`;
-      
+
       // Hold out (left)
       holdOutAnimation = setTimeout(() => {
         holdOutCountdownInterval = startCountdownDecrement(HOLD, holdOutDuration);
@@ -160,10 +157,10 @@ function animateBreathing() {
         circle.style.transitionTimingFunction = 'linear';
         circle.style.bottom = `-${SMALL_CIRCLE_SIZE/2}vh`;
         circle.style.left = `-${SMALL_CIRCLE_SIZE/2}vh`;
-        
+
         inhaleAnimation = setTimeout(() => {
           animateBreathing(); // Restart the cycle
-        },  holdOutDuration * SMOOTH_PATH_TIMING);
+        }, holdOutDuration * SMOOTH_PATH_TIMING);
       }, exhaleDuration * SMOOTH_PATH_TIMING);
     }, holdInDuration * SMOOTH_PATH_TIMING);
   }, inhaleDuration * SMOOTH_PATH_TIMING);
@@ -171,7 +168,7 @@ function animateBreathing() {
 
 let minutes = 0;
 let seconds = 0;
-let timerInterval;
+let timerInterval: number;
 function startTimer() {
   incrementTimer();
   start.style.backgroundColor = "transparent";
@@ -206,30 +203,30 @@ function startBreathBox() {
   startTimer();
   addPauseButton();
   addStopButton();
-  resetActionText();
+  resetActionText("");
   resetCircle();
   animateBreathing();
 }
 
 function resetAnimations() {
   clearTimeout(inhaleAnimation);
-  inhaleAnimation = null;
+  inhaleAnimation = -1;
   clearInterval(inhaleCountdownInterval);
-  inhaleCountdownInterval = null;
+  inhaleCountdownInterval = -1;
   clearTimeout(holdInAnimation);
-  holdInAnimation = null;
+  holdInAnimation = -1;
   clearInterval(holdInCountdownInterval);
-  holdInCountdownInterval = null;
+  holdInCountdownInterval = -1;
   clearTimeout(exhaleAnimation);
-  exhaleAnimation = null;
+  exhaleAnimation = -1;
   clearInterval(exhaleCountdownInterval);
-  exhaleCountdownInterval = null;
+  exhaleCountdownInterval = -1;
   clearTimeout(holdOutAnimation);
-  holdOutAnimation = null;
+  holdOutAnimation = -1;
   clearInterval(holdOutCountdownInterval);
-  holdOutCountdownInterval = null;
+  holdOutCountdownInterval = -1;
   clearInterval(timerInterval);
-  timerInterval = null;
+  timerInterval = -1;
 }
 
 function stopBreathBox() {
@@ -238,7 +235,7 @@ function stopBreathBox() {
   seconds = 0;
 
   resetAnimations();
-  resetActionText();
+  resetActionText("");
   resetCircle();
   resetStartButton();
   stopButton.style.display = "none";
