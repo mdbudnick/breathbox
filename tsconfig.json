@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+      "target": "ESNext",
+      "module": "CommonJS",
+      "outDir": "www/js",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      "strictPropertyInitialization": true,
+      "declaration": true,
+      "sourceMap": true,
+      "typeRoots" : ["@types"],
+      "baseUrl": "./www"
+    },
+    "include": [
+        "www/src/*.ts"
+      ],
+      "exclude": [
+        "node_modules"
+      ]
+  }
+  
