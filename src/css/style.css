@@ -89,13 +89,6 @@ body {
   justify-self: center;
 }
 
-@media (max-width: 600px) {
-  .central {
-    width: 65vw;
-    height: 130vw;
-  }
-}
-
 @media (min-width: 600px) {
   .central {
     width: 50vh;
