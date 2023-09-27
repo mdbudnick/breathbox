@@ -1,0 +1,14 @@
+{
+  "name": "breathbox",
+  "version": "1.0.0",
+  "description": "Browser Breathbox (npm for testing only)",
+  "main": "null",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "michael budnick",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
