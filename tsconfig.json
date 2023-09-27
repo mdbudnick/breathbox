@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
       "target": "ESNext",
-      "module": "CommonJS",
+      "module": "ESNext",
       "outDir": "src/js",
       "strict": true,
       "esModuleInterop": true,
@@ -12,8 +12,9 @@
       "strictPropertyInitialization": true,
       "declaration": true,
       "sourceMap": true,
-      "typeRoots" : ["@types"],
-      "baseUrl": "src"
+      "typeRoots": ["./src/types", "node_modules/@types"],
+      "baseUrl": "src",
+      "types": ["jest"]
     },
     "include": [
         "src/ts/*.ts"

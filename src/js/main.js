@@ -1,4 +1,4 @@
-"use strict";
+import { vhToPx } from './vhFunc';
 function animateBreathing() {
     const inhaleDuration = BREATH_RATIO;
     const holdInDuration = HOLD_RATIO;
