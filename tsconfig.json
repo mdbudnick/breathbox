@@ -2,7 +2,7 @@
     "compilerOptions": {
       "target": "ESNext",
       "module": "CommonJS",
-      "outDir": "www/js",
+      "outDir": "src/js",
       "strict": true,
       "esModuleInterop": true,
       "skipLibCheck": true,
@@ -13,10 +13,10 @@
       "declaration": true,
       "sourceMap": true,
       "typeRoots" : ["@types"],
-      "baseUrl": "./www"
+      "baseUrl": "src"
     },
     "include": [
-        "www/src/*.ts"
+        "src/ts/*.ts"
       ],
       "exclude": [
         "node_modules"
