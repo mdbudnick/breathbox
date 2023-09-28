@@ -18,7 +18,8 @@ function calculateCountdown(countdown) {
     return countdown - 1;
 }
 function startCountdownDecrement(text, time) {
-    let countdownInterval = setInterval(() => {
+    let countdownInterval;
+    countdownInterval = setInterval(() => {
         --time;
         let countdownNs = Date.now();
         if (time) {
@@ -28,7 +29,7 @@ function startCountdownDecrement(text, time) {
             action.textContent = text;
             // It cancels itself
             clearInterval(countdownInterval);
-            countdownInterval = -1;
+            countdownInterval = null;
         }
     }, 1000);
     // Do it the first time

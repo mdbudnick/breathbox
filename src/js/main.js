@@ -1,4 +1,6 @@
-import { vhToPx } from './vhFunc';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const vhFunc_1 = require("./vhFunc");
 function animateBreathing() {
     const inhaleDuration = BREATH_RATIO;
     const holdInDuration = HOLD_RATIO;
@@ -16,14 +18,14 @@ function animateBreathing() {
     circle.style.backgroundColor = INHALE_COLOR;
     circle.style.height = `${LARGE_CIRCLE_SIZE}vh`;
     circle.style.width = `${LARGE_CIRCLE_SIZE}vh`;
-    circle.style.bottom = `${box.clientHeight - vhToPx(LARGE_CIRCLE_SIZE) / 2}px`;
+    circle.style.bottom = `${box.clientHeight - (0, vhFunc_1.vhToPx)(LARGE_CIRCLE_SIZE) / 2}px`;
     circle.style.left = `-${LARGE_CIRCLE_SIZE / 2}vh`;
     // Hold In (right)
     holdInAnimation = setTimeout(() => {
         holdInCountdownInterval = startCountdownDecrement(HOLD, holdInDuration);
         circle.style.transitionDuration = `${holdInDuration}s`;
         circle.style.transitionTimingFunction = 'linear';
-        circle.style.left = `${box.clientWidth - (vhToPx(LARGE_CIRCLE_SIZE) / 2)}px`;
+        circle.style.left = `${box.clientWidth - ((0, vhFunc_1.vhToPx)(LARGE_CIRCLE_SIZE) / 2)}px`;
         // Exhale (down)
         exhaleAnimation = setTimeout(() => {
             exhaleCountdownInterval = startCountdownDecrement(EXHALE, exhaleDuration);
@@ -36,7 +38,7 @@ function animateBreathing() {
             circle.style.height = `${SMALL_CIRCLE_SIZE}vh`;
             circle.style.width = `${SMALL_CIRCLE_SIZE}vh`;
             circle.style.bottom = `-${SMALL_CIRCLE_SIZE / 2}vh`;
-            circle.style.left = `${box.clientWidth - vhToPx(SMALL_CIRCLE_SIZE) / 2}px`;
+            circle.style.left = `${box.clientWidth - (0, vhFunc_1.vhToPx)(SMALL_CIRCLE_SIZE) / 2}px`;
             // Hold out (left)
             holdOutAnimation = setTimeout(() => {
                 holdOutCountdownInterval = startCountdownDecrement(HOLD, holdOutDuration);

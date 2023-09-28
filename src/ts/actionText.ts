@@ -19,8 +19,9 @@ function calculateTextWidth(text: string, size: number): number {
     return countdown - 1;
   }
   
-  function startCountdownDecrement(text: string, time: number): number {
-    let countdownInterval = setInterval(() => {
+  function startCountdownDecrement(text: string, time: number): ReturnType<typeof setInterval> {
+    let countdownInterval: ReturnType<typeof setInterval> | null;
+    countdownInterval = setInterval(() => {
       --time;
       let countdownNs = Date.now();
       if (time) {
@@ -28,8 +29,8 @@ function calculateTextWidth(text: string, size: number): number {
       } else {
         action.textContent = text;
         // It cancels itself
-        clearInterval(countdownInterval);
-        countdownInterval = -1;
+        clearInterval(countdownInterval!);
+        countdownInterval = null;
       }
     }, 1000);
     // Do it the first time

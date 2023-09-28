@@ -34,22 +34,22 @@ let holdOutAnimation;
 let holdOutCountdownInterval;
 function resetAnimations() {
     clearTimeout(inhaleAnimation);
-    inhaleAnimation = -1;
+    inhaleAnimation = null;
     clearInterval(inhaleCountdownInterval);
-    inhaleCountdownInterval = -1;
+    inhaleCountdownInterval = null;
     clearTimeout(holdInAnimation);
-    holdInAnimation = -1;
+    holdInAnimation = null;
     clearInterval(holdInCountdownInterval);
-    holdInCountdownInterval = -1;
+    holdInCountdownInterval = null;
     clearTimeout(exhaleAnimation);
-    exhaleAnimation = -1;
+    exhaleAnimation = null;
     clearInterval(exhaleCountdownInterval);
-    exhaleCountdownInterval = -1;
+    exhaleCountdownInterval = null;
     clearTimeout(holdOutAnimation);
-    holdOutAnimation = -1;
+    holdOutAnimation = null;
     clearInterval(holdOutCountdownInterval);
-    holdOutCountdownInterval = -1;
+    holdOutCountdownInterval = null;
     clearInterval(timerInterval);
-    timerInterval = -1;
+    timerInterval = null;
 }
 //# sourceMappingURL=reset.js.map

@@ -1,6 +1,6 @@
 let minutes = 0;
 let seconds = 0;
-let timerInterval: number;
+let timerInterval: ReturnType<typeof setInterval> | null;
 function startTimer() {
   incrementTimer();
   start.style.backgroundColor = "transparent";

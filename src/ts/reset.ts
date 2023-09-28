@@ -26,31 +26,31 @@ function resetActionText(text: string) {
 }
 resetActionText("");
 
-let inhaleAnimation: number;
-let inhaleCountdownInterval: number;
-let holdInAnimation: number;
-let holdInCountdownInterval: number;
-let exhaleAnimation: number;
-let exhaleCountdownInterval: number;
-let holdOutAnimation: number;
-let holdOutCountdownInterval: number;
+let inhaleAnimation: ReturnType<typeof setTimeout> | null;
+let inhaleCountdownInterval: ReturnType<typeof setInterval> | null;
+let holdInAnimation: ReturnType<typeof setTimeout> | null;
+let holdInCountdownInterval: ReturnType<typeof setInterval> | null;
+let exhaleAnimation: ReturnType<typeof setTimeout> | null;
+let exhaleCountdownInterval: ReturnType<typeof setInterval> | null;
+let holdOutAnimation:  ReturnType<typeof setTimeout> | null;
+let holdOutCountdownInterval: ReturnType<typeof setInterval> | null;
 function resetAnimations() {
-  clearTimeout(inhaleAnimation);
-  inhaleAnimation = -1;
-  clearInterval(inhaleCountdownInterval);
-  inhaleCountdownInterval = -1;
-  clearTimeout(holdInAnimation);
-  holdInAnimation = -1;
-  clearInterval(holdInCountdownInterval);
-  holdInCountdownInterval = -1;
-  clearTimeout(exhaleAnimation);
-  exhaleAnimation = -1;
-  clearInterval(exhaleCountdownInterval);
-  exhaleCountdownInterval = -1;
-  clearTimeout(holdOutAnimation);
-  holdOutAnimation = -1;
-  clearInterval(holdOutCountdownInterval);
-  holdOutCountdownInterval = -1;
-  clearInterval(timerInterval);
-  timerInterval = -1;
+  clearTimeout(inhaleAnimation!);
+  inhaleAnimation = null;
+  clearInterval(inhaleCountdownInterval!);
+  inhaleCountdownInterval = null;
+  clearTimeout(holdInAnimation!);
+  holdInAnimation = null;
+  clearInterval(holdInCountdownInterval!);
+  holdInCountdownInterval = null;
+  clearTimeout(exhaleAnimation!);
+  exhaleAnimation = null;
+  clearInterval(exhaleCountdownInterval!);
+  exhaleCountdownInterval = null;
+  clearTimeout(holdOutAnimation!);
+  holdOutAnimation = null;
+  clearInterval(holdOutCountdownInterval!);
+  holdOutCountdownInterval = null;
+  clearInterval(timerInterval!);
+  timerInterval = null;
 }
