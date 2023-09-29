@@ -91,7 +91,7 @@ body {
   height: 80vh;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
   .central {
     margin-top: 15vh;
     width: 80vw;
