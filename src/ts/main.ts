@@ -1,65 +1,70 @@
 import { vhToPx } from './vhFunc'
+import { startCountdownDecrement } from './actionText';
+import * as common from './common';
+import{ SharedIntervals } from './sharedIntervals';
+import { Timer } from './timer';
+import { resetActionText, resetAnimations, resetCircle, resetStartButton } from './reset';
 
 function animateBreathing() {
-  const inhaleDuration = BREATH_RATIO;
-  const holdInDuration = HOLD_RATIO;
-  const exhaleDuration = BREATH_RATIO;
-  const holdOutDuration = HOLD_RATIO;
+  const inhaleDuration = common.BREATH_RATIO;
+  const holdInDuration = common.HOLD_RATIO;
+  const exhaleDuration = common.BREATH_RATIO;
+  const holdOutDuration = common.HOLD_RATIO;
 
   // Inhale (up)
-  inhaleCountdownInterval = startCountdownDecrement(INHALE, inhaleDuration);
-  action.style.transitionDuration = `${inhaleDuration}s`;
-  action.style.transitionTimingFunction = `${BREATH_CURVE}`;
-  action.style.fontSize = `${INHALE_SIZE}vh`;
-  action.style.color = INHALE_COLOR;
+  SharedIntervals.inhaleCountdownInterval = startCountdownDecrement(common.INHALE, inhaleDuration);
+  common.action.style.transitionDuration = `${inhaleDuration}s`;
+  common.action.style.transitionTimingFunction = `${common.BREATH_CURVE}`;
+  common.action.style.fontSize = `${common.INHALE_SIZE}vh`;
+  common.action.style.color = common.INHALE_COLOR;
 
-  circle.style.transitionProperty = 'height width background-color left bottom';
-  circle.style.transitionDuration = `${inhaleDuration}s`;
-  circle.style.transitionTimingFunction = `${BREATH_CURVE}`;
-  circle.style.backgroundColor = INHALE_COLOR;
-  circle.style.height = `${LARGE_CIRCLE_SIZE}vh`;
-  circle.style.width = `${LARGE_CIRCLE_SIZE}vh`;
-  circle.style.bottom = `${box.clientHeight - vhToPx(LARGE_CIRCLE_SIZE)/2}px`;
-  circle.style.left = `-${LARGE_CIRCLE_SIZE/2}vh`;
+  common.circle.style.transitionProperty = 'height width background-color left bottom';
+  common.circle.style.transitionDuration = `${inhaleDuration}s`;
+  common.circle.style.transitionTimingFunction = `${common.BREATH_CURVE}`;
+  common.circle.style.backgroundColor = common.INHALE_COLOR;
+  common.circle.style.height = `${common.LARGE_CIRCLE_SIZE}vh`;
+  common.circle.style.width = `${common.LARGE_CIRCLE_SIZE}vh`;
+  common.circle.style.bottom = `${common.box.clientHeight - vhToPx(common.LARGE_CIRCLE_SIZE)/2}px`;
+  common.circle.style.left = `-${common.LARGE_CIRCLE_SIZE/2}vh`;
 
   // Hold In (right)
-  holdInAnimation = setTimeout(() => {
-    holdInCountdownInterval = startCountdownDecrement(HOLD, holdInDuration);
+  SharedIntervals.holdInAnimation = setTimeout(() => {
+    SharedIntervals.holdInCountdownInterval = startCountdownDecrement(common.HOLD, holdInDuration);
 
-    circle.style.transitionDuration = `${holdInDuration}s`;
-    circle.style.transitionTimingFunction = 'linear';
-    circle.style.left = `${box.clientWidth - (vhToPx(LARGE_CIRCLE_SIZE)/2)}px`;
+    common.circle.style.transitionDuration = `${holdInDuration}s`;
+    common.circle.style.transitionTimingFunction = 'linear';
+    common.circle.style.left = `${common.box.clientWidth - (vhToPx(common.LARGE_CIRCLE_SIZE)/2)}px`;
 
     // Exhale (down)
-    exhaleAnimation = setTimeout(() => {
-      exhaleCountdownInterval = startCountdownDecrement(EXHALE, exhaleDuration);
-      action.style.fontSize = `${EXHALE_SIZE}vh`;
-      action.style.color = EXHALE_COLOR;
+    SharedIntervals.exhaleAnimation = setTimeout(() => {
+      SharedIntervals.exhaleCountdownInterval = startCountdownDecrement(common.EXHALE, exhaleDuration);
+      common.action.style.fontSize = `${common.EXHALE_SIZE}vh`;
+      common.action.style.color = common.EXHALE_COLOR;
 
-      circle.style.transitionProperty = 'height width color left bottom';
-      circle.style.transitionDuration = `${exhaleDuration}s`;
-      circle.style.transitionTimingFunction = `${BREATH_CURVE}`;
-      circle.style.backgroundColor = EXHALE_COLOR;
-      circle.style.height = `${SMALL_CIRCLE_SIZE}vh`;
-      circle.style.width = `${SMALL_CIRCLE_SIZE}vh`;
-      circle.style.bottom = `-${SMALL_CIRCLE_SIZE/2}vh`;
-      circle.style.left = `${box.clientWidth - vhToPx(SMALL_CIRCLE_SIZE)/2}px`;
+      common.circle.style.transitionProperty = 'height width color left bottom';
+      common.circle.style.transitionDuration = `${exhaleDuration}s`;
+      common.circle.style.transitionTimingFunction = `${common.BREATH_CURVE}`;
+      common.circle.style.backgroundColor = common.EXHALE_COLOR;
+      common.circle.style.height = `${common.SMALL_CIRCLE_SIZE}vh`;
+      common.circle.style.width = `${common.SMALL_CIRCLE_SIZE}vh`;
+      common.circle.style.bottom = `-${common.SMALL_CIRCLE_SIZE/2}vh`;
+      common.circle.style.left = `${common.box.clientWidth - vhToPx(common.SMALL_CIRCLE_SIZE)/2}px`;
 
       // Hold out (left)
-      holdOutAnimation = setTimeout(() => {
-        holdOutCountdownInterval = startCountdownDecrement(HOLD, holdOutDuration);
+      SharedIntervals.holdOutAnimation = setTimeout(() => {
+        SharedIntervals.holdOutCountdownInterval = startCountdownDecrement(common.HOLD, holdOutDuration);
 
-        circle.style.transitionDuration = `${holdInDuration}s`;
-        circle.style.transitionTimingFunction = 'linear';
-        circle.style.bottom = `-${SMALL_CIRCLE_SIZE/2}vh`;
-        circle.style.left = `-${SMALL_CIRCLE_SIZE/2}vh`;
+        common.circle.style.transitionDuration = `${holdInDuration}s`;
+        common.circle.style.transitionTimingFunction = 'linear';
+        common.circle.style.bottom = `-${common.SMALL_CIRCLE_SIZE/2}vh`;
+        common.circle.style.left = `-${common.SMALL_CIRCLE_SIZE/2}vh`;
 
-        inhaleAnimation = setTimeout(() => {
+        SharedIntervals.inhaleAnimation = setTimeout(() => {
           animateBreathing(); // Restart the cycle
-        }, holdOutDuration * SMOOTH_PATH_TIMING);
-      }, exhaleDuration * SMOOTH_PATH_TIMING);
-    }, holdInDuration * SMOOTH_PATH_TIMING);
-  }, inhaleDuration * SMOOTH_PATH_TIMING);
+        }, holdOutDuration * common.SMOOTH_PATH_TIMING);
+      }, exhaleDuration * common.SMOOTH_PATH_TIMING);
+    }, holdInDuration * common.SMOOTH_PATH_TIMING);
+  }, inhaleDuration * common.SMOOTH_PATH_TIMING);
 }
 
 let started = false;
@@ -68,9 +73,9 @@ function startBreathBox() {
     return;
   }
   started = true;
-  startTimer();
-  addPauseButton();
-  addStopButton();
+  Timer.startTimer();
+  Timer.addPauseButton();
+  Timer.addStopButton();
   resetActionText("");
   resetCircle();
   animateBreathing();
@@ -78,15 +83,14 @@ function startBreathBox() {
 
 function stopBreathBox() {
   started = false;
-  minutes = 0;
-  seconds = 0;
 
+  Timer.reset();
   resetAnimations();
   resetActionText("");
   resetCircle();
   resetStartButton();
-  stopButton.style.display = "none";
-  pauseButton.style.display = "none";
+  common.stopButton.style.display = "none";
+  common.pauseButton.style.display = "none";
 }
 
 function pauseBreathBox() {
@@ -94,24 +98,24 @@ function pauseBreathBox() {
 
   resetAnimations();
   resetActionText("Paused");
-  action.style.color = "#ff8c00"; // dark orange
+  common.action.style.color = "#ff8c00"; // dark orange
   resetCircle();
 
-  pauseButton.style.color = "green";
-  pauseButton.textContent = "▶";
+  common.pauseButton.style.color = "green";
+  common.pauseButton.textContent = "▶";
 
-  pauseButton.onclick = resumeBreathBox;
+  common.pauseButton.onclick = resumeBreathBox;
 }
 
 function resumeBreathBox() {
-  pauseButton.style.color = RESET_ORANGE;
-  pauseButton.textContent = "||";
+  common.pauseButton.style.color = common.RESET_ORANGE;
+  common.pauseButton.textContent = "||";
 
-  pauseButton.onclick = pauseBreathBox;
+  common.pauseButton.onclick = pauseBreathBox;
 
   startBreathBox();
 }
 
-start.onclick = startBreathBox;
-stopButton.onclick = stopBreathBox;
-pauseButton.onclick = pauseBreathBox;
+common.start.onclick = startBreathBox;
+common.stopButton.onclick = stopBreathBox;
+common.pauseButton.onclick = pauseBreathBox;
