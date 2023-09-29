@@ -1,57 +1,85 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const vhFunc_1 = require("./vhFunc");
+const actionText_1 = require("./actionText");
+const common = __importStar(require("./common"));
+const sharedIntervals_1 = require("./sharedIntervals");
+const timer_1 = require("./timer");
+const reset_1 = require("./reset");
 function animateBreathing() {
-    const inhaleDuration = BREATH_RATIO;
-    const holdInDuration = HOLD_RATIO;
-    const exhaleDuration = BREATH_RATIO;
-    const holdOutDuration = HOLD_RATIO;
+    const inhaleDuration = common.BREATH_RATIO;
+    const holdInDuration = common.HOLD_RATIO;
+    const exhaleDuration = common.BREATH_RATIO;
+    const holdOutDuration = common.HOLD_RATIO;
     // Inhale (up)
-    inhaleCountdownInterval = startCountdownDecrement(INHALE, inhaleDuration);
-    action.style.transitionDuration = `${inhaleDuration}s`;
-    action.style.transitionTimingFunction = `${BREATH_CURVE}`;
-    action.style.fontSize = `${INHALE_SIZE}vh`;
-    action.style.color = INHALE_COLOR;
-    circle.style.transitionProperty = 'height width background-color left bottom';
-    circle.style.transitionDuration = `${inhaleDuration}s`;
-    circle.style.transitionTimingFunction = `${BREATH_CURVE}`;
-    circle.style.backgroundColor = INHALE_COLOR;
-    circle.style.height = `${LARGE_CIRCLE_SIZE}vh`;
-    circle.style.width = `${LARGE_CIRCLE_SIZE}vh`;
-    circle.style.bottom = `${box.clientHeight - (0, vhFunc_1.vhToPx)(LARGE_CIRCLE_SIZE) / 2}px`;
-    circle.style.left = `-${LARGE_CIRCLE_SIZE / 2}vh`;
+    sharedIntervals_1.SharedIntervals.inhaleCountdownInterval = (0, actionText_1.startCountdownDecrement)(common.INHALE, inhaleDuration);
+    common.action.style.transitionDuration = `${inhaleDuration}s`;
+    common.action.style.transitionTimingFunction = `${common.BREATH_CURVE}`;
+    common.action.style.fontSize = `${common.INHALE_SIZE}vh`;
+    common.action.style.color = common.INHALE_COLOR;
+    common.circle.style.transitionProperty = 'height width background-color left bottom';
+    common.circle.style.transitionDuration = `${inhaleDuration}s`;
+    common.circle.style.transitionTimingFunction = `${common.BREATH_CURVE}`;
+    common.circle.style.backgroundColor = common.INHALE_COLOR;
+    common.circle.style.height = `${common.LARGE_CIRCLE_SIZE}vh`;
+    common.circle.style.width = `${common.LARGE_CIRCLE_SIZE}vh`;
+    common.circle.style.bottom = `${common.box.clientHeight - (0, vhFunc_1.vhToPx)(common.LARGE_CIRCLE_SIZE) / 2}px`;
+    common.circle.style.left = `-${common.LARGE_CIRCLE_SIZE / 2}vh`;
     // Hold In (right)
-    holdInAnimation = setTimeout(() => {
-        holdInCountdownInterval = startCountdownDecrement(HOLD, holdInDuration);
-        circle.style.transitionDuration = `${holdInDuration}s`;
-        circle.style.transitionTimingFunction = 'linear';
-        circle.style.left = `${box.clientWidth - ((0, vhFunc_1.vhToPx)(LARGE_CIRCLE_SIZE) / 2)}px`;
+    sharedIntervals_1.SharedIntervals.holdInAnimation = setTimeout(() => {
+        sharedIntervals_1.SharedIntervals.holdInCountdownInterval = (0, actionText_1.startCountdownDecrement)(common.HOLD, holdInDuration);
+        common.circle.style.transitionDuration = `${holdInDuration}s`;
+        common.circle.style.transitionTimingFunction = 'linear';
+        common.circle.style.left = `${common.box.clientWidth - ((0, vhFunc_1.vhToPx)(common.LARGE_CIRCLE_SIZE) / 2)}px`;
         // Exhale (down)
-        exhaleAnimation = setTimeout(() => {
-            exhaleCountdownInterval = startCountdownDecrement(EXHALE, exhaleDuration);
-            action.style.fontSize = `${EXHALE_SIZE}vh`;
-            action.style.color = EXHALE_COLOR;
-            circle.style.transitionProperty = 'height width color left bottom';
-            circle.style.transitionDuration = `${exhaleDuration}s`;
-            circle.style.transitionTimingFunction = `${BREATH_CURVE}`;
-            circle.style.backgroundColor = EXHALE_COLOR;
-            circle.style.height = `${SMALL_CIRCLE_SIZE}vh`;
-            circle.style.width = `${SMALL_CIRCLE_SIZE}vh`;
-            circle.style.bottom = `-${SMALL_CIRCLE_SIZE / 2}vh`;
-            circle.style.left = `${box.clientWidth - (0, vhFunc_1.vhToPx)(SMALL_CIRCLE_SIZE) / 2}px`;
+        sharedIntervals_1.SharedIntervals.exhaleAnimation = setTimeout(() => {
+            sharedIntervals_1.SharedIntervals.exhaleCountdownInterval = (0, actionText_1.startCountdownDecrement)(common.EXHALE, exhaleDuration);
+            common.action.style.fontSize = `${common.EXHALE_SIZE}vh`;
+            common.action.style.color = common.EXHALE_COLOR;
+            common.circle.style.transitionProperty = 'height width color left bottom';
+            common.circle.style.transitionDuration = `${exhaleDuration}s`;
+            common.circle.style.transitionTimingFunction = `${common.BREATH_CURVE}`;
+            common.circle.style.backgroundColor = common.EXHALE_COLOR;
+            common.circle.style.height = `${common.SMALL_CIRCLE_SIZE}vh`;
+            common.circle.style.width = `${common.SMALL_CIRCLE_SIZE}vh`;
+            common.circle.style.bottom = `-${common.SMALL_CIRCLE_SIZE / 2}vh`;
+            common.circle.style.left = `${common.box.clientWidth - (0, vhFunc_1.vhToPx)(common.SMALL_CIRCLE_SIZE) / 2}px`;
             // Hold out (left)
-            holdOutAnimation = setTimeout(() => {
-                holdOutCountdownInterval = startCountdownDecrement(HOLD, holdOutDuration);
-                circle.style.transitionDuration = `${holdInDuration}s`;
-                circle.style.transitionTimingFunction = 'linear';
-                circle.style.bottom = `-${SMALL_CIRCLE_SIZE / 2}vh`;
-                circle.style.left = `-${SMALL_CIRCLE_SIZE / 2}vh`;
-                inhaleAnimation = setTimeout(() => {
+            sharedIntervals_1.SharedIntervals.holdOutAnimation = setTimeout(() => {
+                sharedIntervals_1.SharedIntervals.holdOutCountdownInterval = (0, actionText_1.startCountdownDecrement)(common.HOLD, holdOutDuration);
+                common.circle.style.transitionDuration = `${holdInDuration}s`;
+                common.circle.style.transitionTimingFunction = 'linear';
+                common.circle.style.bottom = `-${common.SMALL_CIRCLE_SIZE / 2}vh`;
+                common.circle.style.left = `-${common.SMALL_CIRCLE_SIZE / 2}vh`;
+                sharedIntervals_1.SharedIntervals.inhaleAnimation = setTimeout(() => {
                     animateBreathing(); // Restart the cycle
-                }, holdOutDuration * SMOOTH_PATH_TIMING);
-            }, exhaleDuration * SMOOTH_PATH_TIMING);
-        }, holdInDuration * SMOOTH_PATH_TIMING);
-    }, inhaleDuration * SMOOTH_PATH_TIMING);
+                }, holdOutDuration * common.SMOOTH_PATH_TIMING);
+            }, exhaleDuration * common.SMOOTH_PATH_TIMING);
+        }, holdInDuration * common.SMOOTH_PATH_TIMING);
+    }, inhaleDuration * common.SMOOTH_PATH_TIMING);
 }
 let started = false;
 function startBreathBox() {
@@ -59,41 +87,40 @@ function startBreathBox() {
         return;
     }
     started = true;
-    startTimer();
-    addPauseButton();
-    addStopButton();
-    resetActionText("");
-    resetCircle();
+    timer_1.Timer.startTimer();
+    timer_1.Timer.addPauseButton();
+    timer_1.Timer.addStopButton();
+    (0, reset_1.resetActionText)("");
+    (0, reset_1.resetCircle)();
     animateBreathing();
 }
 function stopBreathBox() {
     started = false;
-    minutes = 0;
-    seconds = 0;
-    resetAnimations();
-    resetActionText("");
-    resetCircle();
-    resetStartButton();
-    stopButton.style.display = "none";
-    pauseButton.style.display = "none";
+    timer_1.Timer.reset();
+    (0, reset_1.resetAnimations)();
+    (0, reset_1.resetActionText)("");
+    (0, reset_1.resetCircle)();
+    (0, reset_1.resetStartButton)();
+    common.stopButton.style.display = "none";
+    common.pauseButton.style.display = "none";
 }
 function pauseBreathBox() {
     started = false;
-    resetAnimations();
-    resetActionText("Paused");
-    action.style.color = "#ff8c00"; // dark orange
-    resetCircle();
-    pauseButton.style.color = "green";
-    pauseButton.textContent = "▶";
-    pauseButton.onclick = resumeBreathBox;
+    (0, reset_1.resetAnimations)();
+    (0, reset_1.resetActionText)("Paused");
+    common.action.style.color = "#ff8c00"; // dark orange
+    (0, reset_1.resetCircle)();
+    common.pauseButton.style.color = "green";
+    common.pauseButton.textContent = "▶";
+    common.pauseButton.onclick = resumeBreathBox;
 }
 function resumeBreathBox() {
-    pauseButton.style.color = RESET_ORANGE;
-    pauseButton.textContent = "||";
-    pauseButton.onclick = pauseBreathBox;
+    common.pauseButton.style.color = common.RESET_ORANGE;
+    common.pauseButton.textContent = "||";
+    common.pauseButton.onclick = pauseBreathBox;
     startBreathBox();
 }
-start.onclick = startBreathBox;
-stopButton.onclick = stopBreathBox;
-pauseButton.onclick = pauseBreathBox;
+common.start.onclick = startBreathBox;
+common.stopButton.onclick = stopBreathBox;
+common.pauseButton.onclick = pauseBreathBox;
 //# sourceMappingURL=main.js.map

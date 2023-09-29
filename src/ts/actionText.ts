@@ -1,4 +1,6 @@
 // We have to do this each time because the window can be resized
+import { invisible, action } from "./common";
+
 function calculateTextWidth(text: string, size: number): number {
     invisible.style.fontSize = `${size}vh`;
     invisible.textContent = text;
@@ -19,7 +21,7 @@ function calculateTextWidth(text: string, size: number): number {
     return countdown - 1;
   }
   
-  function startCountdownDecrement(text: string, time: number): ReturnType<typeof setInterval> {
+  export function startCountdownDecrement(text: string, time: number): ReturnType<typeof setInterval> {
     let countdownInterval: ReturnType<typeof setInterval> | null;
     countdownInterval = setInterval(() => {
       --time;

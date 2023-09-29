@@ -1,12 +1,4 @@
-declare function resetCircle(): void;
-declare function resetStartButton(): void;
-declare function resetActionText(text: string): void;
-declare let inhaleAnimation: ReturnType<typeof setTimeout> | null;
-declare let inhaleCountdownInterval: ReturnType<typeof setInterval> | null;
-declare let holdInAnimation: ReturnType<typeof setTimeout> | null;
-declare let holdInCountdownInterval: ReturnType<typeof setInterval> | null;
-declare let exhaleAnimation: ReturnType<typeof setTimeout> | null;
-declare let exhaleCountdownInterval: ReturnType<typeof setInterval> | null;
-declare let holdOutAnimation: ReturnType<typeof setTimeout> | null;
-declare let holdOutCountdownInterval: ReturnType<typeof setInterval> | null;
-declare function resetAnimations(): void;
+export declare function resetCircle(): void;
+export declare function resetStartButton(): void;
+export declare function resetActionText(text: string): void;
+export declare function resetAnimations(): void;
