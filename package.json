@@ -4,6 +4,7 @@
   "description": "Browser Breathbox (npm for testing only)",
   "main": "null",
   "scripts": {
+    "bundle": "tsc && browserify src/js/common.js src/js/vhFunc.js src/js/actionText.js src/js/timer.js src/js/reset.js src/js/main.js > src/js/bundle.js",
     "test": "jest"
   },
   "author": "michael budnick",
