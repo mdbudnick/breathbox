@@ -1,8 +1,8 @@
 # Breathbox
 
-![Breathbox Icon](src/img/buddha-gnome-smaller.jpeg)
-
 [Visit Breathbox](https://www.breathbox.net)
+
+![Breathbox Icon](src/img/buddha-gnome-smaller.jpeg)
 
 ## Overview
 
