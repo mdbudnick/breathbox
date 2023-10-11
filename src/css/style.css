@@ -13,6 +13,21 @@ body {
   margin: 0;
 }
 
+.config {
+  display: flex;
+  flex-direction: column;
+  margin: 10% 10px 10px 10px;
+  top: -5vh;
+  padding: 1vh;
+  position: absolute;
+  backdrop-filter: blur(2px);
+}
+
+.config input {
+  float: right;
+  width: 4vw;
+}
+
 .control-bar {
   display: flex;
   margin: 10% 10px 10px 10px;
