@@ -3,6 +3,8 @@ declare class TimerClass {
     seconds: number;
     timerInterval: ReturnType<typeof setInterval> | null;
     targetTime: number;
+    internalTimer: number;
+    started: boolean;
     constructor();
     startTimer(): void;
     incrementTimer(): void;

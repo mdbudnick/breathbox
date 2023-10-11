@@ -12,15 +12,24 @@ class TimerClass {
   seconds: number;
   timerInterval: ReturnType<typeof setInterval> | null;
   targetTime: number;
+  internalTimer: number;
+  started: boolean;
 
   constructor() {
     this.minutes = 0;
     this.seconds = 0;
+    this.internalTimer = 0;
     this.targetTime = 600;
     this.timerInterval = null;
+
+    this.started = false;
   }
 
   startTimer() {
+    if (this.started) {
+      return;
+    }
+    this.started = true;
     let timerFn = timerDirection.classList.contains("point-up")
       ? this.incrementTimer
       : this.decrementTimer;
@@ -45,6 +54,8 @@ class TimerClass {
       this.minutes +
       ":" +
       (this.seconds < 10 ? "0" + this.seconds : this.seconds);
+
+      ++this.internalTimer;
   }
 
   decrementTimer() {
@@ -58,6 +69,8 @@ class TimerClass {
       this.minutes +
       ":" +
       (this.seconds < 10 ? "0" + this.seconds : this.seconds);
+
+      ++this.internalTimer;
   }
 
   addPauseButton() {
@@ -69,16 +82,25 @@ class TimerClass {
   }
 
   reset() {
+    if (!this.started) {
+      return;
+    }
+    this.started = false;
+
     this.minutes = timerDirection.classList.contains("point-up")
       ? 0
       : parseInt(timerMinutesInput.value);
     this.seconds = timerDirection.classList.contains("point-up")
       ? 0
       : parseInt(timerSecondsInput.value);
+
+      this.internalTimer = 0;
+
+      clearInterval(this.timerInterval!);
   }
 
   reachedTime() {
-    return this.minutes * 60 + this.seconds >= this.targetTime;
+    return this.internalTimer >= this.targetTime;
   }
 }
 

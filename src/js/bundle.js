@@ -336,13 +336,23 @@ class TimerClass {
     constructor() {
         this.minutes = 0;
         this.seconds = 0;
+        this.internalTimer = 0;
         this.targetTime = 600;
         this.timerInterval = null;
+        this.started = false;
     }
     startTimer() {
-        let timerFn = common_1.timerDirection.classList.contains("point-up") ? this.incrementTimer : this.decrementTimer;
+        if (this.started) {
+            return;
+        }
+        this.started = true;
+        let timerFn = common_1.timerDirection.classList.contains("point-up")
+            ? this.incrementTimer
+            : this.decrementTimer;
         timerFn.bind(this)();
-        this.targetTime = (parseInt(common_1.timerMinutesInput.value) * 60) + parseInt(common_1.timerSecondsInput.value);
+        this.targetTime =
+            parseInt(common_1.timerMinutesInput.value) * 60 +
+                parseInt(common_1.timerSecondsInput.value);
         common_1.start.style.backgroundColor = "transparent";
         common_1.start.style.border = "none";
         common_1.start.classList.remove("button");
@@ -355,7 +365,11 @@ class TimerClass {
             this.seconds = 0;
         }
         common_1.start.textContent =
-            "" + this.minutes + ":" + (this.seconds < 10 ? "0" + this.seconds : this.seconds);
+            "" +
+                this.minutes +
+                ":" +
+                (this.seconds < 10 ? "0" + this.seconds : this.seconds);
+        ++this.internalTimer;
     }
     decrementTimer() {
         --this.seconds;
@@ -364,7 +378,11 @@ class TimerClass {
             this.seconds = 60;
         }
         common_1.start.textContent =
-            "" + this.minutes + ":" + (this.seconds < 10 ? "0" + this.seconds : this.seconds);
+            "" +
+                this.minutes +
+                ":" +
+                (this.seconds < 10 ? "0" + this.seconds : this.seconds);
+        ++this.internalTimer;
     }
     addPauseButton() {
         common_1.pauseButton.style.display = "flex";
@@ -373,11 +391,21 @@ class TimerClass {
         common_1.stopButton.style.display = "flex";
     }
     reset() {
-        this.minutes = common_1.timerDirection.classList.contains("point-up") ? 0 : parseInt(common_1.timerMinutesInput.value);
-        this.seconds = common_1.timerDirection.classList.contains("point-up") ? 0 : parseInt(common_1.timerSecondsInput.value);
+        if (!this.started) {
+            return;
+        }
+        this.started = false;
+        this.minutes = common_1.timerDirection.classList.contains("point-up")
+            ? 0
+            : parseInt(common_1.timerMinutesInput.value);
+        this.seconds = common_1.timerDirection.classList.contains("point-up")
+            ? 0
+            : parseInt(common_1.timerSecondsInput.value);
+        this.internalTimer = 0;
+        clearInterval(this.timerInterval);
     }
     reachedTime() {
-        return (this.minutes * 60) + this.seconds >= this.targetTime;
+        return this.internalTimer >= this.targetTime;
     }
 }
 exports.Timer = new TimerClass();
