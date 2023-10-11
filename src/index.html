@@ -15,30 +15,34 @@
     <div class="breath-box">
       <div class="breath-box-inner">
 
-          <div class="control-bar">
-            <div class="timer-start button">Start</div>
-            <img class="pause button" src="img/play-pause.svg"></img>
-            <div class="stop button"></div>
+        <div class="control-bar">
+          <div class="timer-start button">Start</div>
+          <img class="pause button" src="img/play-pause.svg"></img>
+          <div class="stop button"></div>
+        </div>
+
+        <div class="config">
+          <div class="breath-time">
+            <label for="breathe">Breathe (seconds)</label>
+            <input type="number" id="breathe" min="1" max="10" value="6">
           </div>
-
-          <div class="config">
-            <div class="breath-time">
-              <label for="breathe">Breathe (seconds)</label>
-              <input type="number" id="breathe" min="1" max="10" value="6">
-            </div>
-            <div class="hold-time">
-              <label for="hold">Hold (seconds)</label>
-              <input type="number" id="hold" min="1" max="10" value="3">
-            </div>
-            <div class="countdown-input">
-              <input type="number" id="countdown-seconds" min="0" max="45" value="0" step="15">
-              <label for="countdown">Time (mm:ss)</label>
-              <input type="number" id="countdown" min="1" max="60" value="10">
-
-            </div>
+          <div class="hold-time">
+            <label for="hold">Hold (seconds)</label>
+            <input type="number" id="hold" min="1" max="10" value="3">
           </div>
+          <div class="countdown-input">
+            <input type="number" id="countdown-seconds" min="0" max="45" value="0" step="15">
+            <label for="countdown-clock">Time (mm:ss)</label>
+            <input type="number" id="countdown-clock" min="1" max="60" value="10">
+          </div>
+          <div class="count-up-or-down">
+            <label for="countdown">Count Direction</label>
+            <span id="time-arrow">&#10148;</span>
+            <input type="checkbox" id="countdown-or-up" value="true">
+          </div>
+        </div>
 
-          <div class="action">Breath Box</div>
+        <div class="action">Breath Box</div>
       </div>
       <div class="circle"></div>
     </div>

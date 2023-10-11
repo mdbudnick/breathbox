@@ -27,6 +27,21 @@ body {
   float: right;
 }
 
+#countdown-or-up {
+  opacity: 0;
+}
+
+#time-arrow {
+  position: absolute;
+  right: 0;
+  font-weight: 900;
+  transform: rotate(-90deg);
+}
+
+#time-arrow:hover {
+  cursor: pointer;
+}
+
 .control-bar {
   display: flex;
   margin-bottom: 5%;
@@ -78,7 +93,6 @@ body {
 }
 
 .action {
-  margin-bottom: 5vh;
   font-size: 5vh;
   font-weight: bold;
   color: #f6786e;
