@@ -70,9 +70,17 @@ function animateBreathing() {
 let started = false;
 let checkTimerInterval: ReturnType<typeof setInterval> | null;
 function startBreathBox() {
+  if (common.timerMinutesInput.value === "0" && common.timerSecondsInput.value === "0") {
+    common.timerMinutesInput.classList.add('red');
+    common.timerSecondsInput.classList.add('red');
+    return;
+  }
   if (started) {
     return;
   }
+  common.timerMinutesInput.classList.remove('red');
+  common.timerSecondsInput.classList.remove('red');
+  
   started = true;
   Timer.startTimer();
   checkTimerInterval = setInterval(checkTimer, 1000);

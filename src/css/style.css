@@ -160,3 +160,7 @@ body {
 .button:hover {
   cursor: pointer;
 }
+
+.red {
+  outline: 1px solid red;
+}
