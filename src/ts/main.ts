@@ -6,10 +6,10 @@ import { Timer } from './timer';
 import { resetActionText, resetAnimations, resetCircle, resetStartButton } from './reset';
 
 function animateBreathing() {
-  const inhaleDuration = common.BREATH_RATIO;
-  const holdInDuration = common.HOLD_RATIO;
-  const exhaleDuration = common.BREATH_RATIO;
-  const holdOutDuration = common.HOLD_RATIO;
+  const inhaleDuration = parseInt(common.breathTimeInput.value);
+  const holdInDuration = parseInt(common.holdTimeInput.value);
+  const exhaleDuration = parseInt(common.breathTimeInput.value);
+  const holdOutDuration = parseInt(common.holdTimeInput.value);
 
   // Inhale (up)
   SharedIntervals.inhaleCountdownInterval = startCountdownDecrement(common.INHALE, inhaleDuration);

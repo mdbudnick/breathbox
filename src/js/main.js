@@ -30,10 +30,10 @@ const sharedIntervals_1 = require("./sharedIntervals");
 const timer_1 = require("./timer");
 const reset_1 = require("./reset");
 function animateBreathing() {
-    const inhaleDuration = common.BREATH_RATIO;
-    const holdInDuration = common.HOLD_RATIO;
-    const exhaleDuration = common.BREATH_RATIO;
-    const holdOutDuration = common.HOLD_RATIO;
+    const inhaleDuration = parseInt(common.breathTimeInput.value);
+    const holdInDuration = parseInt(common.holdTimeInput.value);
+    const exhaleDuration = parseInt(common.breathTimeInput.value);
+    const holdOutDuration = parseInt(common.holdTimeInput.value);
     // Inhale (up)
     sharedIntervals_1.SharedIntervals.inhaleCountdownInterval = (0, actionText_1.startCountdownDecrement)(common.INHALE, inhaleDuration);
     common.action.style.transitionDuration = `${inhaleDuration}s`;

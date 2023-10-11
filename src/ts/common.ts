@@ -6,6 +6,8 @@ export const invisible = document.querySelector('.invisible') as HTMLElement;
 export const start = document.querySelector('.timer-start') as HTMLElement;
 export const stopButton = document.querySelector('.stop') as HTMLElement;
 export const pauseButton = document.querySelector('.pause') as HTMLElement;
+export const breathTimeInput = document.querySelector('#breath-time') as HTMLInputElement
+export const holdTimeInput = document.querySelector('#hold-time') as HTMLInputElement
 
 export const DEFAULT_BACKGROUND_COLOR = "#1e3250";
 export const INHALE_COLOR = "#0f5362";
@@ -16,9 +18,7 @@ export const LARGE_CIRCLE_SIZE = 6;
 export const SMALL_CIRCLE_SIZE = 2;
 
 export const SMOOTH_PATH_TIMING = 1000;
-export const BREATH_RATIO = 6;
 export const BREATH_CURVE = "cubic-bezier(.13,.38,.48,1.02)"
-export const HOLD_RATIO = 3;
 
 export const INHALE = "INHALE";
 export const EXHALE = "EXHALE";
