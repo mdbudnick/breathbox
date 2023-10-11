@@ -1,4 +1,4 @@
-import { pauseButton, start, stopButton, timerMinutesInput, timerSecondsInput } from "./common";
+import { pauseButton, start, stopButton, timerMinutesInput, timerSecondsInput, timerDirection } from "./common";
 
 class TimerClass {
   minutes: number;

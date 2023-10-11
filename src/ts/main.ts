@@ -80,7 +80,7 @@ function startBreathBox() {
   }
   common.timerMinutesInput.classList.remove('red');
   common.timerSecondsInput.classList.remove('red');
-  
+
   started = true;
   Timer.startTimer();
   checkTimerInterval = setInterval(checkTimer, 1000);
@@ -135,6 +135,16 @@ function resumeBreathBox() {
 
   startBreathBox();
 }
+
+function flipArrow() {
+  if (common.timerDirection.classList.contains("point-up")) {
+    common.timerDirection.classList.replace("point-up", "point-down");
+  } else {
+    common.timerDirection.classList.replace("point-down", "point-up");
+  }
+}
+
+common.timerDirection.onclick = flipArrow;
 
 common.start.onclick = startBreathBox;
 common.stopButton.onclick = stopBreathBox;

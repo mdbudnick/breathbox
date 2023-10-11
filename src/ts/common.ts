@@ -10,6 +10,7 @@ export const breathTimeInput = document.querySelector('#breath-time') as HTMLInp
 export const holdTimeInput = document.querySelector('#hold-time') as HTMLInputElement
 export const timerMinutesInput = document.querySelector('#countdown-minutes') as HTMLInputElement
 export const timerSecondsInput = document.querySelector('#countdown-seconds') as HTMLInputElement
+export const timerDirection = document.querySelector('#time-arrow') as HTMLElement;
 
 export const DEFAULT_BACKGROUND_COLOR = "#1e3250";
 export const INHALE_COLOR = "#0f5362";

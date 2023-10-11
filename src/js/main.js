@@ -138,6 +138,15 @@ function resumeBreathBox() {
     common.pauseButton.onclick = pauseBreathBox;
     startBreathBox();
 }
+function flipArrow() {
+    if (common.timerDirection.classList.contains("point-up")) {
+        common.timerDirection.classList.replace("point-up", "point-down");
+    }
+    else {
+        common.timerDirection.classList.replace("point-down", "point-up");
+    }
+}
+common.timerDirection.onclick = flipArrow;
 common.start.onclick = startBreathBox;
 common.stopButton.onclick = stopBreathBox;
 common.pauseButton.onclick = pauseBreathBox;

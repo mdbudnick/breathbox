@@ -27,15 +27,22 @@ body {
   float: right;
 }
 
-#countdown-or-up {
-  opacity: 0;
-}
-
 #time-arrow {
   position: absolute;
   right: 0;
   font-weight: 900;
+}
+
+#time-arrow:hover {
+  cursor: pointer;
+}
+
+.point-up {
   transform: rotate(-90deg);
+}
+
+.point-down {
+  transform: rotate(90deg);
 }
 
 #countdown-or-up:hover {

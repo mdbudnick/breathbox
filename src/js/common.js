@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DEFAULT_ACTION_FONT_SIZE = exports.DEFAULT_ACTION_TEXT = exports.EXHALE_SIZE = exports.INHALE_SIZE = exports.HOLD = exports.EXHALE = exports.INHALE = exports.BREATH_CURVE = exports.SMOOTH_PATH_TIMING = exports.SMALL_CIRCLE_SIZE = exports.LARGE_CIRCLE_SIZE = exports.RESET_ORANGE = exports.EXHALE_COLOR = exports.INHALE_COLOR = exports.DEFAULT_BACKGROUND_COLOR = exports.timerSecondsInput = exports.timerMinutesInput = exports.holdTimeInput = exports.breathTimeInput = exports.pauseButton = exports.stopButton = exports.start = exports.invisible = exports.action = exports.circle = exports.boxRect = exports.box = void 0;
+exports.DEFAULT_ACTION_FONT_SIZE = exports.DEFAULT_ACTION_TEXT = exports.EXHALE_SIZE = exports.INHALE_SIZE = exports.HOLD = exports.EXHALE = exports.INHALE = exports.BREATH_CURVE = exports.SMOOTH_PATH_TIMING = exports.SMALL_CIRCLE_SIZE = exports.LARGE_CIRCLE_SIZE = exports.RESET_ORANGE = exports.EXHALE_COLOR = exports.INHALE_COLOR = exports.DEFAULT_BACKGROUND_COLOR = exports.timerDirection = exports.timerSecondsInput = exports.timerMinutesInput = exports.holdTimeInput = exports.breathTimeInput = exports.pauseButton = exports.stopButton = exports.start = exports.invisible = exports.action = exports.circle = exports.boxRect = exports.box = void 0;
 exports.box = document.querySelector('.breath-box');
 exports.boxRect = exports.box.getBoundingClientRect();
 exports.circle = document.querySelector('.circle');
@@ -13,6 +13,7 @@ exports.breathTimeInput = document.querySelector('#breath-time');
 exports.holdTimeInput = document.querySelector('#hold-time');
 exports.timerMinutesInput = document.querySelector('#countdown-minutes');
 exports.timerSecondsInput = document.querySelector('#countdown-seconds');
+exports.timerDirection = document.querySelector('#time-arrow');
 exports.DEFAULT_BACKGROUND_COLOR = "#1e3250";
 exports.INHALE_COLOR = "#0f5362";
 exports.EXHALE_COLOR = "#c08845";
