@@ -14,12 +14,13 @@ class TimerClass {
   }
 
   startTimer() {
-    this.incrementTimer();
+    let timerFn = timerDirection.classList.contains("point-up") ? this.incrementTimer : this.decrementTimer;
+    timerFn.bind(this)();
     this.targetTime = (parseInt(timerMinutesInput.value) * 60) + parseInt(timerSecondsInput.value)
     start.style.backgroundColor = "transparent";
     start.style.border = "none";
     start.classList.remove("button");
-    this.timerInterval = setInterval(this.incrementTimer.bind(this), 1000);
+    this.timerInterval = setInterval(timerFn.bind(this), 1000);
   }
   
   incrementTimer() {
@@ -27,6 +28,16 @@ class TimerClass {
     if (this.seconds == 60) {
       ++this.minutes;
       this.seconds = 0;
+    }
+    start.textContent =
+      "" + this.minutes + ":" + (this.seconds < 10 ? "0" + this.seconds : this.seconds);
+  }
+
+  decrementTimer() {
+    --this.seconds;
+    if (this.seconds == 0) {
+      --this.minutes;
+      this.seconds = 60;
     }
     start.textContent =
       "" + this.minutes + ":" + (this.seconds < 10 ? "0" + this.seconds : this.seconds);
@@ -41,8 +52,8 @@ class TimerClass {
   }
 
   reset() {
-    this.minutes = 0;
-    this.seconds = 0;
+    this.minutes = timerDirection.classList.contains("point-up") ? 0 : parseInt(timerMinutesInput.value);
+    this.seconds = timerDirection.classList.contains("point-up") ? 0 : parseInt(timerSecondsInput.value);
   }
 
   reachedTime() {

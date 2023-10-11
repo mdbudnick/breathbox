@@ -6,6 +6,7 @@ declare class TimerClass {
     constructor();
     startTimer(): void;
     incrementTimer(): void;
+    decrementTimer(): void;
     addPauseButton(): void;
     addStopButton(): void;
     reset(): void;
