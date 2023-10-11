@@ -1,18 +1,21 @@
-import { pauseButton, start, stopButton } from "./common";
+import { pauseButton, start, stopButton, timerMinutesInput, timerSecondsInput } from "./common";
 
 class TimerClass {
   minutes: number;
   seconds: number;
   timerInterval: ReturnType<typeof setInterval> | null;
+  targetTime: number;
 
   constructor() {
     this.minutes = 0;
     this.seconds = 0;
+    this.targetTime = 600;
     this.timerInterval = null
   }
 
   startTimer() {
     this.incrementTimer();
+    this.targetTime = (parseInt(timerMinutesInput.value) * 60) + parseInt(timerSecondsInput.value)
     start.style.backgroundColor = "transparent";
     start.style.border = "none";
     start.classList.remove("button");
@@ -40,6 +43,10 @@ class TimerClass {
   reset() {
     this.minutes = 0;
     this.seconds = 0;
+  }
+
+  reachedTime() {
+    return (this.minutes * 60) + this.seconds >= this.targetTime;
   }
 }
 

@@ -8,6 +8,8 @@ export const stopButton = document.querySelector('.stop') as HTMLElement;
 export const pauseButton = document.querySelector('.pause') as HTMLElement;
 export const breathTimeInput = document.querySelector('#breath-time') as HTMLInputElement
 export const holdTimeInput = document.querySelector('#hold-time') as HTMLInputElement
+export const timerMinutesInput = document.querySelector('#countdown-minutes') as HTMLInputElement
+export const timerSecondsInput = document.querySelector('#countdown-seconds') as HTMLInputElement
 
 export const DEFAULT_BACKGROUND_COLOR = "#1e3250";
 export const INHALE_COLOR = "#0f5362";

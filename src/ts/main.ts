@@ -68,12 +68,14 @@ function animateBreathing() {
 }
 
 let started = false;
+let checkTimerInterval: ReturnType<typeof setInterval> | null;
 function startBreathBox() {
   if (started) {
     return;
   }
   started = true;
   Timer.startTimer();
+  checkTimerInterval = setInterval(checkTimer, 1000);
   Timer.addPauseButton();
   Timer.addStopButton();
   resetActionText("");
@@ -81,10 +83,20 @@ function startBreathBox() {
   animateBreathing();
 }
 
+let tone = new Audio('../src/audio/tone.mp3')
+function checkTimer() {
+  if (started && Timer.reachedTime()) {
+    tone.play();
+    alert("You have reached your target!");
+    stopBreathBox();
+  }
+}
+
 function stopBreathBox() {
   started = false;
 
   Timer.reset();
+  clearTimeout(checkTimerInterval!);
   resetAnimations();
   resetActionText("");
   resetCircle();

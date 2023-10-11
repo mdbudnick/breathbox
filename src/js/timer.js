@@ -6,10 +6,12 @@ class TimerClass {
     constructor() {
         this.minutes = 0;
         this.seconds = 0;
+        this.targetTime = 600;
         this.timerInterval = null;
     }
     startTimer() {
         this.incrementTimer();
+        this.targetTime = (parseInt(common_1.timerMinutesInput.value) * 60) + parseInt(common_1.timerSecondsInput.value);
         common_1.start.style.backgroundColor = "transparent";
         common_1.start.style.border = "none";
         common_1.start.classList.remove("button");
@@ -33,6 +35,9 @@ class TimerClass {
     reset() {
         this.minutes = 0;
         this.seconds = 0;
+    }
+    reachedTime() {
+        return (this.minutes * 60) + this.seconds >= this.targetTime;
     }
 }
 exports.Timer = new TimerClass();

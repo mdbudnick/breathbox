@@ -38,7 +38,7 @@ body {
   transform: rotate(-90deg);
 }
 
-#time-arrow:hover {
+#countdown-or-up:hover {
   cursor: pointer;
 }
 

@@ -45,7 +45,7 @@ exports.startCountdownDecrement = startCountdownDecrement;
 },{"./common":2}],2:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DEFAULT_ACTION_FONT_SIZE = exports.DEFAULT_ACTION_TEXT = exports.EXHALE_SIZE = exports.INHALE_SIZE = exports.HOLD = exports.EXHALE = exports.INHALE = exports.BREATH_CURVE = exports.SMOOTH_PATH_TIMING = exports.SMALL_CIRCLE_SIZE = exports.LARGE_CIRCLE_SIZE = exports.RESET_ORANGE = exports.EXHALE_COLOR = exports.INHALE_COLOR = exports.DEFAULT_BACKGROUND_COLOR = exports.holdTimeInput = exports.breathTimeInput = exports.pauseButton = exports.stopButton = exports.start = exports.invisible = exports.action = exports.circle = exports.boxRect = exports.box = void 0;
+exports.DEFAULT_ACTION_FONT_SIZE = exports.DEFAULT_ACTION_TEXT = exports.EXHALE_SIZE = exports.INHALE_SIZE = exports.HOLD = exports.EXHALE = exports.INHALE = exports.BREATH_CURVE = exports.SMOOTH_PATH_TIMING = exports.SMALL_CIRCLE_SIZE = exports.LARGE_CIRCLE_SIZE = exports.RESET_ORANGE = exports.EXHALE_COLOR = exports.INHALE_COLOR = exports.DEFAULT_BACKGROUND_COLOR = exports.timerSecondsInput = exports.timerMinutesInput = exports.holdTimeInput = exports.breathTimeInput = exports.pauseButton = exports.stopButton = exports.start = exports.invisible = exports.action = exports.circle = exports.boxRect = exports.box = void 0;
 exports.box = document.querySelector('.breath-box');
 exports.boxRect = exports.box.getBoundingClientRect();
 exports.circle = document.querySelector('.circle');
@@ -56,6 +56,8 @@ exports.stopButton = document.querySelector('.stop');
 exports.pauseButton = document.querySelector('.pause');
 exports.breathTimeInput = document.querySelector('#breath-time');
 exports.holdTimeInput = document.querySelector('#hold-time');
+exports.timerMinutesInput = document.querySelector('#countdown-minutes');
+exports.timerSecondsInput = document.querySelector('#countdown-seconds');
 exports.DEFAULT_BACKGROUND_COLOR = "#1e3250";
 exports.INHALE_COLOR = "#0f5362";
 exports.EXHALE_COLOR = "#c08845";
@@ -157,21 +159,32 @@ function animateBreathing() {
     }, inhaleDuration * common.SMOOTH_PATH_TIMING);
 }
 let started = false;
+let checkTimerInterval;
 function startBreathBox() {
     if (started) {
         return;
     }
     started = true;
     timer_1.Timer.startTimer();
+    checkTimerInterval = setInterval(checkTimer, 1000);
     timer_1.Timer.addPauseButton();
     timer_1.Timer.addStopButton();
     (0, reset_1.resetActionText)("");
     (0, reset_1.resetCircle)();
     animateBreathing();
 }
+let tone = new Audio('../src/audio/tone.mp3');
+function checkTimer() {
+    if (started && timer_1.Timer.reachedTime()) {
+        tone.play();
+        alert("You have reached your target!");
+        stopBreathBox();
+    }
+}
 function stopBreathBox() {
     started = false;
     timer_1.Timer.reset();
+    clearTimeout(checkTimerInterval);
     (0, reset_1.resetAnimations)();
     (0, reset_1.resetActionText)("");
     (0, reset_1.resetCircle)();
@@ -306,10 +319,12 @@ class TimerClass {
     constructor() {
         this.minutes = 0;
         this.seconds = 0;
+        this.targetTime = 600;
         this.timerInterval = null;
     }
     startTimer() {
         this.incrementTimer();
+        this.targetTime = (parseInt(common_1.timerMinutesInput.value) * 60) + parseInt(common_1.timerSecondsInput.value);
         common_1.start.style.backgroundColor = "transparent";
         common_1.start.style.border = "none";
         common_1.start.classList.remove("button");
@@ -333,6 +348,9 @@ class TimerClass {
     reset() {
         this.minutes = 0;
         this.seconds = 0;
+    }
+    reachedTime() {
+        return (this.minutes * 60) + this.seconds >= this.targetTime;
     }
 }
 exports.Timer = new TimerClass();

@@ -82,21 +82,32 @@ function animateBreathing() {
     }, inhaleDuration * common.SMOOTH_PATH_TIMING);
 }
 let started = false;
+let checkTimerInterval;
 function startBreathBox() {
     if (started) {
         return;
     }
     started = true;
     timer_1.Timer.startTimer();
+    checkTimerInterval = setInterval(checkTimer, 1000);
     timer_1.Timer.addPauseButton();
     timer_1.Timer.addStopButton();
     (0, reset_1.resetActionText)("");
     (0, reset_1.resetCircle)();
     animateBreathing();
 }
+let tone = new Audio('../src/audio/tone.mp3');
+function checkTimer() {
+    if (started && timer_1.Timer.reachedTime()) {
+        tone.play();
+        alert("You have reached your target!");
+        stopBreathBox();
+    }
+}
 function stopBreathBox() {
     started = false;
     timer_1.Timer.reset();
+    clearTimeout(checkTimerInterval);
     (0, reset_1.resetAnimations)();
     (0, reset_1.resetActionText)("");
     (0, reset_1.resetCircle)();
