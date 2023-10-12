@@ -185,7 +185,7 @@ let tone = new Audio('../src/audio/tone.mp3');
 function checkTimer() {
     if (started && timer_1.Timer.reachedTime()) {
         tone.play();
-        alert("You have reached your target!");
+        setTimeout(() => alert("You have reached your target!"), 50);
         stopBreathBox();
     }
 }
