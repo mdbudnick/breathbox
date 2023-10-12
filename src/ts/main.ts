@@ -122,7 +122,7 @@ function startBreathBox() {
   animateBreathing();
 }
 
-let tone = new Audio("../src/audio/tone.mp3");
+let tone = new Audio("audio/tone.mp3");
 function checkTimer() {
   if (started && Timer.reachedTime()) {
     tone.play();
