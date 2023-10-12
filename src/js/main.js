@@ -98,6 +98,8 @@ function startBreathBox() {
     }
     common.timerMinutesInput.classList.remove("red");
     common.timerSecondsInput.classList.remove("red");
+    common.config.classList.add("hidden");
+    common.controlBar.classList.add("top-buffer");
     started = true;
     timer_1.Timer.startTimer();
     checkTimerInterval = setInterval(checkTimer, 1000);
@@ -125,6 +127,8 @@ function stopBreathBox() {
     (0, reset_1.resetStartButton)();
     common.stopButton.style.display = "none";
     common.pauseButton.style.display = "none";
+    common.config.classList.remove("hidden");
+    common.controlBar.classList.remove("top-buffer");
 }
 function pauseBreathBox() {
     started = false;

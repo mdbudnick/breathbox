@@ -11,6 +11,8 @@ export declare const holdTimeInput: HTMLInputElement;
 export declare const timerMinutesInput: HTMLInputElement;
 export declare const timerSecondsInput: HTMLInputElement;
 export declare const timerDirection: HTMLElement;
+export declare const config: HTMLElement;
+export declare const controlBar: HTMLElement;
 export declare const DEFAULT_BACKGROUND_COLOR = "#1e3250";
 export declare const INHALE_COLOR = "#0f5362";
 export declare const EXHALE_COLOR = "#c08845";

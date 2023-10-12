@@ -21,6 +21,7 @@ body {
   color: white;
   -webkit-text-stroke-width: 0.2px;
   -webkit-text-stroke-color: black;
+  height: 12vh;
 }
 
 .config input {
@@ -170,4 +171,12 @@ body {
 
 .red {
   outline: 1px solid red;
+}
+
+.hidden {
+  display: none;
+}
+
+.top-buffer {
+  margin-top: 19vh;
 }

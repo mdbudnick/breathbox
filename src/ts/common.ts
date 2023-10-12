@@ -11,6 +11,8 @@ export const holdTimeInput = document.querySelector('#hold-time') as HTMLInputEl
 export const timerMinutesInput = document.querySelector('#countdown-minutes') as HTMLInputElement
 export const timerSecondsInput = document.querySelector('#countdown-seconds') as HTMLInputElement
 export const timerDirection = document.querySelector('#time-arrow') as HTMLElement;
+export const config = document.querySelector('.config') as HTMLElement;
+export const controlBar = document.querySelector('.control-bar') as HTMLElement;
 
 export const DEFAULT_BACKGROUND_COLOR = "#1e3250";
 export const INHALE_COLOR = "#0f5362";
