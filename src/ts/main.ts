@@ -1,9 +1,14 @@
-import { vhToPx } from './vhFunc'
-import { startCountdownDecrement } from './actionText';
-import * as common from './common';
-import{ SharedIntervals } from './sharedIntervals';
-import { Timer } from './timer';
-import { resetActionText, resetAnimations, resetCircle, resetStartButton } from './reset';
+import { vhToPx } from "./vhFunc";
+import { startCountdownDecrement } from "./actionText";
+import * as common from "./common";
+import { SharedIntervals } from "./sharedIntervals";
+import { Timer } from "./timer";
+import {
+  resetActionText,
+  resetAnimations,
+  resetCircle,
+  resetStartButton,
+} from "./reset";
 
 function animateBreathing() {
   const inhaleDuration = parseInt(common.breathTimeInput.value);
@@ -12,52 +17,71 @@ function animateBreathing() {
   const holdOutDuration = parseInt(common.holdTimeInput.value);
 
   // Inhale (up)
-  SharedIntervals.inhaleCountdownInterval = startCountdownDecrement(common.INHALE, inhaleDuration);
+  SharedIntervals.inhaleCountdownInterval = startCountdownDecrement(
+    common.INHALE,
+    inhaleDuration
+  );
   common.action.style.transitionDuration = `${inhaleDuration}s`;
   common.action.style.transitionTimingFunction = `${common.BREATH_CURVE}`;
   common.action.style.fontSize = `${common.INHALE_SIZE}vh`;
   common.action.style.color = common.INHALE_COLOR;
 
-  common.circle.style.transitionProperty = 'height width background-color left bottom';
+  common.circle.style.transitionProperty =
+    "height width background-color left bottom";
   common.circle.style.transitionDuration = `${inhaleDuration}s`;
   common.circle.style.transitionTimingFunction = `${common.BREATH_CURVE}`;
   common.circle.style.backgroundColor = common.INHALE_COLOR;
   common.circle.style.height = `${common.LARGE_CIRCLE_SIZE}vh`;
   common.circle.style.width = `${common.LARGE_CIRCLE_SIZE}vh`;
-  common.circle.style.bottom = `${common.box.clientHeight - vhToPx(common.LARGE_CIRCLE_SIZE)/2}px`;
-  common.circle.style.left = `-${common.LARGE_CIRCLE_SIZE/2}vh`;
+  common.circle.style.bottom = `${
+    common.box.clientHeight - vhToPx(common.LARGE_CIRCLE_SIZE) / 2
+  }px`;
+  common.circle.style.left = `-${common.LARGE_CIRCLE_SIZE / 2}vh`;
 
   // Hold In (right)
   SharedIntervals.holdInAnimation = setTimeout(() => {
-    SharedIntervals.holdInCountdownInterval = startCountdownDecrement(common.HOLD, holdInDuration);
+    SharedIntervals.holdInCountdownInterval = startCountdownDecrement(
+      common.HOLD,
+      holdInDuration
+    );
 
     common.circle.style.transitionDuration = `${holdInDuration}s`;
-    common.circle.style.transitionTimingFunction = 'linear';
-    common.circle.style.left = `${common.box.clientWidth - (vhToPx(common.LARGE_CIRCLE_SIZE)/2)}px`;
+    common.circle.style.transitionTimingFunction = "linear";
+    common.circle.style.left = `${
+      common.box.clientWidth - vhToPx(common.LARGE_CIRCLE_SIZE) / 2
+    }px`;
 
     // Exhale (down)
     SharedIntervals.exhaleAnimation = setTimeout(() => {
-      SharedIntervals.exhaleCountdownInterval = startCountdownDecrement(common.EXHALE, exhaleDuration);
+      SharedIntervals.exhaleCountdownInterval = startCountdownDecrement(
+        common.EXHALE,
+        exhaleDuration
+      );
       common.action.style.fontSize = `${common.EXHALE_SIZE}vh`;
       common.action.style.color = common.EXHALE_COLOR;
 
-      common.circle.style.transitionProperty = 'height width color left bottom';
+      common.circle.style.transitionProperty = "height width color left bottom";
       common.circle.style.transitionDuration = `${exhaleDuration}s`;
       common.circle.style.transitionTimingFunction = `${common.BREATH_CURVE}`;
       common.circle.style.backgroundColor = common.EXHALE_COLOR;
       common.circle.style.height = `${common.SMALL_CIRCLE_SIZE}vh`;
       common.circle.style.width = `${common.SMALL_CIRCLE_SIZE}vh`;
-      common.circle.style.bottom = `-${common.SMALL_CIRCLE_SIZE/2}vh`;
-      common.circle.style.left = `${common.box.clientWidth - vhToPx(common.SMALL_CIRCLE_SIZE)/2}px`;
+      common.circle.style.bottom = `-${common.SMALL_CIRCLE_SIZE / 2}vh`;
+      common.circle.style.left = `${
+        common.box.clientWidth - vhToPx(common.SMALL_CIRCLE_SIZE) / 2
+      }px`;
 
       // Hold out (left)
       SharedIntervals.holdOutAnimation = setTimeout(() => {
-        SharedIntervals.holdOutCountdownInterval = startCountdownDecrement(common.HOLD, holdOutDuration);
+        SharedIntervals.holdOutCountdownInterval = startCountdownDecrement(
+          common.HOLD,
+          holdOutDuration
+        );
 
         common.circle.style.transitionDuration = `${holdInDuration}s`;
-        common.circle.style.transitionTimingFunction = 'linear';
-        common.circle.style.bottom = `-${common.SMALL_CIRCLE_SIZE/2}vh`;
-        common.circle.style.left = `-${common.SMALL_CIRCLE_SIZE/2}vh`;
+        common.circle.style.transitionTimingFunction = "linear";
+        common.circle.style.bottom = `-${common.SMALL_CIRCLE_SIZE / 2}vh`;
+        common.circle.style.left = `-${common.SMALL_CIRCLE_SIZE / 2}vh`;
 
         SharedIntervals.inhaleAnimation = setTimeout(() => {
           animateBreathing(); // Restart the cycle
@@ -70,16 +94,21 @@ function animateBreathing() {
 let started = false;
 let checkTimerInterval: ReturnType<typeof setInterval> | null;
 function startBreathBox() {
-  if (common.timerMinutesInput.value === "0" && common.timerSecondsInput.value === "0") {
-    common.timerMinutesInput.classList.add('red');
-    common.timerSecondsInput.classList.add('red');
+  if (
+    (common.timerMinutesInput.value == "" ||
+      common.timerMinutesInput.value === "0") &&
+    (common.timerSecondsInput.value == "" ||
+      common.timerSecondsInput.value === "0")
+  ) {
+    common.timerMinutesInput.classList.add("red");
+    common.timerSecondsInput.classList.add("red");
     return;
   }
   if (started) {
     return;
   }
-  common.timerMinutesInput.classList.remove('red');
-  common.timerSecondsInput.classList.remove('red');
+  common.timerMinutesInput.classList.remove("red");
+  common.timerSecondsInput.classList.remove("red");
 
   started = true;
   Timer.startTimer();
@@ -91,7 +120,7 @@ function startBreathBox() {
   animateBreathing();
 }
 
-let tone = new Audio('../src/audio/tone.mp3')
+let tone = new Audio("../src/audio/tone.mp3");
 function checkTimer() {
   if (started && Timer.reachedTime()) {
     tone.play();

@@ -6,6 +6,8 @@ declare class TimerClass {
     internalTimer: number;
     ascending: boolean;
     constructor();
+    getMinuteInput(): number;
+    getSecondInput(): number;
     startTimer(): void;
     timerFn(): void;
     incrementTimer(): void;

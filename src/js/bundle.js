@@ -118,7 +118,8 @@ function animateBreathing() {
     common.action.style.transitionTimingFunction = `${common.BREATH_CURVE}`;
     common.action.style.fontSize = `${common.INHALE_SIZE}vh`;
     common.action.style.color = common.INHALE_COLOR;
-    common.circle.style.transitionProperty = 'height width background-color left bottom';
+    common.circle.style.transitionProperty =
+        "height width background-color left bottom";
     common.circle.style.transitionDuration = `${inhaleDuration}s`;
     common.circle.style.transitionTimingFunction = `${common.BREATH_CURVE}`;
     common.circle.style.backgroundColor = common.INHALE_COLOR;
@@ -130,14 +131,14 @@ function animateBreathing() {
     sharedIntervals_1.SharedIntervals.holdInAnimation = setTimeout(() => {
         sharedIntervals_1.SharedIntervals.holdInCountdownInterval = (0, actionText_1.startCountdownDecrement)(common.HOLD, holdInDuration);
         common.circle.style.transitionDuration = `${holdInDuration}s`;
-        common.circle.style.transitionTimingFunction = 'linear';
-        common.circle.style.left = `${common.box.clientWidth - ((0, vhFunc_1.vhToPx)(common.LARGE_CIRCLE_SIZE) / 2)}px`;
+        common.circle.style.transitionTimingFunction = "linear";
+        common.circle.style.left = `${common.box.clientWidth - (0, vhFunc_1.vhToPx)(common.LARGE_CIRCLE_SIZE) / 2}px`;
         // Exhale (down)
         sharedIntervals_1.SharedIntervals.exhaleAnimation = setTimeout(() => {
             sharedIntervals_1.SharedIntervals.exhaleCountdownInterval = (0, actionText_1.startCountdownDecrement)(common.EXHALE, exhaleDuration);
             common.action.style.fontSize = `${common.EXHALE_SIZE}vh`;
             common.action.style.color = common.EXHALE_COLOR;
-            common.circle.style.transitionProperty = 'height width color left bottom';
+            common.circle.style.transitionProperty = "height width color left bottom";
             common.circle.style.transitionDuration = `${exhaleDuration}s`;
             common.circle.style.transitionTimingFunction = `${common.BREATH_CURVE}`;
             common.circle.style.backgroundColor = common.EXHALE_COLOR;
@@ -149,7 +150,7 @@ function animateBreathing() {
             sharedIntervals_1.SharedIntervals.holdOutAnimation = setTimeout(() => {
                 sharedIntervals_1.SharedIntervals.holdOutCountdownInterval = (0, actionText_1.startCountdownDecrement)(common.HOLD, holdOutDuration);
                 common.circle.style.transitionDuration = `${holdInDuration}s`;
-                common.circle.style.transitionTimingFunction = 'linear';
+                common.circle.style.transitionTimingFunction = "linear";
                 common.circle.style.bottom = `-${common.SMALL_CIRCLE_SIZE / 2}vh`;
                 common.circle.style.left = `-${common.SMALL_CIRCLE_SIZE / 2}vh`;
                 sharedIntervals_1.SharedIntervals.inhaleAnimation = setTimeout(() => {
@@ -162,16 +163,19 @@ function animateBreathing() {
 let started = false;
 let checkTimerInterval;
 function startBreathBox() {
-    if (common.timerMinutesInput.value === "0" && common.timerSecondsInput.value === "0") {
-        common.timerMinutesInput.classList.add('red');
-        common.timerSecondsInput.classList.add('red');
+    if ((common.timerMinutesInput.value == "" ||
+        common.timerMinutesInput.value === "0") &&
+        (common.timerSecondsInput.value == "" ||
+            common.timerSecondsInput.value === "0")) {
+        common.timerMinutesInput.classList.add("red");
+        common.timerSecondsInput.classList.add("red");
         return;
     }
     if (started) {
         return;
     }
-    common.timerMinutesInput.classList.remove('red');
-    common.timerSecondsInput.classList.remove('red');
+    common.timerMinutesInput.classList.remove("red");
+    common.timerSecondsInput.classList.remove("red");
     started = true;
     timer_1.Timer.startTimer();
     checkTimerInterval = setInterval(checkTimer, 1000);
@@ -181,7 +185,7 @@ function startBreathBox() {
     (0, reset_1.resetCircle)();
     animateBreathing();
 }
-let tone = new Audio('../src/audio/tone.mp3');
+let tone = new Audio("../src/audio/tone.mp3");
 function checkTimer() {
     if (started && timer_1.Timer.reachedTime()) {
         tone.play();
@@ -342,12 +346,20 @@ class TimerClass {
         this.timerInterval = null;
         this.ascending = true;
     }
+    getMinuteInput() {
+        console.log(common_1.timerMinutesInput.value);
+        return common_1.timerMinutesInput.value == "" ? 0 : parseInt(common_1.timerMinutesInput.value);
+    }
+    getSecondInput() {
+        console.log(common_1.timerSecondsInput.value);
+        return common_1.timerSecondsInput.value == "" ? 0 : parseInt(common_1.timerSecondsInput.value);
+    }
     startTimer() {
         this.reset();
         this.timerFn();
         this.targetTime =
-            parseInt(common_1.timerMinutesInput.value) * 60 +
-                parseInt(common_1.timerSecondsInput.value);
+            this.getMinuteInput() * 60 +
+                this.getSecondInput();
         common_1.start.style.backgroundColor = "transparent";
         common_1.start.style.border = "none";
         common_1.start.classList.remove("button");
@@ -393,8 +405,8 @@ class TimerClass {
         common_1.stopButton.style.display = "flex";
     }
     reset() {
-        this.minutes = this.ascending ? 0 : parseInt(common_1.timerMinutesInput.value);
-        this.seconds = this.ascending ? 0 : parseInt(common_1.timerSecondsInput.value);
+        this.minutes = this.ascending ? 0 : this.getMinuteInput();
+        this.seconds = this.ascending ? 0 : this.getSecondInput();
         this.internalTimer = 0;
         clearInterval(this.timerInterval);
     }

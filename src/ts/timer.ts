@@ -23,12 +23,22 @@ class TimerClass {
     this.ascending = true;
   }
 
+  getMinuteInput(): number {
+    console.log(timerMinutesInput.value);
+    return timerMinutesInput.value == "" ? 0 : parseInt(timerMinutesInput.value);
+  }
+
+  getSecondInput(): number {
+    console.log(timerSecondsInput.value);
+    return timerSecondsInput.value == "" ? 0 : parseInt(timerSecondsInput.value);
+  }
+
   startTimer() {
     this.reset();
     this.timerFn();
     this.targetTime =
-      parseInt(timerMinutesInput.value) * 60 +
-      parseInt(timerSecondsInput.value);
+      this.getMinuteInput() * 60 +
+      this.getSecondInput();
     start.style.backgroundColor = "transparent";
     start.style.border = "none";
     start.classList.remove("button");
@@ -83,8 +93,8 @@ class TimerClass {
   }
 
   reset() {
-    this.minutes = this.ascending ? 0 : parseInt(timerMinutesInput.value);
-    this.seconds = this.ascending ? 0 : parseInt(timerSecondsInput.value);
+    this.minutes = this.ascending ? 0 : this.getMinuteInput();
+    this.seconds = this.ascending ? 0 : this.getSecondInput();
 
     this.internalTimer = 0;
 
