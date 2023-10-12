@@ -162,22 +162,44 @@ function animateBreathing() {
         }, holdInDuration * common.SMOOTH_PATH_TIMING);
     }, inhaleDuration * common.SMOOTH_PATH_TIMING);
 }
-let started = false;
-let checkTimerInterval;
-function startBreathBox() {
-    if ((common.timerMinutesInput.value == "" ||
+function validInputs() {
+    let valid = true;
+    if ((common.timerMinutesInput.value === "" ||
         common.timerMinutesInput.value === "0") &&
-        (common.timerSecondsInput.value == "" ||
+        (common.timerSecondsInput.value === "" ||
             common.timerSecondsInput.value === "0")) {
         common.timerMinutesInput.classList.add("red");
         common.timerSecondsInput.classList.add("red");
+        valid = false;
+    }
+    else {
+        common.timerMinutesInput.classList.remove("red");
+        common.timerSecondsInput.classList.remove("red");
+    }
+    if (common.breathTimeInput.value === "" ||
+        common.breathTimeInput.value === "0") {
+        common.breathTimeInput.classList.add("red");
+        valid = false;
+    }
+    else {
+        common.breathTimeInput.classList.remove("red");
+    }
+    if (common.holdTimeInput.value === "" ||
+        common.holdTimeInput.value === "0") {
+        common.holdTimeInput.classList.add("red");
+        valid = false;
+    }
+    else {
+        common.holdTimeInput.classList.remove("red");
+    }
+    return valid;
+}
+let started = false;
+let checkTimerInterval;
+function startBreathBox() {
+    if (!validInputs() || started) {
         return;
     }
-    if (started) {
-        return;
-    }
-    common.timerMinutesInput.classList.remove("red");
-    common.timerSecondsInput.classList.remove("red");
     common.config.classList.add("hidden");
     common.controlBar.classList.add("top-buffer");
     started = true;
