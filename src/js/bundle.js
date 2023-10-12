@@ -223,6 +223,7 @@ function flipArrow() {
     else {
         common.timerDirection.classList.replace("point-down", "point-up");
     }
+    timer_1.Timer.ascending = !timer_1.Timer.ascending;
 }
 common.timerDirection.onclick = flipArrow;
 common.start.onclick = startBreathBox;
@@ -339,24 +340,21 @@ class TimerClass {
         this.internalTimer = 0;
         this.targetTime = 600;
         this.timerInterval = null;
-        this.started = false;
+        this.ascending = true;
     }
     startTimer() {
-        if (this.started) {
-            return;
-        }
-        this.started = true;
-        let timerFn = common_1.timerDirection.classList.contains("point-up")
-            ? this.incrementTimer
-            : this.decrementTimer;
-        timerFn.bind(this)();
+        this.reset();
+        this.timerFn();
         this.targetTime =
             parseInt(common_1.timerMinutesInput.value) * 60 +
                 parseInt(common_1.timerSecondsInput.value);
         common_1.start.style.backgroundColor = "transparent";
         common_1.start.style.border = "none";
         common_1.start.classList.remove("button");
-        this.timerInterval = setInterval(timerFn.bind(this), 1000);
+        this.timerInterval = setInterval(this.timerFn.bind(this), 1000);
+    }
+    timerFn() {
+        this.ascending ? this.incrementTimer() : this.decrementTimer();
     }
     incrementTimer() {
         ++this.seconds;
@@ -372,17 +370,21 @@ class TimerClass {
         ++this.internalTimer;
     }
     decrementTimer() {
-        --this.seconds;
-        if (this.seconds == 0) {
+        if (this.seconds <= 0) {
             --this.minutes;
             this.seconds = 60;
         }
+        --this.seconds;
         common_1.start.textContent =
             "" +
                 this.minutes +
                 ":" +
                 (this.seconds < 10 ? "0" + this.seconds : this.seconds);
         ++this.internalTimer;
+    }
+    updateMinutesAndSeconds(seconds) {
+        this.minutes = Math.floor(seconds / 60);
+        this.seconds = seconds % 60;
     }
     addPauseButton() {
         common_1.pauseButton.style.display = "flex";
@@ -391,16 +393,8 @@ class TimerClass {
         common_1.stopButton.style.display = "flex";
     }
     reset() {
-        if (!this.started) {
-            return;
-        }
-        this.started = false;
-        this.minutes = common_1.timerDirection.classList.contains("point-up")
-            ? 0
-            : parseInt(common_1.timerMinutesInput.value);
-        this.seconds = common_1.timerDirection.classList.contains("point-up")
-            ? 0
-            : parseInt(common_1.timerSecondsInput.value);
+        this.minutes = this.ascending ? 0 : parseInt(common_1.timerMinutesInput.value);
+        this.seconds = this.ascending ? 0 : parseInt(common_1.timerSecondsInput.value);
         this.internalTimer = 0;
         clearInterval(this.timerInterval);
     }

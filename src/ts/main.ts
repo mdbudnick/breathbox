@@ -142,6 +142,7 @@ function flipArrow() {
   } else {
     common.timerDirection.classList.replace("point-down", "point-up");
   }
+  Timer.ascending = !Timer.ascending;
 }
 
 common.timerDirection.onclick = flipArrow;

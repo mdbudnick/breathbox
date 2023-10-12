@@ -4,11 +4,13 @@ declare class TimerClass {
     timerInterval: ReturnType<typeof setInterval> | null;
     targetTime: number;
     internalTimer: number;
-    started: boolean;
+    ascending: boolean;
     constructor();
     startTimer(): void;
+    timerFn(): void;
     incrementTimer(): void;
     decrementTimer(): void;
+    updateMinutesAndSeconds(seconds: number): void;
     addPauseButton(): void;
     addStopButton(): void;
     reset(): void;

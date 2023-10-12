@@ -145,6 +145,7 @@ function flipArrow() {
     else {
         common.timerDirection.classList.replace("point-down", "point-up");
     }
+    timer_1.Timer.ascending = !timer_1.Timer.ascending;
 }
 common.timerDirection.onclick = flipArrow;
 common.start.onclick = startBreathBox;
