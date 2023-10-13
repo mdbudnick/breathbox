@@ -150,7 +150,9 @@ const tone = new Audio('audio/tone.mp3')
 function checkTimer (): undefined {
   if (started && Timer.reachedTime()) {
     void tone.play()
-    setTimeout(() => { alert('You have reached your target!') }, 50)
+    setTimeout(() => {
+      alert('You have reached your target!')
+    }, 50)
     stopBreathBox()
   }
 }

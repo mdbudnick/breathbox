@@ -24,11 +24,15 @@ class TimerClass {
   }
 
   getMinuteInput (): number {
-    return timerMinutesInput.value === '' ? 0 : parseInt(timerMinutesInput.value)
+    return timerMinutesInput.value === ''
+      ? 0
+      : parseInt(timerMinutesInput.value)
   }
 
   getSecondInput (): number {
-    return timerSecondsInput.value === '' ? 0 : parseInt(timerSecondsInput.value)
+    return timerSecondsInput.value === ''
+      ? 0
+      : parseInt(timerSecondsInput.value)
   }
 
   startTimer (): undefined {
