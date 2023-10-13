@@ -7,12 +7,12 @@ import {
 } from "./common";
 
 class TimerClass {
-  minutes: number;
-  seconds: number;
-  timerInterval: ReturnType<typeof setInterval> | null;
-  targetTime: number;
-  internalTimer: number;
-  ascending: boolean;
+  private minutes: number;
+  private seconds: number;
+  private timerInterval: ReturnType<typeof setInterval> | null;
+  private targetTime: number;
+  private internalTimer: number;
+  private ascending: boolean;
 
   constructor() {
     this.minutes = 0;
@@ -24,12 +24,10 @@ class TimerClass {
   }
 
   getMinuteInput(): number {
-    console.log(timerMinutesInput.value);
     return timerMinutesInput.value == "" ? 0 : parseInt(timerMinutesInput.value);
   }
 
   getSecondInput(): number {
-    console.log(timerSecondsInput.value);
     return timerSecondsInput.value == "" ? 0 : parseInt(timerSecondsInput.value);
   }
 
@@ -103,6 +101,16 @@ class TimerClass {
 
   reachedTime() {
     return this.internalTimer >= this.targetTime;
+  }
+
+  switchDirection() {
+    this.ascending = !this.ascending;
+    return;
+  }
+
+  clearInterval() {
+    clearInterval(this.timerInterval!);
+    this.timerInterval = null;
   }
 }
 

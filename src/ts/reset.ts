@@ -48,5 +48,5 @@ export function resetAnimations() {
   clearInterval(SharedIntervals.holdOutCountdownInterval!);
   SharedIntervals.holdOutCountdownInterval = null;
   clearInterval(Timer.timerInterval!);
-  Timer.timerInterval = null;
+  Timer.clearInterval();
 }
