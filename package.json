@@ -5,8 +5,9 @@
   "main": "null",
   "scripts": {
     "build": "webpack",
-    "test": "jest",
-    "format": "prettier --write 'src/*.{js,ts,json}'"
+    "test": "npm run lint && jest",
+    "format": "prettier --write 'src/*.{js,ts,json}'",
+    "lint": "eslint src/*"
   },
   "author": "michael budnick",
   "license": "ISC",
