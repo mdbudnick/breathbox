@@ -5,7 +5,8 @@
   "main": "null",
   "scripts": {
     "build": "webpack",
-    "test": "jest"
+    "test": "jest",
+    "format": "prettier --write 'src/*.{js,ts,json}'"
   },
   "author": "michael budnick",
   "license": "ISC",
