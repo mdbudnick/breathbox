@@ -2,9 +2,10 @@ const webpack = require('webpack');
 const path = require('path');
 
 const config = {
-  entry: './src/ts/main.ts',
+  mode: 'none',
+  entry: './src/main.ts',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'www/assets/js'),
     filename: 'bundle.js'
   },
   module: {

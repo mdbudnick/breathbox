@@ -2,7 +2,7 @@
     "compilerOptions": {
       "target": "ES6",
       "module": "CommonJS",
-      "outDir": "src/js",
+      "outDir": "dist",
       "strict": true,
       "esModuleInterop": true,
       "skipLibCheck": true,
@@ -16,8 +16,8 @@
       "baseUrl": "src",
     },
     "include": [
-        "src/ts/*.ts"
-      ],
+        "src/*.ts",
+        "src/actionText.ts"      ],
       "exclude": [
         "node_modules"
       ]

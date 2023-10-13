@@ -353,11 +353,9 @@ class TimerClass {
         this.ascending = true;
     }
     getMinuteInput() {
-        console.log(common_1.timerMinutesInput.value);
         return common_1.timerMinutesInput.value == "" ? 0 : parseInt(common_1.timerMinutesInput.value);
     }
     getSecondInput() {
-        console.log(common_1.timerSecondsInput.value);
         return common_1.timerSecondsInput.value == "" ? 0 : parseInt(common_1.timerSecondsInput.value);
     }
     startTimer() {
@@ -424,10 +422,11 @@ class TimerClass {
         return;
     }
     clearInterval() {
+        clearInterval(this.timerInterval);
         this.timerInterval = null;
     }
 }
-exports.Timer = Object.freeze(new TimerClass());
+exports.Timer = new TimerClass();
 
 
 /***/ }),
@@ -508,7 +507,6 @@ function resetAnimations() {
     sharedIntervals_1.SharedIntervals.holdOutAnimation = null;
     clearInterval(sharedIntervals_1.SharedIntervals.holdOutCountdownInterval);
     sharedIntervals_1.SharedIntervals.holdOutCountdownInterval = null;
-    clearInterval(timer_1.Timer.timerInterval);
     timer_1.Timer.clearInterval();
 }
 exports.resetAnimations = resetAnimations;
