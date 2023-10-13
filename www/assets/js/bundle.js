@@ -47,7 +47,7 @@ function animateBreathing() {
     common.action.style.fontSize = `${common.INHALE_SIZE}vh`;
     common.action.style.color = common.INHALE_COLOR;
     common.circle.style.transitionProperty =
-        "height width background-color left bottom";
+        'height width background-color left bottom';
     common.circle.style.transitionDuration = `${inhaleDuration}s`;
     common.circle.style.transitionTimingFunction = `${common.BREATH_CURVE}`;
     common.circle.style.backgroundColor = common.INHALE_COLOR;
@@ -59,14 +59,14 @@ function animateBreathing() {
     sharedIntervals_1.SharedIntervals.holdInAnimation = setTimeout(() => {
         sharedIntervals_1.SharedIntervals.holdInCountdownInterval = (0, actionText_1.startCountdownDecrement)(common.HOLD, holdInDuration);
         common.circle.style.transitionDuration = `${holdInDuration}s`;
-        common.circle.style.transitionTimingFunction = "linear";
+        common.circle.style.transitionTimingFunction = 'linear';
         common.circle.style.left = `${common.box.clientWidth - (0, vhFunc_1.vhToPx)(common.LARGE_CIRCLE_SIZE) / 2}px`;
         // Exhale (down)
         sharedIntervals_1.SharedIntervals.exhaleAnimation = setTimeout(() => {
             sharedIntervals_1.SharedIntervals.exhaleCountdownInterval = (0, actionText_1.startCountdownDecrement)(common.EXHALE, exhaleDuration);
             common.action.style.fontSize = `${common.EXHALE_SIZE}vh`;
             common.action.style.color = common.EXHALE_COLOR;
-            common.circle.style.transitionProperty = "height width color left bottom";
+            common.circle.style.transitionProperty = 'height width color left bottom';
             common.circle.style.transitionDuration = `${exhaleDuration}s`;
             common.circle.style.transitionTimingFunction = `${common.BREATH_CURVE}`;
             common.circle.style.backgroundColor = common.EXHALE_COLOR;
@@ -78,7 +78,7 @@ function animateBreathing() {
             sharedIntervals_1.SharedIntervals.holdOutAnimation = setTimeout(() => {
                 sharedIntervals_1.SharedIntervals.holdOutCountdownInterval = (0, actionText_1.startCountdownDecrement)(common.HOLD, holdOutDuration);
                 common.circle.style.transitionDuration = `${holdInDuration}s`;
-                common.circle.style.transitionTimingFunction = "linear";
+                common.circle.style.transitionTimingFunction = 'linear';
                 common.circle.style.bottom = `-${common.SMALL_CIRCLE_SIZE / 2}vh`;
                 common.circle.style.left = `-${common.SMALL_CIRCLE_SIZE / 2}vh`;
                 sharedIntervals_1.SharedIntervals.inhaleAnimation = setTimeout(() => {
@@ -90,33 +90,32 @@ function animateBreathing() {
 }
 function validInputs() {
     let valid = true;
-    if ((common.timerMinutesInput.value === "" ||
-        common.timerMinutesInput.value === "0") &&
-        (common.timerSecondsInput.value === "" ||
-            common.timerSecondsInput.value === "0")) {
-        common.timerMinutesInput.classList.add("red");
-        common.timerSecondsInput.classList.add("red");
+    if ((common.timerMinutesInput.value === '' ||
+        common.timerMinutesInput.value === '0') &&
+        (common.timerSecondsInput.value === '' ||
+            common.timerSecondsInput.value === '0')) {
+        common.timerMinutesInput.classList.add('red');
+        common.timerSecondsInput.classList.add('red');
         valid = false;
     }
     else {
-        common.timerMinutesInput.classList.remove("red");
-        common.timerSecondsInput.classList.remove("red");
+        common.timerMinutesInput.classList.remove('red');
+        common.timerSecondsInput.classList.remove('red');
     }
-    if (common.breathTimeInput.value === "" ||
-        common.breathTimeInput.value === "0") {
-        common.breathTimeInput.classList.add("red");
+    if (common.breathTimeInput.value === '' ||
+        common.breathTimeInput.value === '0') {
+        common.breathTimeInput.classList.add('red');
         valid = false;
     }
     else {
-        common.breathTimeInput.classList.remove("red");
+        common.breathTimeInput.classList.remove('red');
     }
-    if (common.holdTimeInput.value === "" ||
-        common.holdTimeInput.value === "0") {
-        common.holdTimeInput.classList.add("red");
+    if (common.holdTimeInput.value === '' || common.holdTimeInput.value === '0') {
+        common.holdTimeInput.classList.add('red');
         valid = false;
     }
     else {
-        common.holdTimeInput.classList.remove("red");
+        common.holdTimeInput.classList.remove('red');
     }
     return valid;
 }
@@ -126,22 +125,22 @@ function startBreathBox() {
     if (!validInputs() || started) {
         return;
     }
-    common.config.classList.add("hidden");
-    common.controlBar.classList.add("top-buffer");
+    common.config.classList.add('hidden');
+    common.controlBar.classList.add('top-buffer');
     started = true;
     timer_1.Timer.startTimer();
     checkTimerInterval = setInterval(checkTimer, 1000);
     timer_1.Timer.addPauseButton();
     timer_1.Timer.addStopButton();
-    (0, reset_1.resetActionText)("");
+    (0, reset_1.resetActionText)('');
     (0, reset_1.resetCircle)();
     animateBreathing();
 }
-let tone = new Audio("audio/tone.mp3");
+const tone = new Audio('audio/tone.mp3');
 function checkTimer() {
     if (started && timer_1.Timer.reachedTime()) {
-        tone.play();
-        setTimeout(() => alert("You have reached your target!"), 50);
+        void tone.play();
+        setTimeout(() => { alert('You have reached your target!'); }, 50);
         stopBreathBox();
     }
 }
@@ -150,36 +149,36 @@ function stopBreathBox() {
     timer_1.Timer.reset();
     clearTimeout(checkTimerInterval);
     (0, reset_1.resetAnimations)();
-    (0, reset_1.resetActionText)("");
+    (0, reset_1.resetActionText)('');
     (0, reset_1.resetCircle)();
     (0, reset_1.resetStartButton)();
-    common.stopButton.style.display = "none";
-    common.pauseButton.style.display = "none";
-    common.config.classList.remove("hidden");
-    common.controlBar.classList.remove("top-buffer");
+    common.stopButton.style.display = 'none';
+    common.pauseButton.style.display = 'none';
+    common.config.classList.remove('hidden');
+    common.controlBar.classList.remove('top-buffer');
 }
 function pauseBreathBox() {
     started = false;
     (0, reset_1.resetAnimations)();
-    (0, reset_1.resetActionText)("Paused");
-    common.action.style.color = "#ff8c00"; // dark orange
+    (0, reset_1.resetActionText)('Paused');
+    common.action.style.color = '#ff8c00'; // dark orange
     (0, reset_1.resetCircle)();
-    common.pauseButton.style.color = "green";
-    common.pauseButton.textContent = "▶";
+    common.pauseButton.style.color = 'green';
+    common.pauseButton.textContent = '▶';
     common.pauseButton.onclick = resumeBreathBox;
 }
 function resumeBreathBox() {
     common.pauseButton.style.color = common.RESET_ORANGE;
-    common.pauseButton.textContent = "||";
+    common.pauseButton.textContent = '||';
     common.pauseButton.onclick = pauseBreathBox;
     startBreathBox();
 }
 function flipArrow() {
-    if (common.timerDirection.classList.contains("point-up")) {
-        common.timerDirection.classList.replace("point-up", "point-down");
+    if (common.timerDirection.classList.contains('point-up')) {
+        common.timerDirection.classList.replace('point-up', 'point-down');
     }
     else {
-        common.timerDirection.classList.replace("point-down", "point-up");
+        common.timerDirection.classList.replace('point-down', 'point-up');
     }
     timer_1.Timer.switchDirection();
 }
@@ -197,22 +196,26 @@ common.pauseButton.onclick = pauseBreathBox;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.vmax = exports.vmin = exports.pxToVw = exports.pxToVh = exports.vwToPx = exports.vhToPx = void 0;
 function vhToPx(percent) {
-    const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    var _a;
+    const h = Math.max(document.documentElement.clientHeight, (_a = window.innerHeight) !== null && _a !== void 0 ? _a : 0);
     return (percent * h) / 100;
 }
 exports.vhToPx = vhToPx;
 function vwToPx(percent) {
-    const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var _a;
+    const w = Math.max(document.documentElement.clientWidth, (_a = window.innerWidth) !== null && _a !== void 0 ? _a : 0);
     return (percent * w) / 100;
 }
 exports.vwToPx = vwToPx;
 function pxToVh(px) {
-    const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    var _a;
+    const h = Math.max(document.documentElement.clientHeight, (_a = window.innerHeight) !== null && _a !== void 0 ? _a : 0);
     return (px / h) * 100;
 }
 exports.pxToVh = pxToVh;
 function pxToVw(px) {
-    const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var _a;
+    const w = Math.max(document.documentElement.clientWidth, (_a = window.innerWidth) !== null && _a !== void 0 ? _a : 0);
     return (px / w) * 100;
 }
 exports.pxToVw = pxToVw;
@@ -235,30 +238,12 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.startCountdownDecrement = void 0;
 // We have to do this each time because the window can be resized
 const common_1 = __webpack_require__(3);
-function calculateTextWidth(text, size) {
-    common_1.invisible.style.fontSize = `${size}vh`;
-    common_1.invisible.textContent = text;
-    let width = common_1.invisible.clientWidth;
-    common_1.invisible.textContent = "";
-    return width;
-}
-function calculateTextHeight(text, size) {
-    common_1.invisible.style.fontSize = `${size}vh`;
-    common_1.invisible.textContent = text;
-    let height = common_1.invisible.clientHeight;
-    common_1.invisible.textContent = "";
-    return height;
-}
-function calculateCountdown(countdown) {
-    return countdown - 1;
-}
 function startCountdownDecrement(text, time) {
     let countdownInterval;
     countdownInterval = setInterval(() => {
         --time;
-        let countdownNs = Date.now();
-        if (time) {
-            common_1.action.textContent = text + "\r\n" + time;
+        if (time !== 0) {
+            common_1.action.textContent = text + '\r\n' + time;
         }
         else {
             common_1.action.textContent = text;
@@ -268,7 +253,7 @@ function startCountdownDecrement(text, time) {
         }
     }, 1000);
     // Do it the first time
-    common_1.action.textContent = text + "\r\n" + time;
+    common_1.action.textContent = text + '\r\n' + time;
     return countdownInterval;
 }
 exports.startCountdownDecrement = startCountdownDecrement;
@@ -296,21 +281,21 @@ exports.timerSecondsInput = document.querySelector('#countdown-seconds');
 exports.timerDirection = document.querySelector('#time-arrow');
 exports.config = document.querySelector('.config');
 exports.controlBar = document.querySelector('.control-bar');
-exports.DEFAULT_BACKGROUND_COLOR = "#1e3250";
-exports.INHALE_COLOR = "#0f5362";
-exports.EXHALE_COLOR = "#c08845";
-exports.RESET_ORANGE = "#f6786e";
+exports.DEFAULT_BACKGROUND_COLOR = '#1e3250';
+exports.INHALE_COLOR = '#0f5362';
+exports.EXHALE_COLOR = '#c08845';
+exports.RESET_ORANGE = '#f6786e';
 exports.LARGE_CIRCLE_SIZE = 6;
 exports.SMALL_CIRCLE_SIZE = 2;
 exports.SMOOTH_PATH_TIMING = 1000;
-exports.BREATH_CURVE = "cubic-bezier(.13,.38,.48,1.02)";
-exports.INHALE = "INHALE";
-exports.EXHALE = "EXHALE";
-exports.HOLD = "HOLD";
+exports.BREATH_CURVE = 'cubic-bezier(.13,.38,.48,1.02)';
+exports.INHALE = 'INHALE';
+exports.EXHALE = 'EXHALE';
+exports.HOLD = 'HOLD';
 exports.INHALE_SIZE = 8;
 exports.EXHALE_SIZE = 4;
-exports.DEFAULT_ACTION_TEXT = "Breath Box";
-exports.DEFAULT_ACTION_FONT_SIZE = "5vh";
+exports.DEFAULT_ACTION_TEXT = 'Breath Box';
+exports.DEFAULT_ACTION_FONT_SIZE = '5vh';
 
 
 /***/ }),
@@ -353,20 +338,18 @@ class TimerClass {
         this.ascending = true;
     }
     getMinuteInput() {
-        return common_1.timerMinutesInput.value == "" ? 0 : parseInt(common_1.timerMinutesInput.value);
+        return common_1.timerMinutesInput.value === '' ? 0 : parseInt(common_1.timerMinutesInput.value);
     }
     getSecondInput() {
-        return common_1.timerSecondsInput.value == "" ? 0 : parseInt(common_1.timerSecondsInput.value);
+        return common_1.timerSecondsInput.value === '' ? 0 : parseInt(common_1.timerSecondsInput.value);
     }
     startTimer() {
         this.reset();
         this.timerFn();
-        this.targetTime =
-            this.getMinuteInput() * 60 +
-                this.getSecondInput();
-        common_1.start.style.backgroundColor = "transparent";
-        common_1.start.style.border = "none";
-        common_1.start.classList.remove("button");
+        this.targetTime = this.getMinuteInput() * 60 + this.getSecondInput();
+        common_1.start.style.backgroundColor = 'transparent';
+        common_1.start.style.border = 'none';
+        common_1.start.classList.remove('button');
         this.timerInterval = setInterval(this.timerFn.bind(this), 1000);
     }
     timerFn() {
@@ -374,15 +357,15 @@ class TimerClass {
     }
     incrementTimer() {
         ++this.seconds;
-        if (this.seconds == 60) {
+        if (this.seconds === 60) {
             ++this.minutes;
             this.seconds = 0;
         }
         common_1.start.textContent =
-            "" +
+            '' +
                 this.minutes +
-                ":" +
-                (this.seconds < 10 ? "0" + this.seconds : this.seconds);
+                ':' +
+                (this.seconds < 10 ? '0' + this.seconds : this.seconds);
         ++this.internalTimer;
     }
     decrementTimer() {
@@ -392,10 +375,10 @@ class TimerClass {
         }
         --this.seconds;
         common_1.start.textContent =
-            "" +
+            '' +
                 this.minutes +
-                ":" +
-                (this.seconds < 10 ? "0" + this.seconds : this.seconds);
+                ':' +
+                (this.seconds < 10 ? '0' + this.seconds : this.seconds);
         ++this.internalTimer;
     }
     updateMinutesAndSeconds(seconds) {
@@ -403,10 +386,10 @@ class TimerClass {
         this.seconds = seconds % 60;
     }
     addPauseButton() {
-        common_1.pauseButton.style.display = "flex";
+        common_1.pauseButton.style.display = 'flex';
     }
     addStopButton() {
-        common_1.stopButton.style.display = "flex";
+        common_1.stopButton.style.display = 'flex';
     }
     reset() {
         this.minutes = this.ascending ? 0 : this.getMinuteInput();
@@ -419,7 +402,6 @@ class TimerClass {
     }
     switchDirection() {
         this.ascending = !this.ascending;
-        return;
     }
     clearInterval() {
         clearInterval(this.timerInterval);
@@ -463,33 +445,33 @@ const common = __importStar(__webpack_require__(3));
 const sharedIntervals_1 = __webpack_require__(4);
 const timer_1 = __webpack_require__(5);
 function resetCircle() {
-    common.circle.style.width = common.SMALL_CIRCLE_SIZE + "vh";
-    common.circle.style.height = common.SMALL_CIRCLE_SIZE + "vh";
+    common.circle.style.width = common.SMALL_CIRCLE_SIZE + 'vh';
+    common.circle.style.height = common.SMALL_CIRCLE_SIZE + 'vh';
     common.circle.style.backgroundColor = common.RESET_ORANGE;
-    common.circle.style.transitionProperty = "";
-    common.circle.style.transitionDuration = "";
-    common.circle.style.transitionTimingFunction = "";
-    common.circle.style.bottom = "-1vh";
-    common.circle.style.left = "-1vh";
+    common.circle.style.transitionProperty = '';
+    common.circle.style.transitionDuration = '';
+    common.circle.style.transitionTimingFunction = '';
+    common.circle.style.bottom = '-1vh';
+    common.circle.style.left = '-1vh';
 }
 exports.resetCircle = resetCircle;
 function resetStartButton() {
-    common.start.style.color = "white";
-    common.start.style.border = "4px solid green";
-    common.start.style.backgroundColor = "lightgreen";
-    common.start.style.borderRadius = "5vw";
-    common.start.textContent = "Start";
-    common.start.classList.add("button");
+    common.start.style.color = 'white';
+    common.start.style.border = '4px solid green';
+    common.start.style.backgroundColor = 'lightgreen';
+    common.start.style.borderRadius = '5vw';
+    common.start.textContent = 'Start';
+    common.start.classList.add('button');
 }
 exports.resetStartButton = resetStartButton;
 function resetActionText(text) {
-    text = text || common.DEFAULT_ACTION_TEXT;
+    text = text !== null && text !== void 0 ? text : common.DEFAULT_ACTION_TEXT;
     common.action.textContent = text;
     common.action.style.fontSize = common.DEFAULT_ACTION_FONT_SIZE;
     common.action.style.color = common.RESET_ORANGE;
 }
 exports.resetActionText = resetActionText;
-resetActionText("");
+resetActionText('');
 function resetAnimations() {
     clearTimeout(sharedIntervals_1.SharedIntervals.inhaleAnimation);
     sharedIntervals_1.SharedIntervals.inhaleAnimation = null;

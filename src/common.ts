@@ -7,19 +7,19 @@ export const start = document.querySelector('.timer-start') as HTMLElement
 export const stopButton = document.querySelector('.stop') as HTMLElement
 export const pauseButton = document.querySelector('.pause') as HTMLElement
 export const breathTimeInput = document.querySelector(
-    '#breath-time'
+  '#breath-time'
 ) as HTMLInputElement
 export const holdTimeInput = document.querySelector(
-    '#hold-time'
+  '#hold-time'
 ) as HTMLInputElement
 export const timerMinutesInput = document.querySelector(
-    '#countdown-minutes'
+  '#countdown-minutes'
 ) as HTMLInputElement
 export const timerSecondsInput = document.querySelector(
-    '#countdown-seconds'
+  '#countdown-seconds'
 ) as HTMLInputElement
 export const timerDirection = document.querySelector(
-    '#time-arrow'
+  '#time-arrow'
 ) as HTMLElement
 export const config = document.querySelector('.config') as HTMLElement
 export const controlBar = document.querySelector('.control-bar') as HTMLElement
