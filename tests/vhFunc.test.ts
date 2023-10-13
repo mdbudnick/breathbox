@@ -1,4 +1,4 @@
-import { vhToPx, vwToPx, pxToVh, pxToVw, vmin, vmax } from '../src/ts/vhFunc';
+import { vhToPx, vwToPx, pxToVh, pxToVw, vmin, vmax } from '../src/vhFunc';
 
 describe('Unit Tests for Conversion Functions', () => {
   describe('vhToPx', () => {
