@@ -43,3 +43,7 @@
     bottom: -1vh;
     left: -1vh;
 }
+
+.top-buffer {
+    margin-top: 19vh;
+}

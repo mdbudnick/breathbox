@@ -4,10 +4,11 @@
   "description": "Browser Breathbox (npm for testing only)",
   "main": "null",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack && npm run concat-css",
     "test": "npm run lint && jest",
     "format": "prettier --write 'src/*.{js,ts,json}' && eslint src/* --fix",
-    "lint": "eslint src/*"
+    "lint": "eslint src/*",
+    "concat-css": "grep -h '' src/css/* > www/assets/css/style.css"
   },
   "author": "michael budnick",
   "license": "ISC",
