@@ -1,0 +1,36 @@
+.config {
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(2px);
+    margin-top: 5%;
+    color: white;
+    -webkit-text-stroke-width: 0.2px;
+    -webkit-text-stroke-color: black;
+    height: 12vh;
+}
+
+.config input {
+    float: right;
+}
+
+#countdown-or-up:hover {
+    cursor: pointer;
+}
+
+.point-up {
+    transform: rotate(-90deg);
+}
+
+.point-down {
+    transform: rotate(90deg);
+}
+
+#time-arrow {
+    position: absolute;
+    right: 0;
+    font-weight: 900;
+}
+
+#time-arrow:hover {
+    cursor: pointer;
+}
