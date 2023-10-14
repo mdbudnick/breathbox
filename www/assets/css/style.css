@@ -91,15 +91,6 @@ body {
   display: none;
 }
 
-.invisible {
-  position: absolute;
-  z-index: 0;
-  color: #f0f0f0;
-  opacity: 0;
-  font-weight: bold;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-
 .action {
   font-size: 5vh;
   font-weight: bold;
