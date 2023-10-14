@@ -136,11 +136,13 @@ function startBreathBox() {
     (0, reset_1.resetCircle)();
     animateBreathing();
 }
-const tone = new Audio('audio/tone.mp3');
+const tone = new Audio('assets/audio/tone.mp3');
 function checkTimer() {
     if (started && timer_1.Timer.reachedTime()) {
         void tone.play();
-        setTimeout(() => { alert('You have reached your target!'); }, 50);
+        setTimeout(() => {
+            alert('You have reached your target!');
+        }, 50);
         stopBreathBox();
     }
 }
@@ -338,10 +340,14 @@ class TimerClass {
         this.ascending = true;
     }
     getMinuteInput() {
-        return common_1.timerMinutesInput.value === '' ? 0 : parseInt(common_1.timerMinutesInput.value);
+        return common_1.timerMinutesInput.value === ''
+            ? 0
+            : parseInt(common_1.timerMinutesInput.value);
     }
     getSecondInput() {
-        return common_1.timerSecondsInput.value === '' ? 0 : parseInt(common_1.timerSecondsInput.value);
+        return common_1.timerSecondsInput.value === ''
+            ? 0
+            : parseInt(common_1.timerSecondsInput.value);
     }
     startTimer() {
         this.reset();

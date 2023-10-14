@@ -146,7 +146,7 @@ function startBreathBox (): undefined {
   animateBreathing()
 }
 
-const tone = new Audio('audio/tone.mp3')
+const tone = new Audio('assets/audio/tone.mp3')
 function checkTimer (): undefined {
   if (started && Timer.reachedTime()) {
     void tone.play()
