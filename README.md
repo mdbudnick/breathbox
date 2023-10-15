@@ -11,7 +11,7 @@
 ## Features
 
 - Built with TypeScript modules
-- Compiled using the industry-standard Browserify
+- Compiled using the industry-standard WebPack
 - Deployed effortlessly with Terraform
 - Hosted on Microsoft Azure, ensuring reliability and scalability for end-users
 
