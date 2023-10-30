@@ -14,10 +14,10 @@
       "sourceMap": true,
       "typeRoots": ["./src/types", "node_modules/@types"],
       "baseUrl": "src",
+      "jsx": "react"
     },
     "include": [
-        "src/*.ts",
-        "src/actionText.ts",
+        "src/**/*.tsx",
       ],
       "exclude": [
         "node_modules",

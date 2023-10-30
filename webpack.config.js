@@ -3,7 +3,7 @@ const path = require('path');
 
 const config = {
   mode: 'none',
-  entry: './src/main.ts',
+  entry: './src/tsx/main.tsx',
   output: {
     path: path.resolve(__dirname, 'www/assets/js'),
     filename: 'bundle.js'
