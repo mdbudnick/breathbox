@@ -3,7 +3,7 @@ import {
   start,
   stopButton,
   timerMinutesInput,
-  timerSecondsInput
+  timerSecondsInput,
 } from './common'
 
 class TimerClass {
@@ -14,7 +14,7 @@ class TimerClass {
   private internalTimer: number
   private ascending: boolean
 
-  constructor () {
+  constructor() {
     this.minutes = 0
     this.seconds = 0
     this.internalTimer = 0
@@ -23,19 +23,19 @@ class TimerClass {
     this.ascending = true
   }
 
-  getMinuteInput (): number {
+  getMinuteInput(): number {
     return timerMinutesInput.value === ''
       ? 0
       : parseInt(timerMinutesInput.value)
   }
 
-  getSecondInput (): number {
+  getSecondInput(): number {
     return timerSecondsInput.value === ''
       ? 0
       : parseInt(timerSecondsInput.value)
   }
 
-  startTimer (): undefined {
+  startTimer(): undefined {
     this.reset()
     this.timerFn()
     this.targetTime = this.getMinuteInput() * 60 + this.getSecondInput()
@@ -45,11 +45,11 @@ class TimerClass {
     this.timerInterval = setInterval(this.timerFn.bind(this), 1000)
   }
 
-  timerFn (): undefined {
+  timerFn(): undefined {
     this.ascending ? this.incrementTimer() : this.decrementTimer()
   }
 
-  incrementTimer (): undefined {
+  incrementTimer(): undefined {
     ++this.seconds
     if (this.seconds === 60) {
       ++this.minutes
@@ -64,7 +64,7 @@ class TimerClass {
     ++this.internalTimer
   }
 
-  decrementTimer (): undefined {
+  decrementTimer(): undefined {
     if (this.seconds <= 0) {
       --this.minutes
       this.seconds = 60
@@ -79,20 +79,20 @@ class TimerClass {
     ++this.internalTimer
   }
 
-  updateMinutesAndSeconds (seconds: number): undefined {
+  updateMinutesAndSeconds(seconds: number): undefined {
     this.minutes = Math.floor(seconds / 60)
     this.seconds = seconds % 60
   }
 
-  addPauseButton (): undefined {
+  addPauseButton(): undefined {
     pauseButton.style.display = 'flex'
   }
 
-  addStopButton (): undefined {
+  addStopButton(): undefined {
     stopButton.style.display = 'flex'
   }
 
-  reset (): undefined {
+  reset(): undefined {
     this.minutes = this.ascending ? 0 : this.getMinuteInput()
     this.seconds = this.ascending ? 0 : this.getSecondInput()
 
@@ -101,15 +101,15 @@ class TimerClass {
     clearInterval(this.timerInterval!)
   }
 
-  reachedTime (): boolean {
+  reachedTime(): boolean {
     return this.internalTimer >= this.targetTime
   }
 
-  switchDirection (): undefined {
+  switchDirection(): undefined {
     this.ascending = !this.ascending
   }
 
-  clearInterval (): undefined {
+  clearInterval(): undefined {
     clearInterval(this.timerInterval!)
     this.timerInterval = null
   }

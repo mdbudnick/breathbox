@@ -1,5 +1,5 @@
 class Timeouts {
-  constructor () {
+  constructor() {
     this.inhaleAnimation = null
     this.inhaleCountdownInterval = null
     this.holdInAnimation = null
