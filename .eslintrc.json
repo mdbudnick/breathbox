@@ -12,5 +12,5 @@
     "rules": {
         "@typescript-eslint/no-non-null-assertion": "off"
     },
-    "ignorePatterns": ["jest.config.js", "webpack.config.js", "www/assets/js/*"]
+    "ignorePatterns": ["jest.config.js", "webpack/*", "www/assets/js/*"]
 }

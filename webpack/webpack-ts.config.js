@@ -1,11 +1,10 @@
-const webpack = require('webpack');
 const path = require('path');
 
 const config = {
   mode: 'none',
-  entry: './src/tsx/main.tsx',
+  entry: './src/ts/main.ts',
   output: {
-    path: path.resolve(__dirname, 'www/assets/js'),
+    path: path.resolve(__dirname, '../www/assets/js'),
     filename: 'bundle.js'
   },
   module: {
@@ -19,7 +18,6 @@ const config = {
   },
   resolve: {
     extensions: [
-      '.tsx',
       '.ts',
       '.js'
     ]

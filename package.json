@@ -4,7 +4,7 @@
   "description": "Browser Breathbox (npm for testing only)",
   "main": "null",
   "scripts": {
-    "build": "webpack && npm run concat-css",
+    "build": "webpack --config ./webpack/webpack-ts.config.js && npm run concat-css",
     "test": "npm run lint && jest",
     "format": "prettier --write 'src/**/*.{js,tsx,json}' && eslint src/tsx/**/* --fix",
     "lint": "eslint src/*",
