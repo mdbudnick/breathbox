@@ -2,7 +2,7 @@ import * as common from './common'
 import { SharedIntervals } from './sharedIntervals'
 import { Timer } from './timer'
 
-export function resetCircle(): undefined {
+export function resetCircle (): undefined {
   common.circle.style.width = common.SMALL_CIRCLE_SIZE + 'vh'
   common.circle.style.height = common.SMALL_CIRCLE_SIZE + 'vh'
   common.circle.style.backgroundColor = common.RESET_ORANGE
@@ -13,7 +13,7 @@ export function resetCircle(): undefined {
   common.circle.style.left = '-1vh'
 }
 
-export function resetStartButton(): undefined {
+export function resetStartButton (): undefined {
   common.start.style.color = 'white'
   common.start.style.border = '4px solid green'
   common.start.style.backgroundColor = 'lightgreen'
@@ -22,7 +22,7 @@ export function resetStartButton(): undefined {
   common.start.classList.add('button')
 }
 
-export function resetActionText(text: string): undefined {
+export function resetActionText (text: string): undefined {
   text = text ?? common.DEFAULT_ACTION_TEXT
   common.action.textContent = text
   common.action.style.fontSize = common.DEFAULT_ACTION_FONT_SIZE
@@ -30,7 +30,7 @@ export function resetActionText(text: string): undefined {
 }
 resetActionText('')
 
-export function resetAnimations(): undefined {
+export function resetAnimations (): undefined {
   clearTimeout(SharedIntervals.inhaleAnimation!)
   SharedIntervals.inhaleAnimation = null
   clearInterval(SharedIntervals.inhaleCountdownInterval!)

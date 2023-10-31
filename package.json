@@ -7,7 +7,7 @@
     "build": "webpack --config ./webpack/webpack-ts.config.js && npm run concat-css",
     "htmlgen": "npm run build && webpack --config ./webpack/webpack-html.config.js",
     "test": "npm run lint && jest",
-    "format": "prettier --write 'src/**/*.{js,tsx,json}' && eslint src/tsx/**/* --fix",
+    "format": "prettier --write 'src/**/*.{js,tsx,json}' && eslint src/{ts,components}/* --fix",
     "lint": "eslint src/*",
     "concat-css": "grep -h '' src/css/* > www/assets/css/style.css"
   },

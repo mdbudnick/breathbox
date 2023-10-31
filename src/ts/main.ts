@@ -7,10 +7,10 @@ import {
   resetActionText,
   resetAnimations,
   resetCircle,
-  resetStartButton,
+  resetStartButton
 } from './reset'
 
-function animateBreathing(): undefined {
+function animateBreathing (): undefined {
   const inhaleDuration = parseInt(common.breathTimeInput.value)
   const holdInDuration = parseInt(common.holdTimeInput.value)
   const exhaleDuration = parseInt(common.breathTimeInput.value)
@@ -91,7 +91,7 @@ function animateBreathing(): undefined {
   }, inhaleDuration * common.SMOOTH_PATH_TIMING)
 }
 
-function validInputs(): boolean {
+function validInputs (): boolean {
   let valid = true
   if (
     (common.timerMinutesInput.value === '' ||
@@ -129,7 +129,7 @@ function validInputs(): boolean {
 
 let started = false
 let checkTimerInterval: ReturnType<typeof setInterval> | null
-function startBreathBox(): undefined {
+function startBreathBox (): undefined {
   if (!validInputs() || started) {
     return
   }
@@ -147,7 +147,7 @@ function startBreathBox(): undefined {
 }
 
 const tone = new Audio('assets/audio/tone.mp3')
-function checkTimer(): undefined {
+function checkTimer (): undefined {
   if (started && Timer.reachedTime()) {
     void tone.play()
     setTimeout(() => {
@@ -157,7 +157,7 @@ function checkTimer(): undefined {
   }
 }
 
-function stopBreathBox(): undefined {
+function stopBreathBox (): undefined {
   started = false
 
   Timer.reset()
@@ -172,7 +172,7 @@ function stopBreathBox(): undefined {
   common.controlBar.classList.remove('top-buffer')
 }
 
-function pauseBreathBox(): undefined {
+function pauseBreathBox (): undefined {
   started = false
 
   resetAnimations()
@@ -186,7 +186,7 @@ function pauseBreathBox(): undefined {
   common.pauseButton.onclick = resumeBreathBox
 }
 
-function resumeBreathBox(): undefined {
+function resumeBreathBox (): undefined {
   common.pauseButton.style.color = common.RESET_ORANGE
   common.pauseButton.textContent = '||'
 
@@ -195,7 +195,7 @@ function resumeBreathBox(): undefined {
   startBreathBox()
 }
 
-function flipArrow(): undefined {
+function flipArrow (): undefined {
   if (common.timerDirection.classList.contains('point-up')) {
     common.timerDirection.classList.replace('point-up', 'point-down')
   } else {

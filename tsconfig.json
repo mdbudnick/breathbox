@@ -13,15 +13,16 @@
       "declaration": true,
       "sourceMap": true,
       "typeRoots": ["./src/types", "node_modules/@types"],
-      "baseUrl": "src",
+      "baseUrl": "src/ts",
       "jsx": "react"
     },
     "include": [
-        "src/**/*.tsx",
+        "src/ts/*.ts",
+        "src/components/*.tsx"
       ],
       "exclude": [
         "node_modules",
-        "tests/*.ts"
+        "tests"
       ]
   }
   

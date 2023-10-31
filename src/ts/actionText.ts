@@ -1,7 +1,7 @@
 // We have to do this each time because the window can be resized
 import { action } from './common'
 
-export function startCountdownDecrement(
+export function startCountdownDecrement (
   text: string,
   time: number
 ): ReturnType<typeof setInterval> {
