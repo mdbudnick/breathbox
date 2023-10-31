@@ -5,6 +5,7 @@
   "main": "null",
   "scripts": {
     "build": "webpack --config ./webpack/webpack-ts.config.js && npm run concat-css",
+    "htmlgen": "npm run build && webpack --config ./webpack/webpack-html.config.js",
     "test": "npm run lint && jest",
     "format": "prettier --write 'src/**/*.{js,tsx,json}' && eslint src/tsx/**/* --fix",
     "lint": "eslint src/*",
