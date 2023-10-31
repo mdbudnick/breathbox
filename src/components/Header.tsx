@@ -1,6 +1,6 @@
-import React, { type FC } from 'react'
+import React, { type FC, type PropsWithChildren } from 'react'
 
-const Header: FC = (prop: PropTypes) => {
+const Header: FC = (prop: PropsWithChildren) => {
   return (
     <head>
       <meta charSet="UTF-8" />

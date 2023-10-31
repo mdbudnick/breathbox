@@ -1,7 +1,7 @@
-import React, { type FC } from 'react'
+import React, { type FC, type PropsWithChildren } from 'react'
 import Header from './Header'
 
-const FourOFour: FC = (prop: PropTypes) => {
+const FourOFour: FC = (prop: PropsWithChildren) => {
   return (
     <html lang="en">
       <Header />

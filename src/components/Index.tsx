@@ -1,8 +1,8 @@
-import React, { type FC } from 'react'
+import React, { type FC, type PropsWithChildren } from 'react'
 import Header from './Header'
 import BreathBox from './BreathBox'
 
-const Index: FC = (prop: PropTypes) => {
+const Index: FC = (prop: PropsWithChildren) => {
   return (
     <html lang="en">
       <Header />

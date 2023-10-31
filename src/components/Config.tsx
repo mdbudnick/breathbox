@@ -1,6 +1,6 @@
-import React, { type FC } from 'react'
+import React, { type FC, type PropsWithChildren } from 'react'
 
-const Config: FC = (prop: PropTypes) => {
+const Config: FC = (prop: PropsWithChildren) => {
   return (
     <div className="config">
       <div className="breath-time">

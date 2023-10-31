@@ -1,8 +1,8 @@
-import React, { type FC } from 'react'
+import React, { type FC, type PropsWithChildren } from 'react'
 import ControlBar from './ControlBar'
 import Config from './Config'
 
-const BreathBox: FC = (prop: PropTypes) => {
+const BreathBox: FC = (prop: PropsWithChildren) => {
   return (
     <div className="breath-box">
       <div className="breath-box-inner">

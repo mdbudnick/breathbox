@@ -1,6 +1,6 @@
-import React, { type FC } from 'react'
+import React, { type FC, type PropsWithChildren } from 'react'
 
-const ControlBar: FC = (prop: PropTypes) => {
+const ControlBar: FC = (prop: PropsWithChildren) => {
   return (
     <div className="control-bar">
       <div className="timer-start button">Start</div>
