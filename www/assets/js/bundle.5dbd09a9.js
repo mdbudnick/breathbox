@@ -1,55 +1,18 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ([
-/* 0 */,
-/* 1 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/******/ 	var __webpack_modules__ = ({
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   pxToVh: () => (/* binding */ pxToVh),
-/* harmony export */   pxToVw: () => (/* binding */ pxToVw),
-/* harmony export */   vhToPx: () => (/* binding */ vhToPx),
-/* harmony export */   vmax: () => (/* binding */ vmax),
-/* harmony export */   vmin: () => (/* binding */ vmin),
-/* harmony export */   vwToPx: () => (/* binding */ vwToPx)
-/* harmony export */ });
-function vhToPx(percent) {
-  var _window$innerHeight;
-  var h = Math.max(document.documentElement.clientHeight, (_window$innerHeight = window.innerHeight) !== null && _window$innerHeight !== void 0 ? _window$innerHeight : 0);
-  return percent * h / 100;
-}
-function vwToPx(percent) {
-  var _window$innerWidth;
-  var w = Math.max(document.documentElement.clientWidth, (_window$innerWidth = window.innerWidth) !== null && _window$innerWidth !== void 0 ? _window$innerWidth : 0);
-  return percent * w / 100;
-}
-function pxToVh(px) {
-  var _window$innerHeight2;
-  var h = Math.max(document.documentElement.clientHeight, (_window$innerHeight2 = window.innerHeight) !== null && _window$innerHeight2 !== void 0 ? _window$innerHeight2 : 0);
-  return px / h * 100;
-}
-function pxToVw(px) {
-  var _window$innerWidth2;
-  var w = Math.max(document.documentElement.clientWidth, (_window$innerWidth2 = window.innerWidth) !== null && _window$innerWidth2 !== void 0 ? _window$innerWidth2 : 0);
-  return px / w * 100;
-}
-function vmin(percent) {
-  return Math.min(pxToVh(percent), pxToVw(percent));
-}
-function vmax(percent) {
-  return Math.max(pxToVh(percent), pxToVw(percent));
-}
-
-/***/ }),
-/* 2 */
+/***/ "./src/ts/actionText.ts":
+/*!******************************!*\
+  !*** ./src/ts/actionText.ts ***!
+  \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   startCountdownDecrement: () => (/* binding */ startCountdownDecrement)
 /* harmony export */ });
-/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ "./src/ts/common.ts");
 // We have to do this each time because the window can be resized
 
 function startCountdownDecrement(text, time) {
@@ -71,7 +34,11 @@ function startCountdownDecrement(text, time) {
 }
 
 /***/ }),
-/* 3 */
+
+/***/ "./src/ts/common.ts":
+/*!**************************!*\
+  !*** ./src/ts/common.ts ***!
+  \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -137,16 +104,87 @@ var DEFAULT_ACTION_TEXT = 'Breath Box';
 var DEFAULT_ACTION_FONT_SIZE = '5vh';
 
 /***/ }),
-/* 4 */
+
+/***/ "./src/ts/reset.ts":
+/*!*************************!*\
+  !*** ./src/ts/reset.ts ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   resetActionText: () => (/* binding */ resetActionText),
+/* harmony export */   resetAnimations: () => (/* binding */ resetAnimations),
+/* harmony export */   resetCircle: () => (/* binding */ resetCircle),
+/* harmony export */   resetStartButton: () => (/* binding */ resetStartButton)
+/* harmony export */ });
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ "./src/ts/common.ts");
+/* harmony import */ var _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sharedIntervals */ "./src/ts/sharedIntervals.ts");
+/* harmony import */ var _timer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./timer */ "./src/ts/timer.ts");
+
+
+
+function resetCircle() {
+  _common__WEBPACK_IMPORTED_MODULE_0__.circle.style.width = _common__WEBPACK_IMPORTED_MODULE_0__.SMALL_CIRCLE_SIZE + 'vh';
+  _common__WEBPACK_IMPORTED_MODULE_0__.circle.style.height = _common__WEBPACK_IMPORTED_MODULE_0__.SMALL_CIRCLE_SIZE + 'vh';
+  _common__WEBPACK_IMPORTED_MODULE_0__.circle.style.backgroundColor = _common__WEBPACK_IMPORTED_MODULE_0__.RESET_ORANGE;
+  _common__WEBPACK_IMPORTED_MODULE_0__.circle.style.transitionProperty = '';
+  _common__WEBPACK_IMPORTED_MODULE_0__.circle.style.transitionDuration = '';
+  _common__WEBPACK_IMPORTED_MODULE_0__.circle.style.transitionTimingFunction = '';
+  _common__WEBPACK_IMPORTED_MODULE_0__.circle.style.bottom = '-1vh';
+  _common__WEBPACK_IMPORTED_MODULE_0__.circle.style.left = '-1vh';
+}
+function resetStartButton() {
+  _common__WEBPACK_IMPORTED_MODULE_0__.start.style.color = 'white';
+  _common__WEBPACK_IMPORTED_MODULE_0__.start.style.border = '4px solid green';
+  _common__WEBPACK_IMPORTED_MODULE_0__.start.style.backgroundColor = 'lightgreen';
+  _common__WEBPACK_IMPORTED_MODULE_0__.start.style.borderRadius = '5vw';
+  _common__WEBPACK_IMPORTED_MODULE_0__.start.textContent = 'Start';
+  _common__WEBPACK_IMPORTED_MODULE_0__.start.classList.add('button');
+}
+function resetActionText(text) {
+  var _text;
+  text = (_text = text) !== null && _text !== void 0 ? _text : _common__WEBPACK_IMPORTED_MODULE_0__.DEFAULT_ACTION_TEXT;
+  _common__WEBPACK_IMPORTED_MODULE_0__.action.textContent = text;
+  _common__WEBPACK_IMPORTED_MODULE_0__.action.style.fontSize = _common__WEBPACK_IMPORTED_MODULE_0__.DEFAULT_ACTION_FONT_SIZE;
+  _common__WEBPACK_IMPORTED_MODULE_0__.action.style.color = _common__WEBPACK_IMPORTED_MODULE_0__.RESET_ORANGE;
+}
+resetActionText('');
+function resetAnimations() {
+  clearTimeout(_sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.inhaleAnimation);
+  _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.inhaleAnimation = null;
+  clearInterval(_sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.inhaleCountdownInterval);
+  _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.inhaleCountdownInterval = null;
+  clearTimeout(_sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.holdInAnimation);
+  _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.holdInAnimation = null;
+  clearInterval(_sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.holdInCountdownInterval);
+  _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.holdInCountdownInterval = null;
+  clearTimeout(_sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.exhaleAnimation);
+  _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.exhaleAnimation = null;
+  clearInterval(_sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.exhaleCountdownInterval);
+  _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.exhaleCountdownInterval = null;
+  clearTimeout(_sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.holdOutAnimation);
+  _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.holdOutAnimation = null;
+  clearInterval(_sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.holdOutCountdownInterval);
+  _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.holdOutCountdownInterval = null;
+  _timer__WEBPACK_IMPORTED_MODULE_2__.Timer.clearInterval();
+}
+
+/***/ }),
+
+/***/ "./src/ts/sharedIntervals.ts":
+/*!***********************************!*\
+  !*** ./src/ts/sharedIntervals.ts ***!
+  \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   SharedIntervals: () => (/* binding */ SharedIntervals)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(10);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
 
 
 
@@ -172,140 +210,21 @@ var Timeouts = /*#__PURE__*/(0,_babel_runtime_helpers_createClass__WEBPACK_IMPOR
 var SharedIntervals = new Timeouts();
 
 /***/ }),
-/* 5 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _createClass)
-/* harmony export */ });
-/* harmony import */ var _toPropertyKey_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, (0,_toPropertyKey_js__WEBPACK_IMPORTED_MODULE_0__["default"])(descriptor.key), descriptor);
-  }
-}
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  Object.defineProperty(Constructor, "prototype", {
-    writable: false
-  });
-  return Constructor;
-}
-
-/***/ }),
-/* 6 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _toPropertyKey)
-/* harmony export */ });
-/* harmony import */ var _typeof_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
-/* harmony import */ var _toPrimitive_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
-
-
-function _toPropertyKey(arg) {
-  var key = (0,_toPrimitive_js__WEBPACK_IMPORTED_MODULE_1__["default"])(arg, "string");
-  return (0,_typeof_js__WEBPACK_IMPORTED_MODULE_0__["default"])(key) === "symbol" ? key : String(key);
-}
-
-/***/ }),
-/* 7 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _typeof)
-/* harmony export */ });
-function _typeof(o) {
-  "@babel/helpers - typeof";
-
-  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
-    return typeof o;
-  } : function (o) {
-    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
-  }, _typeof(o);
-}
-
-/***/ }),
-/* 8 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _toPrimitive)
-/* harmony export */ });
-/* harmony import */ var _typeof_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
-
-function _toPrimitive(input, hint) {
-  if ((0,_typeof_js__WEBPACK_IMPORTED_MODULE_0__["default"])(input) !== "object" || input === null) return input;
-  var prim = input[Symbol.toPrimitive];
-  if (prim !== undefined) {
-    var res = prim.call(input, hint || "default");
-    if ((0,_typeof_js__WEBPACK_IMPORTED_MODULE_0__["default"])(res) !== "object") return res;
-    throw new TypeError("@@toPrimitive must return a primitive value.");
-  }
-  return (hint === "string" ? String : Number)(input);
-}
-
-/***/ }),
-/* 9 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _classCallCheck)
-/* harmony export */ });
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-/***/ }),
-/* 10 */
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _defineProperty)
-/* harmony export */ });
-/* harmony import */ var _toPropertyKey_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
-
-function _defineProperty(obj, key, value) {
-  key = (0,_toPropertyKey_js__WEBPACK_IMPORTED_MODULE_0__["default"])(key);
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-  return obj;
-}
-
-/***/ }),
-/* 11 */
+/***/ "./src/ts/timer.ts":
+/*!*************************!*\
+  !*** ./src/ts/timer.ts ***!
+  \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Timer: () => (/* binding */ Timer)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(10);
-/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./common */ "./src/ts/common.ts");
 
 
 
@@ -428,70 +347,199 @@ var TimerClass = /*#__PURE__*/function () {
 var Timer = new TimerClass();
 
 /***/ }),
-/* 12 */
+
+/***/ "./src/ts/vhFunc.ts":
+/*!**************************!*\
+  !*** ./src/ts/vhFunc.ts ***!
+  \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   resetActionText: () => (/* binding */ resetActionText),
-/* harmony export */   resetAnimations: () => (/* binding */ resetAnimations),
-/* harmony export */   resetCircle: () => (/* binding */ resetCircle),
-/* harmony export */   resetStartButton: () => (/* binding */ resetStartButton)
+/* harmony export */   pxToVh: () => (/* binding */ pxToVh),
+/* harmony export */   pxToVw: () => (/* binding */ pxToVw),
+/* harmony export */   vhToPx: () => (/* binding */ vhToPx),
+/* harmony export */   vmax: () => (/* binding */ vmax),
+/* harmony export */   vmin: () => (/* binding */ vmin),
+/* harmony export */   vwToPx: () => (/* binding */ vwToPx)
 /* harmony export */ });
-/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
-/* harmony import */ var _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
-/* harmony import */ var _timer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(11);
+function vhToPx(percent) {
+  var _window$innerHeight;
+  var h = Math.max(document.documentElement.clientHeight, (_window$innerHeight = window.innerHeight) !== null && _window$innerHeight !== void 0 ? _window$innerHeight : 0);
+  return percent * h / 100;
+}
+function vwToPx(percent) {
+  var _window$innerWidth;
+  var w = Math.max(document.documentElement.clientWidth, (_window$innerWidth = window.innerWidth) !== null && _window$innerWidth !== void 0 ? _window$innerWidth : 0);
+  return percent * w / 100;
+}
+function pxToVh(px) {
+  var _window$innerHeight2;
+  var h = Math.max(document.documentElement.clientHeight, (_window$innerHeight2 = window.innerHeight) !== null && _window$innerHeight2 !== void 0 ? _window$innerHeight2 : 0);
+  return px / h * 100;
+}
+function pxToVw(px) {
+  var _window$innerWidth2;
+  var w = Math.max(document.documentElement.clientWidth, (_window$innerWidth2 = window.innerWidth) !== null && _window$innerWidth2 !== void 0 ? _window$innerWidth2 : 0);
+  return px / w * 100;
+}
+function vmin(percent) {
+  return Math.min(pxToVh(percent), pxToVw(percent));
+}
+function vmax(percent) {
+  return Math.max(pxToVh(percent), pxToVw(percent));
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _classCallCheck)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/createClass.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/createClass.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _createClass)
+/* harmony export */ });
+/* harmony import */ var _toPropertyKey_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./toPropertyKey.js */ "./node_modules/@babel/runtime/helpers/esm/toPropertyKey.js");
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, (0,_toPropertyKey_js__WEBPACK_IMPORTED_MODULE_0__["default"])(descriptor.key), descriptor);
+  }
+}
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  Object.defineProperty(Constructor, "prototype", {
+    writable: false
+  });
+  return Constructor;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/defineProperty.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _defineProperty)
+/* harmony export */ });
+/* harmony import */ var _toPropertyKey_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./toPropertyKey.js */ "./node_modules/@babel/runtime/helpers/esm/toPropertyKey.js");
+
+function _defineProperty(obj, key, value) {
+  key = (0,_toPropertyKey_js__WEBPACK_IMPORTED_MODULE_0__["default"])(key);
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/toPrimitive.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/toPrimitive.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _toPrimitive)
+/* harmony export */ });
+/* harmony import */ var _typeof_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./typeof.js */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+
+function _toPrimitive(input, hint) {
+  if ((0,_typeof_js__WEBPACK_IMPORTED_MODULE_0__["default"])(input) !== "object" || input === null) return input;
+  var prim = input[Symbol.toPrimitive];
+  if (prim !== undefined) {
+    var res = prim.call(input, hint || "default");
+    if ((0,_typeof_js__WEBPACK_IMPORTED_MODULE_0__["default"])(res) !== "object") return res;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return (hint === "string" ? String : Number)(input);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/toPropertyKey.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/toPropertyKey.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _toPropertyKey)
+/* harmony export */ });
+/* harmony import */ var _typeof_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./typeof.js */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+/* harmony import */ var _toPrimitive_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./toPrimitive.js */ "./node_modules/@babel/runtime/helpers/esm/toPrimitive.js");
 
 
+function _toPropertyKey(arg) {
+  var key = (0,_toPrimitive_js__WEBPACK_IMPORTED_MODULE_1__["default"])(arg, "string");
+  return (0,_typeof_js__WEBPACK_IMPORTED_MODULE_0__["default"])(key) === "symbol" ? key : String(key);
+}
 
-function resetCircle() {
-  _common__WEBPACK_IMPORTED_MODULE_0__.circle.style.width = _common__WEBPACK_IMPORTED_MODULE_0__.SMALL_CIRCLE_SIZE + 'vh';
-  _common__WEBPACK_IMPORTED_MODULE_0__.circle.style.height = _common__WEBPACK_IMPORTED_MODULE_0__.SMALL_CIRCLE_SIZE + 'vh';
-  _common__WEBPACK_IMPORTED_MODULE_0__.circle.style.backgroundColor = _common__WEBPACK_IMPORTED_MODULE_0__.RESET_ORANGE;
-  _common__WEBPACK_IMPORTED_MODULE_0__.circle.style.transitionProperty = '';
-  _common__WEBPACK_IMPORTED_MODULE_0__.circle.style.transitionDuration = '';
-  _common__WEBPACK_IMPORTED_MODULE_0__.circle.style.transitionTimingFunction = '';
-  _common__WEBPACK_IMPORTED_MODULE_0__.circle.style.bottom = '-1vh';
-  _common__WEBPACK_IMPORTED_MODULE_0__.circle.style.left = '-1vh';
-}
-function resetStartButton() {
-  _common__WEBPACK_IMPORTED_MODULE_0__.start.style.color = 'white';
-  _common__WEBPACK_IMPORTED_MODULE_0__.start.style.border = '4px solid green';
-  _common__WEBPACK_IMPORTED_MODULE_0__.start.style.backgroundColor = 'lightgreen';
-  _common__WEBPACK_IMPORTED_MODULE_0__.start.style.borderRadius = '5vw';
-  _common__WEBPACK_IMPORTED_MODULE_0__.start.textContent = 'Start';
-  _common__WEBPACK_IMPORTED_MODULE_0__.start.classList.add('button');
-}
-function resetActionText(text) {
-  var _text;
-  text = (_text = text) !== null && _text !== void 0 ? _text : _common__WEBPACK_IMPORTED_MODULE_0__.DEFAULT_ACTION_TEXT;
-  _common__WEBPACK_IMPORTED_MODULE_0__.action.textContent = text;
-  _common__WEBPACK_IMPORTED_MODULE_0__.action.style.fontSize = _common__WEBPACK_IMPORTED_MODULE_0__.DEFAULT_ACTION_FONT_SIZE;
-  _common__WEBPACK_IMPORTED_MODULE_0__.action.style.color = _common__WEBPACK_IMPORTED_MODULE_0__.RESET_ORANGE;
-}
-resetActionText('');
-function resetAnimations() {
-  clearTimeout(_sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.inhaleAnimation);
-  _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.inhaleAnimation = null;
-  clearInterval(_sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.inhaleCountdownInterval);
-  _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.inhaleCountdownInterval = null;
-  clearTimeout(_sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.holdInAnimation);
-  _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.holdInAnimation = null;
-  clearInterval(_sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.holdInCountdownInterval);
-  _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.holdInCountdownInterval = null;
-  clearTimeout(_sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.exhaleAnimation);
-  _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.exhaleAnimation = null;
-  clearInterval(_sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.exhaleCountdownInterval);
-  _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.exhaleCountdownInterval = null;
-  clearTimeout(_sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.holdOutAnimation);
-  _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.holdOutAnimation = null;
-  clearInterval(_sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.holdOutCountdownInterval);
-  _sharedIntervals__WEBPACK_IMPORTED_MODULE_1__.SharedIntervals.holdOutCountdownInterval = null;
-  _timer__WEBPACK_IMPORTED_MODULE_2__.Timer.clearInterval();
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/typeof.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/typeof.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _typeof)
+/* harmony export */ });
+function _typeof(o) {
+  "@babel/helpers - typeof";
+
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+    return typeof o;
+  } : function (o) {
+    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+  }, _typeof(o);
 }
 
 /***/ })
-/******/ 	]);
+
+/******/ 	});
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
@@ -550,13 +598,16 @@ function resetAnimations() {
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
+/*!************************!*\
+  !*** ./src/ts/main.ts ***!
+  \************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _vhFunc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _actionText__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
-/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
-/* harmony import */ var _sharedIntervals__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4);
-/* harmony import */ var _timer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(11);
-/* harmony import */ var _reset__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(12);
+/* harmony import */ var _vhFunc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vhFunc */ "./src/ts/vhFunc.ts");
+/* harmony import */ var _actionText__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actionText */ "./src/ts/actionText.ts");
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./common */ "./src/ts/common.ts");
+/* harmony import */ var _sharedIntervals__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sharedIntervals */ "./src/ts/sharedIntervals.ts");
+/* harmony import */ var _timer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./timer */ "./src/ts/timer.ts");
+/* harmony import */ var _reset__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./reset */ "./src/ts/reset.ts");
 
 
 
@@ -715,3 +766,4 @@ _common__WEBPACK_IMPORTED_MODULE_2__.pauseButton.onclick = pauseBreathBox;
 
 /******/ })()
 ;
+//# sourceMappingURL=bundle.5dbd09a9.js.map

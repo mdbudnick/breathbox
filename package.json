@@ -4,7 +4,8 @@
   "description": "Browser Breathbox (npm for testing only)",
   "main": "null",
   "scripts": {
-    "build": "webpack --config ./webpack/webpack-ts.config.js && npm run concat-css",
+    "build-dev": "webpack --config ./webpack/webpack-build.config.js --mode development && npm run concat-css",
+    "build-prod": "webpack --config ./webpack/webpack-build.config.js --mode production && npm run concat-css",
     "components": "webpack --config ./webpack/webpack-components.config.js",
     "htmlgen": "npm run build && webpack --config ./webpack/webpack-components.config.js && webpack --config ./webpack/webpack-index.config.js",
     "htmlgen-prod": "npm run build && webpack --config ./webpack/webpack-components.config.js && webpack --config ./webpack/webpack-index.config.js --mode production",
