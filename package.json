@@ -4,15 +4,14 @@
   "description": "Browser Breathbox (npm for testing only)",
   "main": "null",
   "scripts": {
-    "build-dev": "webpack --config ./webpack/webpack-build.config.js --mode development && npm run concat-css",
-    "build-prod": "webpack --config ./webpack/webpack-build.config.js --mode production && npm run concat-css",
+    "build-dev": "webpack --config ./webpack/webpack-build.config.js --mode development",
+    "build-prod": "webpack --config ./webpack/webpack-build.config.js --mode production",
     "components": "webpack --config ./webpack/webpack-components.config.js",
     "htmlgen": "npm run build && webpack --config ./webpack/webpack-components.config.js && webpack --config ./webpack/webpack-index.config.js",
     "htmlgen-prod": "npm run build && webpack --config ./webpack/webpack-components.config.js && webpack --config ./webpack/webpack-index.config.js --mode production",
     "test": "npm run lint && jest",
     "format": "prettier --write '**/*.{js,ts,tsx,json}' && eslint babel.config.js src/{ts,components}/* --fix",
-    "lint": "eslint src/*",
-    "concat-css": "grep -h '' src/css/* > www/assets/css/style.css"
+    "lint": "eslint src/*"
   },
   "author": "michael budnick",
   "license": "ISC",
@@ -24,6 +23,7 @@
     "@babel/plugin-transform-react-constant-elements": "^7.22.5",
     "@babel/plugin-transform-react-inline-elements": "^7.22.5",
     "@babel/plugin-transform-runtime": "^7.23.2",
+    "@babel/plugin-transform-typescript": "^7.22.15",
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.22.15",
     "@babel/preset-typescript": "^7.23.2",

@@ -8,10 +8,10 @@ module.exports = function (_env, argv) {
   return {
     mode: argv.mode,
     devtool: isDevelopment && "cheap-module-source-map",
-    entry: './src/ts/main.ts',
+    entry: './src/index.ts',
     output: {
       path: path.resolve(__dirname, "../www/assets/js/"),
-      filename: "bundle.[contenthash:8].js",
+      filename: "bundle.js",
       publicPath: "/"
     },
     module: {
@@ -25,18 +25,11 @@ module.exports = function (_env, argv) {
             cacheCompression: false,
             envName: isProduction ? "production" : "development"
           }
-        },
-        {
-          test: /\.css$/,
-          use: [
-            isProduction ? MiniCssExtractPlugin.loader : "style-loader",
-            "css-loader"
-          ]
         }
       ],
     },
     resolve: {
-      extensions: ['.ts', '.js'],
+      extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
   }
 }
