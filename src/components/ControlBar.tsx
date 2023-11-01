@@ -1,4 +1,5 @@
 import React, { type FC, type PropsWithChildren } from 'react'
+import '../css/control-bar.css'
 
 const ControlBar: FC = (prop: PropsWithChildren) => {
   return (

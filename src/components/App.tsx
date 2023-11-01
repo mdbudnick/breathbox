@@ -1,5 +1,6 @@
 import React, { type FC, type PropsWithChildren } from 'react'
 import BreathBox from './BreathBox'
+import '../css/central.css'
 
 const App: FC = (prop: PropsWithChildren) => {
   return (

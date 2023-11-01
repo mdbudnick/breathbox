@@ -25,6 +25,13 @@ module.exports = function (_env, argv) {
             cacheCompression: false,
             envName: isProduction ? "production" : "development"
           }
+        },
+        {
+          test: /\.css$/,
+          use: [
+            isProduction ? MiniCssExtractPlugin.loader : "style-loader",
+            "css-loader"
+          ]
         }
       ],
     },

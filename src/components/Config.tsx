@@ -1,4 +1,5 @@
 import React, { type FC, type PropsWithChildren } from 'react'
+import '../css/config.css'
 
 const Config: FC = (prop: PropsWithChildren) => {
   return (
