@@ -1,28 +1,26 @@
 {
-    "compilerOptions": {
-      "target": "ES6",
-      "module": "CommonJS",
-      "outDir": "dist",
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true,
-      "noImplicitAny": true,
-      "strictNullChecks": true,
-      "strictPropertyInitialization": true,
-      "declaration": true,
-      "sourceMap": true,
-      "typeRoots": ["./src/types", "node_modules/@types"],
-      "baseUrl": "src/ts",
-      "jsx": "react"
-    },
-    "include": [
-        "src/ts/*.ts",
-        "src/components/*.tsx"
-      ],
-      "exclude": [
-        "node_modules",
-        "tests"
-      ]
-  }
-  
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "CommonJS",
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "declaration": true,
+    "sourceMap": true,
+    "typeRoots": ["./src/types", "node_modules/@types"],
+    "baseUrl": "src/ts",
+    "jsx": "react"
+  },
+  "include": [
+    "src/index.ts",
+    "src/pageNotFound.ts",
+    "src/ts/*.ts",
+    "src/components/*.tsx"
+  ],
+  "exclude": ["node_modules", "tests"]
+}

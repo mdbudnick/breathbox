@@ -3,12 +3,11 @@ const path = require('path');
 const config = {
   mode: 'none',
   entry: {
-    header: './src/components/Header.tsx',
-    config: './src/components/Config.tsx',
-    controlbar: './src/components/ControlBar.tsx',
-    breathbox: './src/components/BreathBox.tsx',
-    index: './src/components/Index.tsx',
-    notfound: './src/components/404.tsx',
+    Config: './src/components/Config.tsx',
+    ControlBar: './src/components/ControlBar.tsx',
+    BreathBox: './src/components/BreathBox.tsx',
+    App: './src/components/App.tsx',
+    PageNotFound: './src/components/PageNotFound.tsx',
   },
   output: {
     path: path.resolve(__dirname, '../dist/components'),
