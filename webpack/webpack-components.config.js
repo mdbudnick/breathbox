@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 
 const config = {
   mode: 'none',
@@ -11,22 +11,20 @@ const config = {
   },
   output: {
     path: path.resolve(__dirname, '../dist/components'),
-    filename: '[name].jsx'
+    filename: '[name].jsx',
   },
   module: {
     rules: [
       {
         test: /\.ts(x)?$/,
         loader: 'ts-loader',
-        exclude: /node_modules/
-      }
-    ]
+        exclude: /node_modules/,
+      },
+    ],
   },
   resolve: {
-    extensions: [
-      '.tsx',
-    ]
-  }
-};
+    extensions: ['.tsx'],
+  },
+}
 
-module.exports = config;
+module.exports = config

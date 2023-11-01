@@ -20,7 +20,8 @@
     "src/index.ts",
     "src/pageNotFound.ts",
     "src/ts/*.ts",
-    "src/components/*.tsx"
+    "src/components/*.tsx",
+    "./babel.config.js"
   ],
   "exclude": ["node_modules", "tests"]
 }
