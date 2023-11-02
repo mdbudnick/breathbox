@@ -1,7 +1,5 @@
 .action {
-    font-size: 5vh;
     font-weight: bold;
-    color: #f6786e;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     transition-property: font-size, color, top, left;
     white-space: pre;

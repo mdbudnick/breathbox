@@ -4,7 +4,7 @@ import {
   stopButton,
   timerMinutesInput,
   timerSecondsInput
-} from './common'
+} from './shared'
 
 class TimerClass {
   private minutes: number

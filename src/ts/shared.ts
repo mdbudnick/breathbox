@@ -1,7 +1,5 @@
 export const box = document.querySelector('.breath-box') as HTMLElement
 export const boxRect = box.getBoundingClientRect()
-export const circle = document.querySelector('.circle') as HTMLElement
-export const action = document.querySelector('.action') as HTMLElement
 export const start = document.querySelector('.timer-start') as HTMLElement
 export const stopButton = document.querySelector('.stop') as HTMLElement
 export const pauseButton = document.querySelector('.pause') as HTMLElement

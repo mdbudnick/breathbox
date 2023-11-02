@@ -1,4 +1,4 @@
-import * as common from './common'
+import * as common from './shared'
 import { SharedIntervals } from './sharedIntervals'
 import { Timer } from './timer'
 
