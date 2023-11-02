@@ -3,6 +3,7 @@ import ControlBar from './ControlBar'
 import Config from './Config'
 import * as shared from '../ts/shared'
 import { SharedIntervals } from '../ts/sharedIntervals'
+import { vhToPx } from 'vhFunc'
 
 const BreathBox: FC = (prop: PropsWithChildren) => {
   const [action, setActionText] = useState<string>('Breath Box')
