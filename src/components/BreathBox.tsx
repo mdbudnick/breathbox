@@ -9,13 +9,13 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   const [actionTransitionDuration, setActionTransitionDuration] = useState<string>('')
   const [actionTransitionTimingFunction] = useState<string>(`${shared.BREATH_CURVE}`)
   const [actionFontSize, setActionFontSize] = useState<string>('5vh')
-  const [actionColor, setActionColor] = useState<Color>('#f6786e')
+  const [actionColor, setActionColor] = useState<string>('#f6786e')
 
   const actionStyle = {
-    transitionDuration: { actionTransitionDuration },
-    transitionTimingFunction: { actionTransitionTimingFunction },
-    fontSize: { actionFontSize },
-    color: { actionColor }
+    transitionDuration: actionTransitionDuration,
+    transitionTimingFunction: actionTransitionTimingFunction,
+    fontSize: actionFontSize,
+    color: actionColor
   }
 
   const startCountdownDecrement = (
