@@ -1,4 +1,5 @@
 const path = require('path')
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack")
 
@@ -11,9 +12,9 @@ module.exports = function (_env, argv) {
     devtool: isDevelopment && "cheap-module-source-map",
     entry: './src/index.ts',
     output: {
-      path: path.resolve(__dirname, "../www/assets/"),
-      filename: "js/bundle.js",
-      publicPath: "/",
+      path: path.resolve(__dirname, "../www/"),
+      filename: "assets/js/bundle.js",
+      publicPath: "/www/",
       assetModuleFilename: "asset-module.js"
     },
     module: {
@@ -33,7 +34,7 @@ module.exports = function (_env, argv) {
           use: [
             isProduction ? MiniCssExtractPlugin.loader : "style-loader",
             "css-loader"
-          ]
+          ],
         },
         {
           test: /\.(png|jpg|gif)$/i,
@@ -41,7 +42,8 @@ module.exports = function (_env, argv) {
             loader: "url-loader",
             options: {
               limit: 8192,
-              name: "static/media/[name].[ext]"
+              name: "assets/static/media/[name].[ext]",
+              sourceMap: true
             }
           }
         },
@@ -59,7 +61,11 @@ module.exports = function (_env, argv) {
         "process.env.NODE_ENV": JSON.stringify(
           isProduction ? "production" : "development"
         )
-      })
+      }),
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, "../src/index.html"),
+        inject: true
+      }),
     ].filter(Boolean)
   }
 }
