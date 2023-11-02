@@ -181,7 +181,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ../img/buddha-gnome.jpeg */ "./src/img/buddha-gnome.jpeg"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ../img/buddha-gnome.jpg */ "./src/img/buddha-gnome.jpg"), __webpack_require__.b);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);
 // Module
@@ -233,7 +233,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.central {
 
 .top-buffer {
     margin-top: 19vh;
-}`, "",{"version":3,"sources":["webpack://./src/css/central.css"],"names":[],"mappings":"AAAA;IACI,gBAAgB;IAChB,oBAAoB;IACpB,WAAW;IACX,YAAY;AAChB;;AAEA;IACI;QACI,gBAAgB;QAChB,WAAW;QACX,YAAY;IAChB;AACJ;;;AAGA;IACI,kBAAkB;IAClB,YAAY;IACZ,WAAW;IACX,yBAAyB;AAC7B;;AAEA;IACI,aAAa;IACb,8BAA8B;IAC9B,mBAAmB;IACnB,YAAY;IACZ,WAAW;IACX,yDAAiD;IACjD,0BAA0B;IAC1B,4BAA4B;IAC5B,2BAA2B;AAC/B;;AAEA;IACI,kBAAkB;IAClB,UAAU;IACV,WAAW;IACX,yBAAyB;IACzB,kBAAkB;IAClB,wBAAwB;IACxB,YAAY;IACZ,UAAU;AACd;;AAEA;IACI,gBAAgB;AACpB","sourcesContent":[".central {\n    margin-top: 10vh;\n    justify-self: center;\n    width: 30vw;\n    height: 80vh;\n}\n\n@media (max-width: 1000px) {\n    .central {\n        margin-top: 15vh;\n        width: 80vw;\n        height: 70vh;\n    }\n}\n\n\n.breath-box {\n    position: relative;\n    height: 100%;\n    width: 100%;\n    border: 2px solid #f6786e;\n}\n\n.breath-box-inner {\n    display: flex;\n    flex-direction: column-reverse;\n    align-items: center;\n    height: 100%;\n    width: 100%;\n    background-image: url(\"../img/buddha-gnome.jpeg\");\n    background-size: 100% 100%;\n    background-repeat: no-repeat;\n    background-position: center;\n}\n\n.circle {\n    position: absolute;\n    width: 2vh;\n    height: 2vh;\n    background-color: #f6786e;\n    border-radius: 50%;\n    transform-origin: center;\n    bottom: -1vh;\n    left: -1vh;\n}\n\n.top-buffer {\n    margin-top: 19vh;\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/css/central.css"],"names":[],"mappings":"AAAA;IACI,gBAAgB;IAChB,oBAAoB;IACpB,WAAW;IACX,YAAY;AAChB;;AAEA;IACI;QACI,gBAAgB;QAChB,WAAW;QACX,YAAY;IAChB;AACJ;;;AAGA;IACI,kBAAkB;IAClB,YAAY;IACZ,WAAW;IACX,yBAAyB;AAC7B;;AAEA;IACI,aAAa;IACb,8BAA8B;IAC9B,mBAAmB;IACnB,YAAY;IACZ,WAAW;IACX,yDAAgD;IAChD,0BAA0B;IAC1B,4BAA4B;IAC5B,2BAA2B;AAC/B;;AAEA;IACI,kBAAkB;IAClB,UAAU;IACV,WAAW;IACX,yBAAyB;IACzB,kBAAkB;IAClB,wBAAwB;IACxB,YAAY;IACZ,UAAU;AACd;;AAEA;IACI,gBAAgB;AACpB","sourcesContent":[".central {\n    margin-top: 10vh;\n    justify-self: center;\n    width: 30vw;\n    height: 80vh;\n}\n\n@media (max-width: 1000px) {\n    .central {\n        margin-top: 15vh;\n        width: 80vw;\n        height: 70vh;\n    }\n}\n\n\n.breath-box {\n    position: relative;\n    height: 100%;\n    width: 100%;\n    border: 2px solid #f6786e;\n}\n\n.breath-box-inner {\n    display: flex;\n    flex-direction: column-reverse;\n    align-items: center;\n    height: 100%;\n    width: 100%;\n    background-image: url(\"../img/buddha-gnome.jpg\");\n    background-size: 100% 100%;\n    background-repeat: no-repeat;\n    background-position: center;\n}\n\n.circle {\n    position: absolute;\n    width: 2vh;\n    height: 2vh;\n    background-color: #f6786e;\n    border-radius: 50%;\n    transform-origin: center;\n    bottom: -1vh;\n    left: -1vh;\n}\n\n.top-buffer {\n    margin-top: 19vh;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -34289,13 +34289,13 @@ module.exports = styleTagTransform;
 
 /***/ }),
 
-/***/ "./src/img/buddha-gnome.jpeg":
-/*!***********************************!*\
-  !*** ./src/img/buddha-gnome.jpeg ***!
-  \***********************************/
+/***/ "./src/img/buddha-gnome.jpg":
+/*!**********************************!*\
+  !*** ./src/img/buddha-gnome.jpg ***!
+  \**********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "d05901b9ce2cac563b76.jpeg";
+module.exports = __webpack_require__.p + "64046d3417734aa13477.jpg";
 
 /***/ })
 

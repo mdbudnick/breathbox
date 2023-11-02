@@ -2,7 +2,7 @@
 
 [Visit Breathbox](https://www.breathbox.net)
 
-![Breathbox Icon](src/img/buddha-gnome-smaller.jpeg)
+![Breathbox Icon](src/img/buddha-gnome-smaller.jpg)
 
 ## Overview
 

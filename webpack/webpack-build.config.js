@@ -10,8 +10,8 @@ module.exports = function (_env, argv) {
     devtool: isDevelopment && "cheap-module-source-map",
     entry: './src/index.ts',
     output: {
-      path: path.resolve(__dirname, "../www/assets/js/"),
-      filename: "bundle.js",
+      path: path.resolve(__dirname, "../www/assets/"),
+      filename: "js/bundle.js",
       publicPath: "/"
     },
     module: {
@@ -32,7 +32,17 @@ module.exports = function (_env, argv) {
             isProduction ? MiniCssExtractPlugin.loader : "style-loader",
             "css-loader"
           ]
-        }
+        },
+        {
+          test: /\.(png|jpg|gif)$/i,
+          use: {
+            loader: "url-loader",
+            options: {
+              limit: 8192,
+              name: "static/media/[name].[hash:8].[ext]"
+            }
+          }
+        },
       ],
     },
     resolve: {
