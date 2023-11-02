@@ -39,9 +39,13 @@ module.exports = function (_env, argv) {
             loader: "url-loader",
             options: {
               limit: 8192,
-              name: "static/media/[name].[hash:8].[ext]"
+              name: "static/media/[name].[ext]"
             }
           }
+        },
+        {
+          test: /\.svg$/,
+          use: ["@svgr/webpack"]
         },
       ],
     },
