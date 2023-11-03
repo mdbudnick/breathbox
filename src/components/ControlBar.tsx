@@ -11,6 +11,7 @@ interface ControlBarProps {
   actionStyle: ActionStyle
   setActionStyle: React.Dispatch<React.SetStateAction<ActionStyle>>
   setActionText: React.Dispatch<React.SetStateAction<string>>
+  resetCircleStyle: () => void
 }
 
 interface StartButtonStyle {
@@ -49,8 +50,7 @@ const ControlBar: FC<ControlBarProps> = (props) => {
     props.setStarted(false)
     props.setActionText('Paused')
     props.setActionStyle({ ...props.actionStyle, color: '#ff8c00' })
-
-    //   resetCircleStyle()
+    props.resetCircleStyle()
   }
 
   function resumeBreathBox (): void {

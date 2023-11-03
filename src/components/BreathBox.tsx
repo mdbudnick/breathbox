@@ -4,7 +4,7 @@ import Config from './Config'
 import * as shared from '../ts/shared'
 import { SharedIntervals } from '../ts/sharedIntervals'
 import { vhToPx } from 'vhFunc'
-import { type CircleStyle, resetCircleStyle, resetAnimations } from 'reset'
+import { resetAnimations } from 'reset'
 import { type ActionStyle } from '../ts/shared'
 
 const BreathBox: FC = (prop: PropsWithChildren) => {
@@ -25,6 +25,17 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     })
   }
 
+  interface CircleStyle {
+    transitionProperty: circleTransitionProperty
+    transitionDuration: circleTransitionDuration
+    transitionTimingFunction: circleTransitionTimingFunction
+    backgroundColor: circleColor
+    height: circleHeight
+    width: circleWidth
+    bottom: circleBottom
+    left: circleLeft
+  }
+
   const [circleStyle, setCircleStyle] = useState<CircleStyle>({
     transitionProperty: '',
     transitionDuration: '',
@@ -35,6 +46,19 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     bottom: '-1vh',
     left: '-1vh'
   })
+
+  function resetCircleStyle (): void {
+    setCircleStyle({
+      transitionProperty: '',
+      transitionDuration: '',
+      transitionTimingFunction: shared.BREATH_CURVE,
+      backgroundColor: shared.INHALE_COLOR,
+      height: `${shared.SMALL_CIRCLE_SIZE}vh`,
+      width: `${shared.SMALL_CIRCLE_SIZE}vh`,
+      bottom: '-1vh',
+      left: '-1vh'
+    })
+  }
 
   const startCountdownDecrement = (
     text: string,
@@ -180,7 +204,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     Timer.startTimer()
     checkTimerInterval = setInterval(checkTimer, 1000)
     resetActionText()
-    setCircleStyle(resetCircleStyle())
+    resetCircleStyle()
     animateBreathing()
   }
 
@@ -191,7 +215,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     clearTimeout(checkTimerInterval!)
     resetAnimations()
     resetActionText()
-    setCircleStyle(resetCircleStyle())
+    resetCircleStyle()
   }
 
   return (
@@ -205,6 +229,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
           actionStyle={actionStyle}
           setActionStyle={setActionStyle}
           setActionText={setActionText}
+          resetCircleStyle={resetCircleStyle}
         />
         <Config started={started} />
         <div className="action" style={actionStyle}>
