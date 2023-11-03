@@ -1,12 +1,16 @@
 import React, { useState, type FC } from 'react'
 import '../css/control-bar.css'
 import '../img/play-pause.svg'
+import { type ActionStyle } from './BreathBox'
 
 interface ControlBarProps {
   started: boolean
   setStarted: React.Dispatch<React.SetStateAction<boolean>>
   startFn: () => void
   stopFn: () => void
+  actionStyle: ActionStyle
+  setActionStyle: React.Dispatch<React.SetStateAction<ActionStyle>>
+  setActionText: React.Dispatch<React.SetStateAction<string>>
 }
 
 interface StartButtonStyle {
@@ -42,17 +46,11 @@ const ControlBar: FC<ControlBarProps> = (props) => {
 
   function pauseBreathBox (): void {
     setPaused(false)
-    //   started = false
+    props.setStarted(false)
+    props.setActionText('Paused')
+    props.setActionStyle({ ...props.actionStyle, color: '#ff8c00' })
 
-    //   resetAnimations()
-    //   resetActionText('Paused')
-    //   common.action.style.color = '#ff8c00' // dark orange
     //   resetCircleStyle()
-
-    //   common.pauseButton.style.color = 'green'
-    //   common.pauseButton.textContent = '▶'
-
-    //   common.pauseButton.onclick = resumeBreathBox
   }
 
   function resumeBreathBox (): void {

@@ -6,14 +6,14 @@ import { SharedIntervals } from '../ts/sharedIntervals'
 import { vhToPx } from 'vhFunc'
 import { type CircleStyle, resetCircleStyle, resetAnimations } from 'reset'
 
-const BreathBox: FC = (prop: PropsWithChildren) => {
-  interface ActionStyle {
-    transitionDuration: string
-    transitionTimingFunction: string
-    fontSize: string
-    color: string
-  }
+export interface ActionStyle {
+  transitionDuration: string
+  transitionTimingFunction: string
+  fontSize: string
+  color: string
+}
 
+const BreathBox: FC = (prop: PropsWithChildren) => {
   const [action, setActionText] = useState<string>('Breath Box')
   const [actionStyle, setActionStyle] = useState<ActionStyle>({
     transitionDuration: '',
@@ -208,6 +208,9 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
           setStarted={setStarted}
           startFn={startBreathBox}
           stopFn={stopBreathBox}
+          actionStyle={actionStyle}
+          setActionStyle={setActionStyle}
+          setActionText={setActionText}
         />
         <Config started={started} />
         <div className="action" style={actionStyle}>
