@@ -32,17 +32,12 @@ const ControlBar: FC<ControlBarProps> = (props) => {
   const [startButtonStyle, setStartButtonStyle] = useState<StartButtonStyle>(
     START_BUTTON_RESET_STYLE
   )
-  const [startAndTimerText, setStartAndTimerText] = useState<string>('Start')
+  const [timerText, setTimerText] = useState<string>('0:00')
   const [paused, setPaused] = useState<boolean>(false)
 
-  function resetStartButton (): void {
-    setStartButtonStyle(START_BUTTON_RESET_STYLE)
-    setStartAndTimerText('Start')
-  }
-
   function stopBreathBox (): void {
+    setPaused(false)
     props.stopFn()
-    resetStartButton()
   }
 
   function pauseBreathBox (): void {
@@ -60,12 +55,19 @@ const ControlBar: FC<ControlBarProps> = (props) => {
 
   return (
     <div className={props.started ? 'control-bar top-buffer' : 'control-bar'}>
+      (started && !paused) || (paused && !started) ?
       <div
-        className="timer-start button"
+        className="timer"
+      >
+        {timerText}
+      </div>
+      :
+      <div
+        className="start button"
         style={startButtonStyle}
         onClick={props.startFn}
       >
-        {startAndTimerText}
+        Start
       </div>
       <img
         className="pause button"

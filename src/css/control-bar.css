@@ -25,7 +25,7 @@
     display: none;
 }
 
-.timer-start {
+.timer, .start {
     float: left;
     font-size: 5vh;
     color: white;
