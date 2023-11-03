@@ -41,3 +41,8 @@
     background-color: lightgreen;
     border-radius: 5vw;
 }
+
+.timer {
+    background-color: transparent;
+    border: none;
+}

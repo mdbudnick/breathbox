@@ -1,6 +1,7 @@
 import React, { useState, type FC } from 'react'
 import '../css/control-bar.css'
 import '../img/play-pause.svg'
+import Timer from './Timer'
 import { type ActionStyle } from '../ts/shared'
 
 interface ControlBarProps {
@@ -21,7 +22,6 @@ interface StartButtonStyle {
   borderRadius: string
 }
 const ControlBar: FC<ControlBarProps> = (props) => {
-  const [timerText, setTimerText] = useState<string>('0:00')
   const [paused, setPaused] = useState<boolean>(false)
 
   function stopBreathBox (): void {
@@ -45,11 +45,7 @@ const ControlBar: FC<ControlBarProps> = (props) => {
   return (
     <div className={props.started ? 'control-bar top-buffer' : 'control-bar'}>
       (started && !paused) || (paused && !started) ?
-      <div
-        className="timer"
-      >
-        {timerText}
-      </div>
+      <Timer started={ props.started }/>
       :
       <div
         className="start button"
