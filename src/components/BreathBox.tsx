@@ -73,11 +73,15 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     const holdOutDuration = parseInt(shared.holdTimeInput.value)
 
     // Inhale (up)
-    SharedIntervals.setInhaleCountdownInterval(startCountdownDecrement(
-      shared.INHALE,
-      inhaleDuration
-    ))
-    setActionStyle({ ...actionStyle, transitionDuration: `${inhaleDuration}s`, fontSize: `${shared.INHALE_SIZE}vh`, color: shared.INHALE_COLOR })
+    SharedIntervals.setInhaleCountdownInterval(
+      startCountdownDecrement(shared.INHALE, inhaleDuration)
+    )
+    setActionStyle({
+      ...actionStyle,
+      transitionDuration: `${inhaleDuration}s`,
+      fontSize: `${shared.INHALE_SIZE}vh`,
+      color: shared.INHALE_COLOR
+    })
     setCircleStyle({
       ...circleStyle,
       transitionProperty: 'height width background-color left bottom',
@@ -86,69 +90,84 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
       backgroundColor: shared.INHALE_COLOR,
       height: `${shared.LARGE_CIRCLE_SIZE}vh`,
       width: `${shared.LARGE_CIRCLE_SIZE}vh`,
-      bottom: `${shared.box.clientHeight - vhToPx(shared.LARGE_CIRCLE_SIZE) / 2}px`,
+      bottom: `${
+        shared.box.clientHeight - vhToPx(shared.LARGE_CIRCLE_SIZE) / 2
+      }px`,
       left: `-${shared.LARGE_CIRCLE_SIZE / 2}vh`
     })
 
     // Hold In (right)
-    SharedIntervals.setHoldInAnimation(setTimeout(() => {
-      SharedIntervals.setHoldInCountdownInterval(startCountdownDecrement(
-        shared.HOLD,
-        holdInDuration
-      ))
+    SharedIntervals.setHoldInAnimation(
+      setTimeout(() => {
+        SharedIntervals.setHoldInCountdownInterval(
+          startCountdownDecrement(shared.HOLD, holdInDuration)
+        )
 
-      setCircleStyle({
-        ...circleStyle,
-        transitionDuration: `${holdInDuration}s`,
-        transitionTimingFunction: 'linear',
-        left: `${shared.box.clientWidth - vhToPx(shared.LARGE_CIRCLE_SIZE) / 2}px`
-      })
-
-      // Exhale (down)
-      SharedIntervals.setExhaleAnimation(setTimeout(() => {
-        SharedIntervals.setExhaleCountdownInterval(startCountdownDecrement(
-          shared.EXHALE,
-          exhaleDuration
-        ))
-
-        setActionStyle({ ...actionStyle, fontSize: `${shared.EXHALE_SIZE}vh`, color: shared.EXHALE_COLOR })
         setCircleStyle({
           ...circleStyle,
-          transitionProperty: 'height width color left bottom',
-          transitionDuration: `${exhaleDuration}s`,
-          transitionTimingFunction: shared.BREATH_CURVE,
-          backgroundColor: shared.EXHALE_COLOR,
-          height: `${shared.SMALL_CIRCLE_SIZE}vh`,
-          width: `${shared.SMALL_CIRCLE_SIZE}vh`,
-          bottom: `-${shared.SMALL_CIRCLE_SIZE / 2}vh`,
-          left: `${shared.box.clientWidth - vhToPx(shared.SMALL_CIRCLE_SIZE) / 2}px`
+          transitionDuration: `${holdInDuration}s`,
+          transitionTimingFunction: 'linear',
+          left: `${
+            shared.box.clientWidth - vhToPx(shared.LARGE_CIRCLE_SIZE) / 2
+          }px`
         })
 
-        // Hold out (left)
-        SharedIntervals.setHoldOutAnimation(setTimeout(() => {
-          SharedIntervals.setHoldOutCountdownInterval(startCountdownDecrement(
-            shared.HOLD,
-            holdOutDuration
-          ))
+        // Exhale (down)
+        SharedIntervals.setExhaleAnimation(
+          setTimeout(() => {
+            SharedIntervals.setExhaleCountdownInterval(
+              startCountdownDecrement(shared.EXHALE, exhaleDuration)
+            )
 
-          setCircleStyle({
-            ...circleStyle,
-            transitionDuration: `${holdInDuration}s`,
-            transitionTimingFunction: 'linear',
-            bottom: `-${shared.SMALL_CIRCLE_SIZE / 2}vh`,
-            left: `-${shared.SMALL_CIRCLE_SIZE / 2}vh`
-          })
+            setActionStyle({
+              ...actionStyle,
+              fontSize: `${shared.EXHALE_SIZE}vh`,
+              color: shared.EXHALE_COLOR
+            })
+            setCircleStyle({
+              ...circleStyle,
+              transitionProperty: 'height width color left bottom',
+              transitionDuration: `${exhaleDuration}s`,
+              transitionTimingFunction: shared.BREATH_CURVE,
+              backgroundColor: shared.EXHALE_COLOR,
+              height: `${shared.SMALL_CIRCLE_SIZE}vh`,
+              width: `${shared.SMALL_CIRCLE_SIZE}vh`,
+              bottom: `-${shared.SMALL_CIRCLE_SIZE / 2}vh`,
+              left: `${
+                shared.box.clientWidth - vhToPx(shared.SMALL_CIRCLE_SIZE) / 2
+              }px`
+            })
 
-          SharedIntervals.setInhaleAnimation(setTimeout(() => {
-            animateBreathing() // Restart the cycle
-          }, holdOutDuration * shared.SMOOTH_PATH_TIMING))
-        }, exhaleDuration * shared.SMOOTH_PATH_TIMING))
-      }, holdInDuration * shared.SMOOTH_PATH_TIMING))
-    }, inhaleDuration * shared.SMOOTH_PATH_TIMING))
+            // Hold out (left)
+            SharedIntervals.setHoldOutAnimation(
+              setTimeout(() => {
+                SharedIntervals.setHoldOutCountdownInterval(
+                  startCountdownDecrement(shared.HOLD, holdOutDuration)
+                )
+
+                setCircleStyle({
+                  ...circleStyle,
+                  transitionDuration: `${holdInDuration}s`,
+                  transitionTimingFunction: 'linear',
+                  bottom: `-${shared.SMALL_CIRCLE_SIZE / 2}vh`,
+                  left: `-${shared.SMALL_CIRCLE_SIZE / 2}vh`
+                })
+
+                SharedIntervals.setInhaleAnimation(
+                  setTimeout(() => {
+                    animateBreathing() // Restart the cycle
+                  }, holdOutDuration * shared.SMOOTH_PATH_TIMING)
+                )
+              }, exhaleDuration * shared.SMOOTH_PATH_TIMING)
+            )
+          }, holdInDuration * shared.SMOOTH_PATH_TIMING)
+        )
+      }, inhaleDuration * shared.SMOOTH_PATH_TIMING)
+    )
   }
 
   const tone = new Audio('assets/audio/tone.mp3')
-  function checkTimer(): undefined {
+  function checkTimer (): undefined {
     if (started && Timer.reachedTime()) {
       void tone.play()
       setTimeout(() => {
@@ -159,7 +178,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   }
 
   let checkTimerInterval: ReturnType<typeof setInterval> | null
-  function startBreathBox(): void {
+  function startBreathBox (): void {
     if (!validInputs() || started) {
       return
     }
@@ -184,9 +203,16 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   return (
     <div className="breath-box">
       <div className="breath-box-inner">
-        <ControlBar started={started} setStarted={setStarted} startFn={startBreathBox} stopFn={stopBreathBox} />
+        <ControlBar
+          started={started}
+          setStarted={setStarted}
+          startFn={startBreathBox}
+          stopFn={stopBreathBox}
+        />
         <Config started={started} />
-        <div className="action" style={actionStyle} >{action}</div>
+        <div className="action" style={actionStyle}>
+          {action}
+        </div>
       </div>
       <div className="circle" style={circleStyle}></div>
     </div>

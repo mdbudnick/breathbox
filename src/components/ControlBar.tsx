@@ -24,16 +24,18 @@ const START_BUTTON_RESET_STYLE: StartButtonStyle = {
 }
 
 const ControlBar: FC<ControlBarProps> = (props) => {
-  const [startButtonStyle, setStartButtonStyle] = useState<StartButtonStyle>(START_BUTTON_RESET_STYLE)
+  const [startButtonStyle, setStartButtonStyle] = useState<StartButtonStyle>(
+    START_BUTTON_RESET_STYLE
+  )
   const [startAndTimerText, setStartAndTimerText] = useState<string>('Start')
   const [paused, setPaused] = useState<boolean>(false)
 
-  function resetStartButton(): void {
+  function resetStartButton (): void {
     setStartButtonStyle(START_BUTTON_RESET_STYLE)
     setStartAndTimerText('Start')
   }
 
-  function stopBreathBox(): void {
+  function stopBreathBox (): void {
     props.stopFn()
     resetStartButton()
   }
@@ -60,9 +62,24 @@ const ControlBar: FC<ControlBarProps> = (props) => {
 
   return (
     <div className={props.started ? 'control-bar top-buffer' : 'control-bar'}>
-      <div className="timer-start button" style={startButtonStyle} onClick={props.startFn}>{startAndTimerText}</div>
-      <img className="pause button" src="static/media/play-pause.svg" style={{ display: props.started ? 'none' : 'flex' }} onClick={paused ? resumeBreathBox : pauseBreathBox}></img>
-      <div className="stop button" style={{ display: props.started ? 'none' : 'flex' }} onClick={stopBreathBox}></div>
+      <div
+        className="timer-start button"
+        style={startButtonStyle}
+        onClick={props.startFn}
+      >
+        {startAndTimerText}
+      </div>
+      <img
+        className="pause button"
+        src="static/media/play-pause.svg"
+        style={{ display: props.started ? 'none' : 'flex' }}
+        onClick={paused ? resumeBreathBox : pauseBreathBox}
+      ></img>
+      <div
+        className="stop button"
+        style={{ display: props.started ? 'none' : 'flex' }}
+        onClick={stopBreathBox}
+      ></div>
     </div>
   )
 }

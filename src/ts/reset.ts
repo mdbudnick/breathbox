@@ -22,7 +22,7 @@ export function resetCircleStyle (): CircleStyle {
     height: `${shared.SMALL_CIRCLE_SIZE}vh`,
     width: `${shared.SMALL_CIRCLE_SIZE}vh`,
     bottom: '-1vh',
-    left: '-1vh',
+    left: '-1vh'
   }
 }
 

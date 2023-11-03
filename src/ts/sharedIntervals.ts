@@ -27,7 +27,9 @@ class Timeouts {
     return true
   }
 
-  setInhaleCountdownInterval (interval: ReturnType<typeof setInterval>): boolean {
+  setInhaleCountdownInterval (
+    interval: ReturnType<typeof setInterval>
+  ): boolean {
     if (this.inhaleCountdownInterval !== null) {
       clearInterval(this.inhaleCountdownInterval)
     }
@@ -43,7 +45,9 @@ class Timeouts {
     return true
   }
 
-  setHoldInCountdownInterval (interval: ReturnType<typeof setInterval>): boolean {
+  setHoldInCountdownInterval (
+    interval: ReturnType<typeof setInterval>
+  ): boolean {
     if (this.holdInCountdownInterval !== null) {
       clearInterval(this.holdInCountdownInterval)
     }
@@ -59,7 +63,9 @@ class Timeouts {
     return true
   }
 
-  setHoldOutCountdownInterval (interval: ReturnType<typeof setInterval>): boolean {
+  setHoldOutCountdownInterval (
+    interval: ReturnType<typeof setInterval>
+  ): boolean {
     if (this.holdOutCountdownInterval !== null) {
       clearInterval(this.holdOutCountdownInterval)
     }
@@ -75,7 +81,9 @@ class Timeouts {
     return true
   }
 
-  setExhaleCountdownInterval (interval: ReturnType<typeof setInterval>): boolean {
+  setExhaleCountdownInterval (
+    interval: ReturnType<typeof setInterval>
+  ): boolean {
     if (this.exhaleCountdownInterval !== null) {
       clearInterval(this.exhaleCountdownInterval)
     }
