@@ -1,9 +1,13 @@
-import React, { type FC, type PropsWithChildren } from 'react'
+import React, { type FC } from 'react'
 import '../css/config.css'
 
-const Config: FC = (prop: PropsWithChildren) => {
+interface ControlBarProps {
+  started: boolean
+}
+
+const Config: FC<ControlBarProps> = (props) => {
   return (
-    <div className="config">
+    <div className={props.started ? 'config' : 'config hidden'}>
       <div className="breath-time">
         <label htmlFor="breath-time">Breathe (seconds)</label>
         <input type="number" id="breath-time" min="1" max="10" value="6" />

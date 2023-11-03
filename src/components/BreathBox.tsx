@@ -55,6 +55,8 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     return countdownInterval
   }
 
+  const [started, setStarted] = useState<boolean>(false)
+
   const animateBreathing = (): void => {
     const inhaleDuration = parseInt(shared.breathTimeInput.value)
     const holdInDuration = parseInt(shared.holdTimeInput.value)
@@ -136,11 +138,42 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     }, inhaleDuration * shared.SMOOTH_PATH_TIMING))
   }
 
+  const tone = new Audio('assets/audio/tone.mp3')
+  function checkTimer (): undefined {
+    if (started && Timer.reachedTime()) {
+      void tone.play()
+      setTimeout(() => {
+        alert('You have reached your target!')
+      }, 50)
+      // stopBreathBox()
+    }
+  }
+
+  let checkTimerInterval: ReturnType<typeof setInterval> | null
+  function startBreathBox (): void {
+    if (!validInputs() || started) {
+      return
+    }
+    setStarted(true)
+    Timer.startTimer()
+    checkTimerInterval = setInterval(checkTimer, 1000)
+    Timer.addPauseButton()
+    Timer.addStopButton()
+    setActionText('')
+    setActionStyle({
+      ...actionStyle,
+      fontSize: shared.DEFAULT_ACTION_FONT_SIZE,
+      color: shared.RESET_ORANGE
+    })
+    setCircleStyle(resetCircleStyle())
+    animateBreathing()
+  }
+
   return (
     <div className="breath-box">
       <div className="breath-box-inner">
-        <ControlBar />
-        <Config />
+        <ControlBar started={started} startFn={startBreathBox} />
+        <Config started={started} />
         <div className="action" style={actionStyle} >{action}</div>
       </div>
       <div className="circle" style={circleStyle}></div>

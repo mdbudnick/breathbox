@@ -46,34 +46,19 @@ function validInputs (): boolean {
   return valid
 }
 
-let started = false
-let checkTimerInterval: ReturnType<typeof setInterval> | null
-function startBreathBox (): undefined {
-  if (!validInputs() || started) {
-    return
-  }
-  common.config.classList.add('hidden')
-  common.controlBar.classList.add('top-buffer')
+function stopBreathBox (): undefined {
+  started = false
 
-  started = true
-  Timer.startTimer()
-  checkTimerInterval = setInterval(checkTimer, 1000)
-  Timer.addPauseButton()
-  Timer.addStopButton()
+  Timer.reset()
+  clearTimeout(checkTimerInterval!)
+  resetAnimations()
   resetActionText('')
   resetCircleStyle()
-  animateBreathing()
-}
-
-const tone = new Audio('assets/audio/tone.mp3')
-function checkTimer (): undefined {
-  if (started && Timer.reachedTime()) {
-    void tone.play()
-    setTimeout(() => {
-      alert('You have reached your target!')
-    }, 50)
-    stopBreathBox()
-  }
+  resetStartButton()
+  common.stopButton.style.display = 'none'
+  common.pauseButton.style.display = 'none'
+  common.config.classList.remove('hidden')
+  common.controlBar.classList.remove('top-buffer')
 }
 
 function pauseBreathBox (): undefined {
