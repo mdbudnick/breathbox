@@ -46,21 +46,6 @@ function validInputs (): boolean {
   return valid
 }
 
-function stopBreathBox (): undefined {
-  started = false
-
-  Timer.reset()
-  clearTimeout(checkTimerInterval!)
-  resetAnimations()
-  resetActionText('')
-  resetCircleStyle()
-  resetStartButton()
-  common.stopButton.style.display = 'none'
-  common.pauseButton.style.display = 'none'
-  common.config.classList.remove('hidden')
-  common.controlBar.classList.remove('top-buffer')
-}
-
 function pauseBreathBox (): undefined {
   started = false
 

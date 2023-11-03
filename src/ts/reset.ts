@@ -26,16 +26,7 @@ export function resetCircleStyle (): CircleStyle {
   }
 }
 
-export function resetStartButton(): undefined {
-  common.start.style.color = 'white'
-  common.start.style.border = '4px solid green'
-  common.start.style.backgroundColor = 'lightgreen'
-  common.start.style.borderRadius = '5vw'
-  common.start.textContent = 'Start'
-  common.start.classList.add('button')
-}
-
-export function resetAnimations(): undefined {
+export function resetAnimations (): undefined {
   clearTimeout(SharedIntervals.inhaleAnimation!)
   SharedIntervals.inhaleAnimation = null
   clearInterval(SharedIntervals.inhaleCountdownInterval!)

@@ -4,7 +4,7 @@ import Config from './Config'
 import * as shared from '../ts/shared'
 import { SharedIntervals } from '../ts/sharedIntervals'
 import { vhToPx } from 'vhFunc'
-import { type CircleStyle, resetCircleStyle } from 'reset'
+import { type CircleStyle, resetCircleStyle, resetAnimations } from 'reset'
 
 const BreathBox: FC = (prop: PropsWithChildren) => {
   interface ActionStyle {
@@ -21,6 +21,15 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     fontSize: '5vh',
     color: '#f6786e'
   })
+
+  function resetActionText (): void {
+    setActionText('')
+    setActionStyle({
+      ...actionStyle,
+      fontSize: shared.DEFAULT_ACTION_FONT_SIZE,
+      color: shared.RESET_ORANGE
+    })
+  }
 
   const [circleStyle, setCircleStyle] = useState<CircleStyle>({
     transitionProperty: '',
@@ -139,7 +148,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   }
 
   const tone = new Audio('assets/audio/tone.mp3')
-  function checkTimer (): undefined {
+  function checkTimer(): undefined {
     if (started && Timer.reachedTime()) {
       void tone.play()
       setTimeout(() => {
@@ -150,29 +159,32 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   }
 
   let checkTimerInterval: ReturnType<typeof setInterval> | null
-  function startBreathBox (): void {
+  function startBreathBox(): void {
     if (!validInputs() || started) {
       return
     }
     setStarted(true)
     Timer.startTimer()
     checkTimerInterval = setInterval(checkTimer, 1000)
-    Timer.addPauseButton()
-    Timer.addStopButton()
-    setActionText('')
-    setActionStyle({
-      ...actionStyle,
-      fontSize: shared.DEFAULT_ACTION_FONT_SIZE,
-      color: shared.RESET_ORANGE
-    })
+    resetActionText()
     setCircleStyle(resetCircleStyle())
     animateBreathing()
+  }
+
+  function stopBreathBox (): undefined {
+    setStarted(false)
+
+    Timer.reset()
+    clearTimeout(checkTimerInterval!)
+    resetAnimations()
+    resetActionText()
+    setCircleStyle(resetCircleStyle())
   }
 
   return (
     <div className="breath-box">
       <div className="breath-box-inner">
-        <ControlBar started={started} startFn={startBreathBox} />
+        <ControlBar started={started} startFn={startBreathBox} stopFn={stopBreathBox} />
         <Config started={started} />
         <div className="action" style={actionStyle} >{action}</div>
       </div>
