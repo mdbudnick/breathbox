@@ -7,6 +7,8 @@ import { type ActionStyle, type ConfigInput } from '../ts/shared'
 interface ControlBarProps {
   started: boolean
   setStarted: React.Dispatch<React.SetStateAction<boolean>>
+  timeReached: boolean
+  setTimeReached: React.Dispatch<React.SetStateAction<boolean>>
   startFn: () => void
   stopFn: () => void
   actionStyle: ActionStyle
@@ -16,11 +18,38 @@ interface ControlBarProps {
   configInput: ConfigInput
 }
 
+const tone = new Audio('assets/audio/tone.mp3')
+
 const ControlBar: FC<ControlBarProps> = (props) => {
   const [paused, setPaused] = useState<boolean>(false)
+  const [internalTimer, setInternalTimer] = useState<number>(0)
+  const { inputMinutes, inputSeconds } = props.configInput
+  let targetTime = 0
+  function checkTimer (): void {
+    if (props.started && internalTimer >= targetTime) {
+      props.setTimeReached(true)
+      void tone.play()
+      setTimeout(() => {
+        alert('You have reached your target!')
+      }, 50)
+      stopBreathBox()
+    }
+  }
+
+  let checkTimerInterval: ReturnType<typeof setInterval> | null
+  function startBreathBox (): void {
+    props.startFn()
+    props.setTimeReached(false)
+    targetTime = (inputMinutes * 60 + inputSeconds)
+    checkTimerInterval = setInterval(checkTimer, 1000)
+  }
 
   function stopBreathBox (): void {
+    if (checkTimerInterval !== null) {
+      clearInterval(checkTimerInterval)
+    }
     setPaused(false)
+    props.setTimeReached(false)
     props.stopFn()
   }
 
@@ -40,8 +69,8 @@ const ControlBar: FC<ControlBarProps> = (props) => {
   return (
     <div className={props.started ? 'control-bar top-buffer' : 'control-bar'}>
       (started && !paused) || (paused && !started) ?
-      <Timer started={props.started} stopFn={stopBreathBox} inputMinutes={props.configInput.inputMinutes} inputSeconds={props.configInput.inputSeconds} ascending={props.configInput.ascending} />:
-      <div className="start button" onClick={props.startFn}>
+      <Timer started={props.started} setTimeReached={props.setTimeReached} stopFn={stopBreathBox} internalTimer={internalTimer} setInternalTimer={setInternalTimer} inputMinutes={props.configInput.inputMinutes} inputSeconds={props.configInput.inputSeconds} ascending={props.configInput.ascending} />:
+      <div className="start button" onClick={startBreathBox}>
         Start
       </div>
       <img

@@ -83,6 +83,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   }
 
   const [started, setStarted] = useState<boolean>(false)
+  const [timeReached, setTimeReached] = useState<boolean>(false)
   // Config Variables
   const [breathDuration, setBreathDuration] = useState<number>(3)
   const [holdDuration, setHoldDuration] = useState<number>(3)
@@ -187,24 +188,13 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     )
   }
 
-  const tone = new Audio('assets/audio/tone.mp3')
-  function checkTimer (): undefined {
-    if (started && Timer.reachedTime()) {
-      void tone.play()
-      setTimeout(() => {
-        alert('You have reached your target!')
-      }, 50)
-      // stopBreathBox()
-    }
-  }
+  
 
-  let checkTimerInterval: ReturnType<typeof setInterval> | null
   function startBreathBox (): void {
     if (!validInputs() || started) {
       return
     }
     setStarted(true)
-    checkTimerInterval = setInterval(checkTimer, 1000)
     resetActionText()
     resetCircleStyle()
     animateBreathing()
@@ -212,8 +202,6 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
 
   function stopBreathBox (): undefined {
     setStarted(false)
-
-    clearTimeout(checkTimerInterval!)
     resetAnimations()
     resetActionText()
     resetCircleStyle()
@@ -225,6 +213,8 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
         <ControlBar
           started={started}
           setStarted={setStarted}
+          timeReached={timeReached}
+          setTimeReached={setTimeReached}
           startFn={startBreathBox}
           stopFn={stopBreathBox}
           actionStyle={actionStyle}

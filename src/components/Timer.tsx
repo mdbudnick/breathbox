@@ -2,7 +2,10 @@ import React, { useEffect, useState, type FC } from 'react'
 
 interface TimerProps {
   started: boolean
+  setTimeReached: React.Dispatch<React.SetStateAction<boolean>>
   stopFn: () => void
+  internalTimer: number
+  setInternalTimer: React.Dispatch<React.SetStateAction<number>>
   inputMinutes: number
   inputSeconds: number
   ascending: boolean
@@ -12,14 +15,11 @@ const Timer: FC<TimerProps> = (props) => {
   const [timerText, setTimerText] = useState<string>('')
   const [minutes, setMinutes] = useState<number>(10)
   const [seconds, setSeconds] = useState<number>(0)
-  const [internalTimer, setInternalTimer] = useState<number>(0)
-  let targetTime = 0
 
   let timerInterval: ReturnType<typeof setInterval> | null
   function startTimer (): void {
-    // reset()
+    reset()
     timerFn()
-    targetTime = props.inputMinutes * 60 + props.inputSeconds
     timerInterval = setInterval(() => { timerFn() }, 1000)
   }
 
