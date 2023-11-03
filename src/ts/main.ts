@@ -46,29 +46,6 @@ function validInputs (): boolean {
   return valid
 }
 
-function pauseBreathBox (): undefined {
-  started = false
-
-  resetAnimations()
-  resetActionText('Paused')
-  common.action.style.color = '#ff8c00' // dark orange
-  resetCircleStyle()
-
-  common.pauseButton.style.color = 'green'
-  common.pauseButton.textContent = '▶'
-
-  common.pauseButton.onclick = resumeBreathBox
-}
-
-function resumeBreathBox (): undefined {
-  common.pauseButton.style.color = common.RESET_ORANGE
-  common.pauseButton.textContent = '||'
-
-  common.pauseButton.onclick = pauseBreathBox
-
-  startBreathBox()
-}
-
 function flipArrow (): undefined {
   if (common.timerDirection.classList.contains('point-up')) {
     common.timerDirection.classList.replace('point-up', 'point-down')

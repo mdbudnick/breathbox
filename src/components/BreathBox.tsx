@@ -184,7 +184,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   return (
     <div className="breath-box">
       <div className="breath-box-inner">
-        <ControlBar started={started} startFn={startBreathBox} stopFn={stopBreathBox} />
+        <ControlBar started={started} setStarted={setStarted} startFn={startBreathBox} stopFn={stopBreathBox} />
         <Config started={started} />
         <div className="action" style={actionStyle} >{action}</div>
       </div>
