@@ -39,3 +39,10 @@ export const INHALE_SIZE = 8
 export const EXHALE_SIZE = 4
 export const DEFAULT_ACTION_TEXT = 'Breath Box'
 export const DEFAULT_ACTION_FONT_SIZE = '5vh'
+
+export interface ActionStyle {
+  transitionDuration: string
+  transitionTimingFunction: string
+  fontSize: string
+  color: string
+}

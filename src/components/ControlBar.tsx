@@ -1,7 +1,7 @@
 import React, { useState, type FC } from 'react'
 import '../css/control-bar.css'
 import '../img/play-pause.svg'
-import { type ActionStyle } from './BreathBox'
+import { type ActionStyle } from '../ts/shared'
 
 interface ControlBarProps {
   started: boolean
