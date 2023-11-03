@@ -20,18 +20,7 @@ interface StartButtonStyle {
   backgroundColor: string
   borderRadius: string
 }
-
-const START_BUTTON_RESET_STYLE: StartButtonStyle = {
-  color: 'white',
-  border: '4px solid green',
-  backgroundColor: 'lightgreen',
-  borderRadius: '5vw'
-}
-
 const ControlBar: FC<ControlBarProps> = (props) => {
-  const [startButtonStyle, setStartButtonStyle] = useState<StartButtonStyle>(
-    START_BUTTON_RESET_STYLE
-  )
   const [timerText, setTimerText] = useState<string>('0:00')
   const [paused, setPaused] = useState<boolean>(false)
 
@@ -64,7 +53,6 @@ const ControlBar: FC<ControlBarProps> = (props) => {
       :
       <div
         className="start button"
-        style={startButtonStyle}
         onClick={props.startFn}
       >
         Start
