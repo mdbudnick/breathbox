@@ -201,7 +201,6 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
       return
     }
     setStarted(true)
-    Timer.startTimer()
     checkTimerInterval = setInterval(checkTimer, 1000)
     resetActionText()
     resetCircleStyle()
@@ -211,7 +210,6 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   function stopBreathBox (): undefined {
     setStarted(false)
 
-    Timer.reset()
     clearTimeout(checkTimerInterval!)
     resetAnimations()
     resetActionText()
