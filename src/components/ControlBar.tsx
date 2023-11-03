@@ -24,16 +24,16 @@ const START_BUTTON_RESET_STYLE: StartButtonStyle = {
 
 const ControlBar: FC<ControlBarProps> = (props) => {
   const [startButtonStyle, setStartButtonStyle] = useState<StartButtonStyle>(START_BUTTON_RESET_STYLE)
+  const [startAndTimerText, setStartAndTimerText] = useState<string>('Start')
 
   function resetStartButton (): undefined {
     setStartButtonStyle(START_BUTTON_RESET_STYLE)
-    common.start.textContent = 'Start'
-    common.start.classList.add('button')
+    setStartAndTimerText('Start')
   }
 
   return (
     <div className={props.started ? 'control-bar top-buffer' : 'control-bar'}>
-      <div className="timer-start button" style={startButtonStyle} onClick={props.startFn}>Start</div>
+      <div className="timer-start button" style={startButtonStyle} onClick={props.startFn}>{startAndTimerText}</div>
       <img className="pause button" src="static/media/play-pause.svg" style={{ display: props.started ? 'none' : 'flex' }}></img>
       <div className="stop button" style={{ display: props.started ? 'none' : 'flex' }} onClick={props.stopFn}></div>
     </div>
