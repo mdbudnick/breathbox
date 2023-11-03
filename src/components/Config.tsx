@@ -1,8 +1,11 @@
 import React, { type FC } from 'react'
+import { type ConfigInput, type ConfigSetters } from 'shared'
 import '../css/config.css'
 
 interface ControlBarProps {
   started: boolean
+  configInput: ConfigInput
+  configSetters: ConfigSetters
 }
 
 const Config: FC<ControlBarProps> = (props) => {

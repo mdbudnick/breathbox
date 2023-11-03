@@ -2,7 +2,7 @@ import React, { useState, type FC } from 'react'
 import '../css/control-bar.css'
 import '../img/play-pause.svg'
 import Timer from './Timer'
-import { type ActionStyle } from '../ts/shared'
+import { type ActionStyle, type ConfigInput } from '../ts/shared'
 
 interface ControlBarProps {
   started: boolean
@@ -13,6 +13,7 @@ interface ControlBarProps {
   setActionStyle: React.Dispatch<React.SetStateAction<ActionStyle>>
   setActionText: React.Dispatch<React.SetStateAction<string>>
   resetCircleStyle: () => void
+  configInput: ConfigInput
 }
 
 const ControlBar: FC<ControlBarProps> = (props) => {
@@ -39,7 +40,7 @@ const ControlBar: FC<ControlBarProps> = (props) => {
   return (
     <div className={props.started ? 'control-bar top-buffer' : 'control-bar'}>
       (started && !paused) || (paused && !started) ?
-      <Timer started={props.started} />:
+      <Timer started={props.started} stopFn={stopBreathBox} inputMinutes={props.configInput.inputMinutes} inputSeconds={props.configInput.inputSeconds} ascending={props.configInput.ascending} />:
       <div className="start button" onClick={props.startFn}>
         Start
       </div>

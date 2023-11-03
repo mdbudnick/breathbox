@@ -3,8 +3,8 @@ import React, { useEffect, useState, type FC } from 'react'
 interface TimerProps {
   started: boolean
   stopFn: () => void
-  minutesInput: number
-  secondsInput: number
+  inputMinutes: number
+  inputSeconds: number
   ascending: boolean
 }
 
@@ -19,7 +19,7 @@ const Timer: FC<TimerProps> = (props) => {
   function startTimer (): void {
     // reset()
     timerFn()
-    targetTime = props.minutesInput * 60 + props.secondsInput
+    targetTime = props.inputMinutes * 60 + props.inputSeconds
     timerInterval = setInterval(() => { timerFn() }, 1000)
   }
 
@@ -55,8 +55,8 @@ const Timer: FC<TimerProps> = (props) => {
   }
 
   function reset (): void {
-    setMinutes(props.ascending ? 0 : props.minutesInput)
-    setSeconds(props.ascending ? 0 : props.secondsInput)
+    setMinutes(props.ascending ? 0 : props.inputMinutes)
+    setSeconds(props.ascending ? 0 : props.inputSeconds)
 
     setInternalTimer(0)
   }
