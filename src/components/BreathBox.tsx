@@ -6,38 +6,31 @@ import { SharedIntervals } from '../ts/sharedIntervals'
 import { vhToPx } from 'vhFunc'
 
 const BreathBox: FC = (prop: PropsWithChildren) => {
+  interface ActionStyle {
+    transitionDuration: string
+    transitionTimingFunction: string
+    fontSize: string
+    color: string
+  }
+
   const [action, setActionText] = useState<string>('Breath Box')
-  const [actionTransitionDuration, setActionTransitionDuration] = useState<string>('')
-  const [actionTransitionTimingFunction] = useState<string>(`${shared.BREATH_CURVE}`)
-  const [actionFontSize, setActionFontSize] = useState<string>('5vh')
-  const [actionColor, setActionColor] = useState<string>('#f6786e')
+  const [actionStyle, setActionStyle] = useState<ActionStyle>({
+    transitionDuration: '',
+    transitionTimingFunction: `${shared.BREATH_CURVE}`,
+    fontSize: '5vh',
+    color: '#f6786e'
+  })
 
-  const actionStyle = {
-    transitionDuration: actionTransitionDuration,
-    transitionTimingFunction: actionTransitionTimingFunction,
-    fontSize: actionFontSize,
-    color: actionColor
-  }
-
-  const [circleTransitionProperty, setCircleTransitionProperty] = useState<string>('')
-  const [circleTransitionDuration, setCircleTransitionDuration] = useState<string>('')
-  const [circleTransitionTimingFunction, setCircleTransitionTimingFunction] = useState<string>(`${shared.BREATH_CURVE}`)
-  const [circleColor, setCircleColor] = useState<string>(shared.INHALE_COLOR)
-  const [circleHeight, setCircleHeight] = useState<string>(shared.SMALL_CIRCLE_SIZE + 'vh')
-  const [circleWidth, setCircleWidth] = useState<string>(shared.SMALL_CIRCLE_SIZE + 'vh')
-  const [circleBottom, setCircleBottom] = useState<string>('-1vh')
-  const [circleLeft, setCircleLeft] = useState<string>('-1vh')
-
-  const circleStyle = {
-    transitionProperty: circleTransitionProperty,
-    transitionDuration: circleTransitionDuration,
-    transitionTimingFunction: circleTransitionTimingFunction,
-    backgroundColor: circleColor,
-    height: circleHeight,
-    width: circleWidth,
-    bottom: circleBottom,
-    left: circleLeft
-  }
+  const [circleStyle, setCircleStyle] = useState<CircleStyle>({
+    transitionProperty: '',
+    transitionDuration: '',
+    transitionTimingFunction: shared.BREATH_CURVE,
+    backgroundColor: shared.INHALE_COLOR,
+    height: `${shared.SMALL_CIRCLE_SIZE}vh`,
+    width: `${shared.SMALL_CIRCLE_SIZE}vh`,
+    bottom: '-1vh',
+    left: '-1vh'
+  })
 
   const startCountdownDecrement = (
     text: string,
