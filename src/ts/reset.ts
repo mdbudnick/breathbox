@@ -1,19 +1,32 @@
-import * as common from './shared'
+import * as shared from './shared'
 import { SharedIntervals } from './sharedIntervals'
 import { Timer } from './timer'
 
-export function resetCircle (): undefined {
-  common.circle.style.width = common.SMALL_CIRCLE_SIZE + 'vh'
-  common.circle.style.height = common.SMALL_CIRCLE_SIZE + 'vh'
-  common.circle.style.backgroundColor = common.RESET_ORANGE
-  common.circle.style.transitionProperty = ''
-  common.circle.style.transitionDuration = ''
-  common.circle.style.transitionTimingFunction = ''
-  common.circle.style.bottom = '-1vh'
-  common.circle.style.left = '-1vh'
+export interface CircleStyle {
+  transitionProperty: circleTransitionProperty
+  transitionDuration: circleTransitionDuration
+  transitionTimingFunction: circleTransitionTimingFunction
+  backgroundColor: circleColor
+  height: circleHeight
+  width: circleWidth
+  bottom: circleBottom
+  left: circleLeft
 }
 
-export function resetStartButton (): undefined {
+export function resetCircleStyle (): CircleStyle {
+  return {
+    transitionProperty: '',
+    transitionDuration: '',
+    transitionTimingFunction: shared.BREATH_CURVE,
+    backgroundColor: shared.INHALE_COLOR,
+    height: `${shared.SMALL_CIRCLE_SIZE}vh`,
+    width: `${shared.SMALL_CIRCLE_SIZE}vh`,
+    bottom: '-1vh',
+    left: '-1vh',
+  }
+}
+
+export function resetStartButton(): undefined {
   common.start.style.color = 'white'
   common.start.style.border = '4px solid green'
   common.start.style.backgroundColor = 'lightgreen'
@@ -22,15 +35,7 @@ export function resetStartButton (): undefined {
   common.start.classList.add('button')
 }
 
-export function resetActionText (text: string): undefined {
-  text = text ?? common.DEFAULT_ACTION_TEXT
-  common.action.textContent = text
-  common.action.style.fontSize = common.DEFAULT_ACTION_FONT_SIZE
-  common.action.style.color = common.RESET_ORANGE
-}
-resetActionText('')
-
-export function resetAnimations (): undefined {
+export function resetAnimations(): undefined {
   clearTimeout(SharedIntervals.inhaleAnimation!)
   SharedIntervals.inhaleAnimation = null
   clearInterval(SharedIntervals.inhaleCountdownInterval!)

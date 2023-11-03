@@ -6,7 +6,7 @@ import { Timer } from './timer'
 import {
   resetActionText,
   resetAnimations,
-  resetCircle,
+  resetCircleStyle,
   resetStartButton
 } from './reset'
 
@@ -61,7 +61,7 @@ function startBreathBox (): undefined {
   Timer.addPauseButton()
   Timer.addStopButton()
   resetActionText('')
-  resetCircle()
+  resetCircleStyle()
   animateBreathing()
 }
 
@@ -76,28 +76,13 @@ function checkTimer (): undefined {
   }
 }
 
-function stopBreathBox (): undefined {
-  started = false
-
-  Timer.reset()
-  clearTimeout(checkTimerInterval!)
-  resetAnimations()
-  resetActionText('')
-  resetCircle()
-  resetStartButton()
-  common.stopButton.style.display = 'none'
-  common.pauseButton.style.display = 'none'
-  common.config.classList.remove('hidden')
-  common.controlBar.classList.remove('top-buffer')
-}
-
 function pauseBreathBox (): undefined {
   started = false
 
   resetAnimations()
   resetActionText('Paused')
   common.action.style.color = '#ff8c00' // dark orange
-  resetCircle()
+  resetCircleStyle()
 
   common.pauseButton.style.color = 'green'
   common.pauseButton.textContent = '▶'

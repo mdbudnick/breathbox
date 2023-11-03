@@ -4,6 +4,7 @@ import Config from './Config'
 import * as shared from '../ts/shared'
 import { SharedIntervals } from '../ts/sharedIntervals'
 import { vhToPx } from 'vhFunc'
+import { type CircleStyle, resetCircleStyle } from 'reset'
 
 const BreathBox: FC = (prop: PropsWithChildren) => {
   interface ActionStyle {
