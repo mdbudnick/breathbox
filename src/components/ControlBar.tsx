@@ -15,12 +15,6 @@ interface ControlBarProps {
   resetCircleStyle: () => void
 }
 
-interface StartButtonStyle {
-  color: string
-  border: string
-  backgroundColor: string
-  borderRadius: string
-}
 const ControlBar: FC<ControlBarProps> = (props) => {
   const [paused, setPaused] = useState<boolean>(false)
 
@@ -45,12 +39,8 @@ const ControlBar: FC<ControlBarProps> = (props) => {
   return (
     <div className={props.started ? 'control-bar top-buffer' : 'control-bar'}>
       (started && !paused) || (paused && !started) ?
-      <Timer started={ props.started }/>
-      :
-      <div
-        className="start button"
-        onClick={props.startFn}
-      >
+      <Timer started={props.started} />:
+      <div className="start button" onClick={props.startFn}>
         Start
       </div>
       <img
