@@ -42,14 +42,14 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   }
 
   interface CircleStyle {
-    transitionProperty: circleTransitionProperty
-    transitionDuration: circleTransitionDuration
-    transitionTimingFunction: circleTransitionTimingFunction
-    backgroundColor: circleColor
-    height: circleHeight
-    width: circleWidth
-    bottom: circleBottom
-    left: circleLeft
+    transitionProperty: string
+    transitionDuration: string
+    transitionTimingFunction: string
+    backgroundColor: string
+    height: string
+    width: string
+    bottom: string
+    left: string
   }
 
   const [circleStyle, setCircleStyle] = useState<CircleStyle>({
