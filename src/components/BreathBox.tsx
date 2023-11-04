@@ -35,11 +35,11 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     transitionDuration: '',
     transitionTimingFunction: `${BREATH_CURVE}`,
     fontSize: '5vh',
-    color: '#f6786e'
+    color: RESET_ORANGE
   })
 
   function resetActionText (): void {
-    setActionText('')
+    setActionText('Breath Box')
     setActionStyle({
       ...actionStyle,
       fontSize: DEFAULT_ACTION_FONT_SIZE,
