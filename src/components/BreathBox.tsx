@@ -129,15 +129,22 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   }
 
   const boxRef = useRef<HTMLDivElement>(null)
-  let boxWidth: number | undefined
-  let boxHeight: number | undefined
+  const [boxSize, setBoxSize] = useState({ width: 0, height: 0 })
   useEffect(() => {
-    const boxRect = boxRef.current?.getBoundingClientRect()
-    boxWidth = boxRect?.width
-    console.log(`boxWidth of the div: ${boxWidth}px`)
+    function updateDivSize (): void {
+      if ((boxRef.current) != null) {
+        const { width, height } = boxRef.current.getBoundingClientRect()
+        setBoxSize({ width, height })
+      }
+    }
+    updateDivSize()
+    console.log(`boxWidth of the div: ${boxSize.width}px`)
+    console.log(`boxHeight of the div: ${boxSize.height}px`)
 
-    boxHeight = boxRect?.width
-    console.log(`boxHeight of the div: ${boxHeight}px`)
+    window.addEventListener('resize', updateDivSize)
+    return () => {
+      window.removeEventListener('resize', updateDivSize)
+    }
   }, [])
 
   const animateBreathing = (): void => {
@@ -160,7 +167,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
       height: `${LARGE_CIRCLE_SIZE}vh`,
       width: `${LARGE_CIRCLE_SIZE}vh`,
       bottom: `${
-        box.clientHeight - vhToPx(LARGE_CIRCLE_SIZE) / 2
+        boxSize.height - vhToPx(LARGE_CIRCLE_SIZE) / 2
       }px`,
       left: `-${LARGE_CIRCLE_SIZE / 2}vh`
     })
@@ -177,7 +184,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
           transitionDuration: `${holdDuration}s`,
           transitionTimingFunction: 'linear',
           left: `${
-            boxWidth! - vhToPx(LARGE_CIRCLE_SIZE) / 2
+            boxSize.width - vhToPx(LARGE_CIRCLE_SIZE) / 2
           }px`
         })
 
@@ -203,7 +210,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
               width: `${SMALL_CIRCLE_SIZE}vh`,
               bottom: `-${SMALL_CIRCLE_SIZE / 2}vh`,
               left: `${
-                boxHeight! - vhToPx(SMALL_CIRCLE_SIZE) / 2
+                boxSize.height - vhToPx(SMALL_CIRCLE_SIZE) / 2
               }px`
             })
 
