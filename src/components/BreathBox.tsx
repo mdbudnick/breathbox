@@ -255,7 +255,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     animateBreathing()
   }
 
-  function stopBreathBox (): undefined {
+  function stopBreathBox (): void {
     setStarted(false)
     SharedIntervals.resetAnimations()
     resetActionText()
