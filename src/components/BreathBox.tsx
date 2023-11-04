@@ -69,7 +69,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     left: '-1vh'
   })
 
-  function resetCircleStyle(): void {
+  function resetCircleStyle (): void {
     setCircleStyle({
       transitionProperty: '',
       transitionDuration: '',
@@ -136,23 +136,13 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   }
 
   const boxRef = useRef<HTMLDivElement>(null)
-  const [boxSize, setBoxSize] = useState({ width: 0, height: 0 })
-  useEffect(() => {
-    function updateDivSize(): void {
-      if (boxRef.current != null) {
-        const { width, height } = boxRef.current.getBoundingClientRect()
-        setBoxSize({ width, height })
-      }
+  let boxSize = { width: 0, height: 0 }
+  function getBoxSize (): void {
+    if (boxRef.current != null) {
+      const { width, height } = boxRef.current.getBoundingClientRect()
+      boxSize = { width, height }
     }
-    updateDivSize()
-    console.log(`boxWidth of the div: ${boxSize.width}px`)
-    console.log(`boxHeight of the div: ${boxSize.height}px`)
-
-    window.addEventListener('resize', updateDivSize)
-    return () => {
-      window.removeEventListener('resize', updateDivSize)
-    }
-  }, [])
+  }
 
   const animateBreathing = (): void => {
     // Inhale (up)
@@ -165,6 +155,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
       fontSize: `${INHALE_SIZE}vh`,
       color: INHALE_COLOR
     })
+    getBoxSize()
     setCircleStyle({
       ...circleStyle,
       transitionProperty: 'height width background-color left bottom',
@@ -183,12 +174,13 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
         SharedIntervals.setHoldInCountdownInterval(
           startCountdownDecrement('Hold', holdDuration)
         )
-
+        getBoxSize()
         setCircleStyle({
           ...circleStyle,
           transitionDuration: `${holdDuration}s`,
           transitionTimingFunction: 'linear',
-          left: `${boxSize.width - vhToPx(LARGE_CIRCLE_SIZE) / 2}px`
+          bottom: `${boxSize.height - vhToPx(SMALL_CIRCLE_SIZE) / 2}px`,
+          left: `${boxSize.width - vhToPx(SMALL_CIRCLE_SIZE) / 2}px`
         })
 
         // Exhale (down)
@@ -204,6 +196,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
               fontSize: `${EXHALE_SIZE}vh`,
               color: EXHALE_COLOR
             })
+            getBoxSize()
             setCircleStyle({
               ...circleStyle,
               transitionProperty: 'height width color left bottom',
@@ -213,7 +206,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
               height: `${SMALL_CIRCLE_SIZE}vh`,
               width: `${SMALL_CIRCLE_SIZE}vh`,
               bottom: `-${SMALL_CIRCLE_SIZE / 2}vh`,
-              left: `${boxSize.height - vhToPx(SMALL_CIRCLE_SIZE) / 2}px`
+              left: `${boxSize.width - vhToPx(SMALL_CIRCLE_SIZE) / 2}px`
             })
 
             // Hold out (left)
@@ -222,7 +215,6 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
                 SharedIntervals.setHoldOutCountdownInterval(
                   startCountdownDecrement('Hold', holdDuration)
                 )
-
                 setCircleStyle({
                   ...circleStyle,
                   transitionDuration: `${holdDuration}s`,
