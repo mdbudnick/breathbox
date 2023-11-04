@@ -27,6 +27,7 @@ const ControlBar: FC<ControlBarProps> = (props) => {
   const { inputMinutes, inputSeconds } = props.configInput
   let targetTime = 0
   function checkTimer (): void {
+    setInternalTimer(internalTimer + 1)
     if (props.started && internalTimer >= targetTime) {
       props.setTimeReached(true)
       void tone.play()
@@ -49,6 +50,7 @@ const ControlBar: FC<ControlBarProps> = (props) => {
     if (checkTimerInterval !== null) {
       clearInterval(checkTimerInterval)
     }
+    setInternalTimer(0)
     props.setTimeReached(false)
     props.stopFn()
   }
@@ -70,8 +72,6 @@ const ControlBar: FC<ControlBarProps> = (props) => {
         paused={props.paused}
         setTimeReached={props.setTimeReached}
         stopFn={stopBreathBox}
-        internalTimer={internalTimer}
-        setInternalTimer={setInternalTimer}
         inputMinutes={props.configInput.inputMinutes}
         inputSeconds={props.configInput.inputSeconds}
         ascending={props.configInput.ascending}

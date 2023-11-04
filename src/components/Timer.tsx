@@ -1,12 +1,10 @@
-import React, { useEffect, useState, type FC } from 'react'
+import React, { useState, type FC } from 'react'
 
 interface TimerProps {
   started: boolean
   paused: boolean
   setTimeReached: React.Dispatch<React.SetStateAction<boolean>>
   stopFn: () => void
-  internalTimer: number
-  setInternalTimer: React.Dispatch<React.SetStateAction<number>>
   inputMinutes: number
   inputSeconds: number
   ascending: boolean
@@ -14,8 +12,10 @@ interface TimerProps {
 
 const Timer: FC<TimerProps> = (props) => {
   const [timerText, setTimerText] = useState<string>('')
-  const [minutes, setMinutes] = useState<number>(10)
-  const [seconds, setSeconds] = useState<number>(0)
+  let minutes = props.inputMinutes
+  let seconds = props.inputSeconds
+  reset()
+  const [timerStarted, setTimerStarted] = useState<boolean>(false)
 
   let timerInterval: ReturnType<typeof setInterval> | null
   function startTimer (): void {
@@ -37,44 +37,41 @@ const Timer: FC<TimerProps> = (props) => {
   }
 
   function incrementTimer (): void {
-    setSeconds(seconds + 1)
+    ++seconds
     if (seconds === 60) {
-      setMinutes(minutes + 1)
-      setSeconds(0)
+      ++minutes
+      seconds = 0
     }
     setTimerText('' + minutes + ':' + (seconds < 10 ? '0' + seconds : seconds))
-    props.setInternalTimer(props.internalTimer + 1)
   }
 
   function decrementTimer (): void {
     if (seconds <= 0) {
-      setMinutes(minutes - 1)
-      setSeconds(60)
+      --minutes
+      seconds = 60
     }
-    setSeconds(seconds - 1)
+    --seconds
     setTimerText('' + minutes + ':' + (seconds < 10 ? '0' + seconds : seconds))
-    props.setInternalTimer(props.internalTimer + 1)
   }
 
   function reset (): void {
-    setMinutes(props.ascending ? 0 : props.inputMinutes)
-    setSeconds(props.ascending ? 0 : props.inputSeconds)
-
-    props.setInternalTimer(0)
+    minutes = props.ascending ? 0 : props.inputMinutes
+    seconds = props.ascending ? 0 : props.inputSeconds
   }
 
-  useEffect(() => {
-    if (props.started && !props.paused) {
-      startTimer()
-    } else if (props.started && props.paused) {
-      stopTimer()
-    }
+  if (props.started && !props.paused && !timerStarted) {
+    setTimerStarted(true)
+    startTimer()
+  } else if (props.started && props.paused && timerStarted) {
+    setTimerStarted(false)
+    stopTimer()
+  }
 
-    if (!props.started) {
-      stopTimer()
-      reset()
-    }
-  }, [props.started, props.paused])
+  if (!props.started && timerStarted) {
+    setTimerStarted(false)
+    stopTimer()
+    reset()
+  }
 
   return <div className="timer">{timerText}</div>
 }
