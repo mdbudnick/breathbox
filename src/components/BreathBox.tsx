@@ -1,7 +1,6 @@
 import React, { useState, type FC, type PropsWithChildren } from 'react'
 import ControlBar from './ControlBar'
 import Config from './Config'
-import * as shared from '../ts/shared'
 import { SharedIntervals } from '../ts/sharedIntervals'
 import { vhToPx } from 'vhFunc'
 import { resetAnimations } from 'reset'
@@ -11,11 +10,25 @@ import {
   type ConfigInput
 } from '../ts/shared'
 
+const INHALE_COLOR = '#0f5362'
+const EXHALE_COLOR = '#c08845'
+const RESET_ORANGE = '#f6786e'
+
+const LARGE_CIRCLE_SIZE = 6
+const SMALL_CIRCLE_SIZE = 2
+
+const SMOOTH_PATH_TIMING = 1000
+const BREATH_CURVE = 'cubic-bezier(.13,.38,.48,1.02)'
+
+const INHALE_SIZE = 8
+const EXHALE_SIZE = 4
+const DEFAULT_ACTION_FONT_SIZE = '5vh'
+
 const BreathBox: FC = (prop: PropsWithChildren) => {
   const [action, setActionText] = useState<string>('Breath Box')
   const [actionStyle, setActionStyle] = useState<ActionStyle>({
     transitionDuration: '',
-    transitionTimingFunction: `${shared.BREATH_CURVE}`,
+    transitionTimingFunction: `${BREATH_CURVE}`,
     fontSize: '5vh',
     color: '#f6786e'
   })
@@ -24,8 +37,8 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     setActionText('')
     setActionStyle({
       ...actionStyle,
-      fontSize: shared.DEFAULT_ACTION_FONT_SIZE,
-      color: shared.RESET_ORANGE
+      fontSize: DEFAULT_ACTION_FONT_SIZE,
+      color: RESET_ORANGE
     })
   }
 
@@ -43,10 +56,10 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   const [circleStyle, setCircleStyle] = useState<CircleStyle>({
     transitionProperty: '',
     transitionDuration: '',
-    transitionTimingFunction: shared.BREATH_CURVE,
-    backgroundColor: shared.INHALE_COLOR,
-    height: `${shared.SMALL_CIRCLE_SIZE}vh`,
-    width: `${shared.SMALL_CIRCLE_SIZE}vh`,
+    transitionTimingFunction: BREATH_CURVE,
+    backgroundColor: INHALE_COLOR,
+    height: `${SMALL_CIRCLE_SIZE}vh`,
+    width: `${SMALL_CIRCLE_SIZE}vh`,
     bottom: '-1vh',
     left: '-1vh'
   })
@@ -55,10 +68,10 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     setCircleStyle({
       transitionProperty: '',
       transitionDuration: '',
-      transitionTimingFunction: shared.BREATH_CURVE,
-      backgroundColor: shared.INHALE_COLOR,
-      height: `${shared.SMALL_CIRCLE_SIZE}vh`,
-      width: `${shared.SMALL_CIRCLE_SIZE}vh`,
+      transitionTimingFunction: BREATH_CURVE,
+      backgroundColor: INHALE_COLOR,
+      height: `${SMALL_CIRCLE_SIZE}vh`,
+      width: `${SMALL_CIRCLE_SIZE}vh`,
       bottom: '-1vh',
       left: '-1vh'
     })
@@ -119,33 +132,33 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   const animateBreathing = (): void => {
     // Inhale (up)
     SharedIntervals.setInhaleCountdownInterval(
-      startCountdownDecrement(shared.INHALE, breathDuration)
+      startCountdownDecrement('Inhale', breathDuration)
     )
     setActionStyle({
       ...actionStyle,
       transitionDuration: `${breathDuration}s`,
-      fontSize: `${shared.INHALE_SIZE}vh`,
-      color: shared.INHALE_COLOR
+      fontSize: `${INHALE_SIZE}vh`,
+      color: INHALE_COLOR
     })
     setCircleStyle({
       ...circleStyle,
       transitionProperty: 'height width background-color left bottom',
       transitionDuration: `${breathDuration}s`,
-      transitionTimingFunction: shared.BREATH_CURVE,
-      backgroundColor: shared.INHALE_COLOR,
-      height: `${shared.LARGE_CIRCLE_SIZE}vh`,
-      width: `${shared.LARGE_CIRCLE_SIZE}vh`,
+      transitionTimingFunction: BREATH_CURVE,
+      backgroundColor: INHALE_COLOR,
+      height: `${LARGE_CIRCLE_SIZE}vh`,
+      width: `${LARGE_CIRCLE_SIZE}vh`,
       bottom: `${
-        shared.box.clientHeight - vhToPx(shared.LARGE_CIRCLE_SIZE) / 2
+        box.clientHeight - vhToPx(LARGE_CIRCLE_SIZE) / 2
       }px`,
-      left: `-${shared.LARGE_CIRCLE_SIZE / 2}vh`
+      left: `-${LARGE_CIRCLE_SIZE / 2}vh`
     })
 
     // Hold In (right)
     SharedIntervals.setHoldInAnimation(
       setTimeout(() => {
         SharedIntervals.setHoldInCountdownInterval(
-          startCountdownDecrement(shared.HOLD, holdDuration)
+          startCountdownDecrement('Hold', holdDuration)
         )
 
         setCircleStyle({
@@ -153,7 +166,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
           transitionDuration: `${holdDuration}s`,
           transitionTimingFunction: 'linear',
           left: `${
-            shared.box.clientWidth - vhToPx(shared.LARGE_CIRCLE_SIZE) / 2
+            box.clientWidth - vhToPx(LARGE_CIRCLE_SIZE) / 2
           }px`
         })
 
@@ -161,25 +174,25 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
         SharedIntervals.setExhaleAnimation(
           setTimeout(() => {
             SharedIntervals.setExhaleCountdownInterval(
-              startCountdownDecrement(shared.EXHALE, breathDuration)
+              startCountdownDecrement('Exhale', breathDuration)
             )
 
             setActionStyle({
               ...actionStyle,
-              fontSize: `${shared.EXHALE_SIZE}vh`,
-              color: shared.EXHALE_COLOR
+              fontSize: `${EXHALE_SIZE}vh`,
+              color: EXHALE_COLOR
             })
             setCircleStyle({
               ...circleStyle,
               transitionProperty: 'height width color left bottom',
               transitionDuration: `${breathDuration}s`,
-              transitionTimingFunction: shared.BREATH_CURVE,
-              backgroundColor: shared.EXHALE_COLOR,
-              height: `${shared.SMALL_CIRCLE_SIZE}vh`,
-              width: `${shared.SMALL_CIRCLE_SIZE}vh`,
-              bottom: `-${shared.SMALL_CIRCLE_SIZE / 2}vh`,
+              transitionTimingFunction: BREATH_CURVE,
+              backgroundColor: EXHALE_COLOR,
+              height: `${SMALL_CIRCLE_SIZE}vh`,
+              width: `${SMALL_CIRCLE_SIZE}vh`,
+              bottom: `-${SMALL_CIRCLE_SIZE / 2}vh`,
               left: `${
-                shared.box.clientWidth - vhToPx(shared.SMALL_CIRCLE_SIZE) / 2
+                box.clientWidth - vhToPx(SMALL_CIRCLE_SIZE) / 2
               }px`
             })
 
@@ -187,27 +200,27 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
             SharedIntervals.setHoldOutAnimation(
               setTimeout(() => {
                 SharedIntervals.setHoldOutCountdownInterval(
-                  startCountdownDecrement(shared.HOLD, holdDuration)
+                  startCountdownDecrement('Hold', holdDuration)
                 )
 
                 setCircleStyle({
                   ...circleStyle,
                   transitionDuration: `${holdDuration}s`,
                   transitionTimingFunction: 'linear',
-                  bottom: `-${shared.SMALL_CIRCLE_SIZE / 2}vh`,
-                  left: `-${shared.SMALL_CIRCLE_SIZE / 2}vh`
+                  bottom: `-${SMALL_CIRCLE_SIZE / 2}vh`,
+                  left: `-${SMALL_CIRCLE_SIZE / 2}vh`
                 })
 
                 SharedIntervals.setInhaleAnimation(
                   setTimeout(() => {
                     animateBreathing() // Restart the cycle
-                  }, holdDuration * shared.SMOOTH_PATH_TIMING)
+                  }, holdDuration * SMOOTH_PATH_TIMING)
                 )
-              }, breathDuration * shared.SMOOTH_PATH_TIMING)
+              }, breathDuration * SMOOTH_PATH_TIMING)
             )
-          }, holdDuration * shared.SMOOTH_PATH_TIMING)
+          }, holdDuration * SMOOTH_PATH_TIMING)
         )
-      }, breathDuration * shared.SMOOTH_PATH_TIMING)
+      }, breathDuration * SMOOTH_PATH_TIMING)
     )
   }
 
