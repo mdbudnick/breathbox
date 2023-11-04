@@ -19,8 +19,9 @@ const Config: FC<ControlBarProps> = (props) => {
           min="1"
           max="10"
           value={props.configInput.breathDuration}
+          className={props.configInput.validBreathHoldInput ? undefined : 'red'}
           onChange={(e) => {
-            props.configSetters.setBreathDuration(Number(e.target.value))
+            props.configSetters.setBreathDuration(Number(e.target.value ?? 0))
           }}
         />
       </div>
@@ -32,8 +33,9 @@ const Config: FC<ControlBarProps> = (props) => {
           min="1"
           max="10"
           value={props.configInput.holdDuration}
+          className={props.configInput.validHoldInput ? undefined : 'red'}
           onChange={(e) => {
-            props.configSetters.setHoldDuration(Number(e.target.value))
+            props.configSetters.setHoldDuration(Number(e.target.value ?? 0))
           }}
         />
       </div>
@@ -45,8 +47,9 @@ const Config: FC<ControlBarProps> = (props) => {
           max="45"
           value={props.configInput.inputSeconds}
           step="15"
+          className={props.configInput.validTimeInput ? undefined : 'red'}
           onChange={(e) => {
-            props.configSetters.setInputSeconds(Number(e.target.value))
+            props.configSetters.setInputSeconds(Number(e.target.value ?? 0))
           }}
         />
         <label htmlFor="countdown-minutes">Time (mm:ss)</label>
@@ -56,8 +59,9 @@ const Config: FC<ControlBarProps> = (props) => {
           min="0"
           max="60"
           value={props.configInput.inputMinutes}
+          className={props.configInput.validTimeInput ? undefined : 'red'}
           onChange={(e) => {
-            props.configSetters.setInputMinutes(Number(e.target.value))
+            props.configSetters.setInputMinutes(Number(e.target.value ?? 0))
           }}
         />
       </div>
