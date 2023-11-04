@@ -200,6 +200,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
 
             setActionStyle({
               ...actionStyle,
+              transitionDuration: `${breathDuration}s`,
               fontSize: `${EXHALE_SIZE}vh`,
               color: EXHALE_COLOR
             })
