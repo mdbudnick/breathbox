@@ -1,4 +1,10 @@
-import React, { useEffect, useRef, useState, type FC, type PropsWithChildren } from 'react'
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  type FC,
+  type PropsWithChildren
+} from 'react'
 import ControlBar from './ControlBar'
 import Config from './Config'
 import { SharedIntervals } from '../ts/sharedIntervals'
@@ -132,7 +138,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   const [boxSize, setBoxSize] = useState({ width: 0, height: 0 })
   useEffect(() => {
     function updateDivSize (): void {
-      if ((boxRef.current) != null) {
+      if (boxRef.current != null) {
         const { width, height } = boxRef.current.getBoundingClientRect()
         setBoxSize({ width, height })
       }
@@ -166,9 +172,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
       backgroundColor: INHALE_COLOR,
       height: `${LARGE_CIRCLE_SIZE}vh`,
       width: `${LARGE_CIRCLE_SIZE}vh`,
-      bottom: `${
-        boxSize.height - vhToPx(LARGE_CIRCLE_SIZE) / 2
-      }px`,
+      bottom: `${boxSize.height - vhToPx(LARGE_CIRCLE_SIZE) / 2}px`,
       left: `-${LARGE_CIRCLE_SIZE / 2}vh`
     })
 
@@ -183,9 +187,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
           ...circleStyle,
           transitionDuration: `${holdDuration}s`,
           transitionTimingFunction: 'linear',
-          left: `${
-            boxSize.width - vhToPx(LARGE_CIRCLE_SIZE) / 2
-          }px`
+          left: `${boxSize.width - vhToPx(LARGE_CIRCLE_SIZE) / 2}px`
         })
 
         // Exhale (down)
@@ -209,9 +211,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
               height: `${SMALL_CIRCLE_SIZE}vh`,
               width: `${SMALL_CIRCLE_SIZE}vh`,
               bottom: `-${SMALL_CIRCLE_SIZE / 2}vh`,
-              left: `${
-                boxSize.height - vhToPx(SMALL_CIRCLE_SIZE) / 2
-              }px`
+              left: `${boxSize.height - vhToPx(SMALL_CIRCLE_SIZE) / 2}px`
             })
 
             // Hold out (left)
