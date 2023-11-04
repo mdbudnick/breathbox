@@ -68,8 +68,9 @@ const ControlBar: FC<ControlBarProps> = (props) => {
 
   return (
     <div className={props.started ? 'control-bar top-buffer' : 'control-bar'}>
-      (started && !paused) || (paused && !started) ?
-      <Timer
+      { (props.started && !paused) || (paused && !props.started)
+        ? <div>
+        <Timer
         started={props.started}
         setTimeReached={props.setTimeReached}
         stopFn={stopBreathBox}
@@ -79,21 +80,20 @@ const ControlBar: FC<ControlBarProps> = (props) => {
         inputSeconds={props.configInput.inputSeconds}
         ascending={props.configInput.ascending}
       />
-      :
-      <div className="start button" onClick={startBreathBox}>
-        Start
-      </div>
       <img
         className="pause button"
-        src="static/media/play-pause.svg"
-        style={{ display: props.started ? 'none' : 'flex' }}
+        src="img/play-pause.svg"
+        style={{ display: props.started ? 'flex' : 'none' }}
         onClick={paused ? resumeBreathBox : pauseBreathBox}
       ></img>
       <div
         className="stop button"
-        style={{ display: props.started ? 'none' : 'flex' }}
+        style={{ display: props.started ? 'flex' : 'none' }}
         onClick={stopBreathBox}
-      ></div>
+      ></div></div>
+        : <div className="start button" onClick={startBreathBox}>
+          Start
+        </div>}
     </div>
   )
 }
