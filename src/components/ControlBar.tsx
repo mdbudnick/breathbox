@@ -7,10 +7,12 @@ import { type ActionStyle, type ConfigInput } from '../ts/shared'
 interface ControlBarProps {
   started: boolean
   setStarted: React.Dispatch<React.SetStateAction<boolean>>
+  paused: boolean
   timeReached: boolean
   setTimeReached: React.Dispatch<React.SetStateAction<boolean>>
   startFn: () => void
   stopFn: () => void
+  pauseFn: () => void
   actionStyle: ActionStyle
   setActionStyle: React.Dispatch<React.SetStateAction<ActionStyle>>
   setActionText: React.Dispatch<React.SetStateAction<string>>
@@ -21,7 +23,6 @@ interface ControlBarProps {
 const tone = new Audio('assets/audio/tone.mp3')
 
 const ControlBar: FC<ControlBarProps> = (props) => {
-  const [paused, setPaused] = useState<boolean>(false)
   const [internalTimer, setInternalTimer] = useState<number>(0)
   const { inputMinutes, inputSeconds } = props.configInput
   let targetTime = 0
@@ -48,30 +49,25 @@ const ControlBar: FC<ControlBarProps> = (props) => {
     if (checkTimerInterval !== null) {
       clearInterval(checkTimerInterval)
     }
-    setPaused(false)
     props.setTimeReached(false)
     props.stopFn()
   }
 
   function pauseBreathBox (): void {
-    setPaused(false)
-    props.setStarted(false)
-    props.setActionText('Paused')
-    props.setActionStyle({ ...props.actionStyle, color: '#ff8c00' })
-    props.resetCircleStyle()
+    props.pauseFn()
   }
 
   function resumeBreathBox (): void {
-    setPaused(true)
-    props.startFn()
+    startBreathBox()
   }
 
   return (
     <div className={props.started ? 'control-bar top-buffer' : 'control-bar'}>
-      { (props.started && !paused) || (paused && !props.started)
+      { props.started
         ? <div>
         <Timer
         started={props.started}
+        paused={props.paused}
         setTimeReached={props.setTimeReached}
         stopFn={stopBreathBox}
         internalTimer={internalTimer}
@@ -84,7 +80,7 @@ const ControlBar: FC<ControlBarProps> = (props) => {
         className="pause button"
         src="img/play-pause.svg"
         style={{ display: props.started ? 'flex' : 'none' }}
-        onClick={paused ? resumeBreathBox : pauseBreathBox}
+        onClick={props.paused ? resumeBreathBox : pauseBreathBox}
       ></img>
       <div
         className="stop button"

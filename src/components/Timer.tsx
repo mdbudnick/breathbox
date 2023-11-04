@@ -2,6 +2,7 @@ import React, { useEffect, useState, type FC } from 'react'
 
 interface TimerProps {
   started: boolean
+  paused: boolean
   setTimeReached: React.Dispatch<React.SetStateAction<boolean>>
   stopFn: () => void
   internalTimer: number
@@ -29,7 +30,6 @@ const Timer: FC<TimerProps> = (props) => {
     if (timerInterval !== null) {
       clearInterval(timerInterval)
     }
-    reset()
   }
 
   function timerFn (): void {
@@ -64,12 +64,17 @@ const Timer: FC<TimerProps> = (props) => {
   }
 
   useEffect(() => {
-    if (props.started) {
+    if (props.started && !props.paused) {
       startTimer()
-    } else {
+    } else if (props.started && props.paused) {
       stopTimer()
     }
-  }, [props.started])
+
+    if (!props.started) {
+      stopTimer()
+      reset()
+    }
+  }, [props.started, props.paused])
 
   return <div className="timer">{timerText}</div>
 }

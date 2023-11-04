@@ -105,6 +105,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   }
 
   const [started, setStarted] = useState<boolean>(false)
+  const [paused, setPaused] = useState<boolean>(false)
   const [timeReached, setTimeReached] = useState<boolean>(false)
   // Config Variables
   const [breathDuration, setBreathDuration] = useState<number>(3)
@@ -265,10 +266,11 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   }
 
   function startBreathBox (): void {
-    if (!validInputs() || started) {
+    if (!validInputs() || (started && !paused)) {
       return
     }
     setStarted(true)
+    setPaused(false)
     resetActionText()
     resetCircleStyle()
     animateBreathing()
@@ -276,8 +278,17 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
 
   function stopBreathBox (): void {
     setStarted(false)
+    setPaused(false)
     SharedIntervals.resetAnimations()
     resetActionText()
+    resetCircleStyle()
+  }
+
+  function pauseBreathBox (): void {
+    SharedIntervals.resetAnimations()
+    setPaused(true)
+    setActionText('Paused')
+    setActionStyle({ ...actionStyle, color: '#ff8c00' })
     resetCircleStyle()
   }
 
@@ -287,10 +298,12 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
         <ControlBar
           started={started}
           setStarted={setStarted}
+          paused={paused}
           timeReached={timeReached}
           setTimeReached={setTimeReached}
           startFn={startBreathBox}
           stopFn={stopBreathBox}
+          pauseFn={pauseBreathBox}
           actionStyle={actionStyle}
           setActionStyle={setActionStyle}
           setActionText={setActionText}
