@@ -90,6 +90,25 @@ class Timeouts {
     this.exhaleCountdownInterval = interval
     return true
   }
+
+  resetAnimations (): void {
+    clearTimeout(this.inhaleAnimation!)
+    this.inhaleAnimation = null
+    clearInterval(this.inhaleCountdownInterval!)
+    this.inhaleCountdownInterval = null
+    clearTimeout(this.holdInAnimation!)
+    this.holdInAnimation = null
+    clearInterval(this.holdInCountdownInterval!)
+    this.holdInCountdownInterval = null
+    clearTimeout(this.exhaleAnimation!)
+    this.exhaleAnimation = null
+    clearInterval(this.exhaleCountdownInterval!)
+    this.exhaleCountdownInterval = null
+    clearTimeout(this.holdOutAnimation!)
+    this.holdOutAnimation = null
+    clearInterval(this.holdOutCountdownInterval!)
+    this.holdOutCountdownInterval = null
+  }
 }
 
 export const SharedIntervals = new Timeouts()

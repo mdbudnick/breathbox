@@ -3,7 +3,6 @@ import ControlBar from './ControlBar'
 import Config from './Config'
 import { SharedIntervals } from '../ts/sharedIntervals'
 import { vhToPx } from 'vhFunc'
-import { resetAnimations } from 'reset'
 import {
   type ActionStyle,
   type ConfigSetters,
@@ -258,7 +257,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
 
   function stopBreathBox (): undefined {
     setStarted(false)
-    resetAnimations()
+    SharedIntervals.resetAnimations()
     resetActionText()
     resetCircleStyle()
   }
