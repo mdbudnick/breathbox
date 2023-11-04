@@ -1,4 +1,4 @@
-import React, { useState, type FC, type PropsWithChildren } from 'react'
+import React, { useEffect, useRef, useState, type FC, type PropsWithChildren } from 'react'
 import ControlBar from './ControlBar'
 import Config from './Config'
 import { SharedIntervals } from '../ts/sharedIntervals'
@@ -128,6 +128,18 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     setCountDirection
   }
 
+  const boxRef = useRef<HTMLDivElement>(null)
+  let boxWidth: number | undefined
+  let boxHeight: number | undefined
+  useEffect(() => {
+    const boxRect = boxRef.current?.getBoundingClientRect()
+    boxWidth = boxRect?.width
+    console.log(`boxWidth of the div: ${boxWidth}px`)
+
+    boxHeight = boxRect?.width
+    console.log(`boxHeight of the div: ${boxHeight}px`)
+  }, [])
+
   const animateBreathing = (): void => {
     // Inhale (up)
     SharedIntervals.setInhaleCountdownInterval(
@@ -165,7 +177,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
           transitionDuration: `${holdDuration}s`,
           transitionTimingFunction: 'linear',
           left: `${
-            box.clientWidth - vhToPx(LARGE_CIRCLE_SIZE) / 2
+            boxWidth! - vhToPx(LARGE_CIRCLE_SIZE) / 2
           }px`
         })
 
@@ -191,7 +203,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
               width: `${SMALL_CIRCLE_SIZE}vh`,
               bottom: `-${SMALL_CIRCLE_SIZE / 2}vh`,
               left: `${
-                box.clientWidth - vhToPx(SMALL_CIRCLE_SIZE) / 2
+                boxHeight! - vhToPx(SMALL_CIRCLE_SIZE) / 2
               }px`
             })
 
@@ -263,7 +275,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   }
 
   return (
-    <div className="breath-box">
+    <div className="breath-box" ref={boxRef}>
       <div className="breath-box-inner">
         <ControlBar
           started={started}
