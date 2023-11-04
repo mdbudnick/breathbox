@@ -38,7 +38,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     color: RESET_ORANGE
   })
 
-  function resetActionText (): void {
+  function resetActionText(): void {
     setActionText('Breath Box')
     setActionStyle({
       ...actionStyle,
@@ -69,7 +69,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     left: '-1vh'
   })
 
-  function resetCircleStyle (): void {
+  function resetCircleStyle(): void {
     setCircleStyle({
       transitionProperty: '',
       transitionDuration: '',
@@ -138,7 +138,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   const boxRef = useRef<HTMLDivElement>(null)
   const [boxSize, setBoxSize] = useState({ width: 0, height: 0 })
   useEffect(() => {
-    function updateDivSize (): void {
+    function updateDivSize(): void {
       if (boxRef.current != null) {
         const { width, height } = boxRef.current.getBoundingClientRect()
         setBoxSize({ width, height })
@@ -243,7 +243,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     )
   }
 
-  function validInputs (): boolean {
+  function validInputs(): boolean {
     if (inputMinutes === 0 && inputSeconds === 0) {
       setValidTimeInput(false)
     } else {
@@ -265,7 +265,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     return validTimeInput && validBreathHoldInput && validHoldInput
   }
 
-  function startBreathBox (): void {
+  function startBreathBox(): void {
     if (!validInputs() || (started && !paused)) {
       return
     }
@@ -276,7 +276,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     animateBreathing()
   }
 
-  function stopBreathBox (): void {
+  function stopBreathBox(): void {
     setStarted(false)
     setPaused(false)
     SharedIntervals.resetAnimations()
@@ -284,7 +284,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     resetCircleStyle()
   }
 
-  function pauseBreathBox (): void {
+  function pauseBreathBox(): void {
     SharedIntervals.resetAnimations()
     setPaused(true)
     setActionText('Paused')
@@ -292,29 +292,34 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     resetCircleStyle()
   }
 
+  const ControlBarComponent = <ControlBar
+    key='controlBar'
+    started={started}
+    setStarted={setStarted}
+    paused={paused}
+    timeReached={timeReached}
+    setTimeReached={setTimeReached}
+    startFn={startBreathBox}
+    stopFn={stopBreathBox}
+    pauseFn={pauseBreathBox}
+    actionStyle={actionStyle}
+    setActionStyle={setActionStyle}
+    setActionText={setActionText}
+    resetCircleStyle={resetCircleStyle}
+    configInput={configInput}
+  />
+  const ConfigComponent = <Config
+    key='config'
+    started={started}
+    configInput={configInput}
+    configSetters={configSetters}
+  />
+
   return (
     <div className="breath-box" ref={boxRef}>
       <div className="breath-box-inner">
-        <ControlBar
-          started={started}
-          setStarted={setStarted}
-          paused={paused}
-          timeReached={timeReached}
-          setTimeReached={setTimeReached}
-          startFn={startBreathBox}
-          stopFn={stopBreathBox}
-          pauseFn={pauseBreathBox}
-          actionStyle={actionStyle}
-          setActionStyle={setActionStyle}
-          setActionText={setActionText}
-          resetCircleStyle={resetCircleStyle}
-          configInput={configInput}
-        />
-        <Config
-          started={started}
-          configInput={configInput}
-          configSetters={configSetters}
-        />
+        {
+          started ? ControlBarComponent : [ControlBarComponent, ConfigComponent]}
         <div className="action" style={actionStyle}>
           {action}
         </div>
