@@ -90,8 +90,20 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   const [inputMinutes, setInputMinutes] = useState<number>(10)
   const [inputSeconds, setInputSeconds] = useState<number>(0)
   const [ascending, setCountDirection] = useState<boolean>(false)
-  const configInput = { breathDuration, holdDuration, inputMinutes, inputSeconds, ascending }
-  const configSetters = { setBreathDuration, setHoldDuration, setInputMinutes, setInputSeconds, setCountDirection }
+  const configInput = {
+    breathDuration,
+    holdDuration,
+    inputMinutes,
+    inputSeconds,
+    ascending
+  }
+  const configSetters = {
+    setBreathDuration,
+    setHoldDuration,
+    setInputMinutes,
+    setInputSeconds,
+    setCountDirection
+  }
 
   const animateBreathing = (): void => {
     // Inhale (up)
@@ -188,8 +200,6 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     )
   }
 
-  
-
   function startBreathBox (): void {
     if (!validInputs() || started) {
       return
@@ -223,7 +233,11 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
           resetCircleStyle={resetCircleStyle}
           configInput={configInput}
         />
-        <Config started={started} configInput={configInput} configSetters={configSetters} />
+        <Config
+          started={started}
+          configInput={configInput}
+          configSetters={configSetters}
+        />
         <div className="action" style={actionStyle}>
           {action}
         </div>

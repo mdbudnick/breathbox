@@ -20,7 +20,9 @@ const Timer: FC<TimerProps> = (props) => {
   function startTimer (): void {
     reset()
     timerFn()
-    timerInterval = setInterval(() => { timerFn() }, 1000)
+    timerInterval = setInterval(() => {
+      timerFn()
+    }, 1000)
   }
 
   function stopTimer (): void {
@@ -69,11 +71,7 @@ const Timer: FC<TimerProps> = (props) => {
     }
   }, [props.started])
 
-  return <div
-        className="timer"
-    >
-        {timerText}
-    </div>
+  return <div className="timer">{timerText}</div>
 }
 
 export default Timer

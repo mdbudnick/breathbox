@@ -40,7 +40,7 @@ const ControlBar: FC<ControlBarProps> = (props) => {
   function startBreathBox (): void {
     props.startFn()
     props.setTimeReached(false)
-    targetTime = (inputMinutes * 60 + inputSeconds)
+    targetTime = inputMinutes * 60 + inputSeconds
     checkTimerInterval = setInterval(checkTimer, 1000)
   }
 
@@ -69,7 +69,17 @@ const ControlBar: FC<ControlBarProps> = (props) => {
   return (
     <div className={props.started ? 'control-bar top-buffer' : 'control-bar'}>
       (started && !paused) || (paused && !started) ?
-      <Timer started={props.started} setTimeReached={props.setTimeReached} stopFn={stopBreathBox} internalTimer={internalTimer} setInternalTimer={setInternalTimer} inputMinutes={props.configInput.inputMinutes} inputSeconds={props.configInput.inputSeconds} ascending={props.configInput.ascending} />:
+      <Timer
+        started={props.started}
+        setTimeReached={props.setTimeReached}
+        stopFn={stopBreathBox}
+        internalTimer={internalTimer}
+        setInternalTimer={setInternalTimer}
+        inputMinutes={props.configInput.inputMinutes}
+        inputSeconds={props.configInput.inputSeconds}
+        ascending={props.configInput.ascending}
+      />
+      :
       <div className="start button" onClick={startBreathBox}>
         Start
       </div>
