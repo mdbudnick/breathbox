@@ -5,7 +5,11 @@ import * as shared from '../ts/shared'
 import { SharedIntervals } from '../ts/sharedIntervals'
 import { vhToPx } from 'vhFunc'
 import { resetAnimations } from 'reset'
-import { type ActionStyle, type ConfigSetters, type ConfigInput } from '../ts/shared'
+import {
+  type ActionStyle,
+  type ConfigSetters,
+  type ConfigInput
+} from '../ts/shared'
 
 const BreathBox: FC = (prop: PropsWithChildren) => {
   const [action, setActionText] = useState<string>('Breath Box')
@@ -91,7 +95,8 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   const [inputSeconds, setInputSeconds] = useState<number>(0)
   const [ascending, setCountDirection] = useState<boolean>(false)
   const [validTimeInput, setValidTimeInput] = useState<boolean>(true)
-  const [validBreathHoldInput, setValidBreathHoldInput] = useState<boolean>(true)
+  const [validBreathHoldInput, setValidBreathHoldInput] =
+    useState<boolean>(true)
   const [validHoldInput, setValidHoldInput] = useState<boolean>(true)
   const configInput: ConfigInput = {
     breathDuration,
@@ -108,10 +113,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     setHoldDuration,
     setInputMinutes,
     setInputSeconds,
-    setCountDirection,
-    setValidTimeInput,
-    setValidBreathHoldInput,
-    setValidHoldInput
+    setCountDirection
   }
 
   const animateBreathing = (): void => {
@@ -207,6 +209,28 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
         )
       }, breathDuration * shared.SMOOTH_PATH_TIMING)
     )
+  }
+
+  function validInputs (): boolean {
+    if (inputMinutes === 0 && inputSeconds === 0) {
+      setValidTimeInput(false)
+    } else {
+      setValidTimeInput(true)
+    }
+
+    if (breathDuration === 0) {
+      setValidBreathHoldInput(false)
+    } else {
+      setValidBreathHoldInput(true)
+    }
+
+    if (holdDuration === 0) {
+      setValidHoldInput(false)
+    } else {
+      setValidHoldInput(true)
+    }
+
+    return validTimeInput && validBreathHoldInput && validHoldInput
   }
 
   function startBreathBox (): void {

@@ -64,7 +64,4 @@ export interface ConfigSetters {
   setInputMinutes: React.Dispatch<React.SetStateAction<number>>
   setInputSeconds: React.Dispatch<React.SetStateAction<number>>
   setCountDirection: React.Dispatch<React.SetStateAction<boolean>>
-  setValidTimeInput: React.Dispatch<React.SetStateAction<boolean>>
-  setValidBreathHoldInput: React.Dispatch<React.SetStateAction<boolean>>
-  setValidHoldInput: React.Dispatch<React.SetStateAction<boolean>>
 }

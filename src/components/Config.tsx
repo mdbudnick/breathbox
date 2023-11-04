@@ -1,5 +1,5 @@
 import React, { type FC } from 'react'
-import { config, type ConfigInput, type ConfigSetters } from 'shared'
+import { type ConfigInput, type ConfigSetters } from 'shared'
 import '../css/config.css'
 
 interface ControlBarProps {
