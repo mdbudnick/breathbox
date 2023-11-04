@@ -43,7 +43,7 @@ const Timer: FC<TimerProps> = (props) => {
       setSeconds(0)
     }
     setTimerText('' + minutes + ':' + (seconds < 10 ? '0' + seconds : seconds))
-    setInternalTimer(internalTimer + 1)
+    props.setInternalTimer(props.internalTimer + 1)
   }
 
   function decrementTimer (): void {
@@ -53,14 +53,14 @@ const Timer: FC<TimerProps> = (props) => {
     }
     setSeconds(seconds - 1)
     setTimerText('' + minutes + ':' + (seconds < 10 ? '0' + seconds : seconds))
-    setInternalTimer(internalTimer + 1)
+    props.setInternalTimer(props.internalTimer + 1)
   }
 
   function reset (): void {
     setMinutes(props.ascending ? 0 : props.inputMinutes)
     setSeconds(props.ascending ? 0 : props.inputSeconds)
 
-    setInternalTimer(0)
+    props.setInternalTimer(0)
   }
 
   useEffect(() => {
