@@ -8,7 +8,7 @@ import React, {
 import ControlBar from './ControlBar'
 import Config from './Config'
 import { SharedIntervals } from '../ts/sharedIntervals'
-import { vhToPx } from 'vhFunc'
+import { vhToPx } from '../ts/vhFunc'
 import {
   type ActionStyle,
   type ConfigSetters,

@@ -1,6 +1,5 @@
 import React, { type FC, type PropsWithChildren } from 'react'
 import BreathBox from './BreathBox'
-import '../ts/main'
 import '../img/buddha-gnome.jpg'
 import '../css/central.css'
 
