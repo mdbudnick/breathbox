@@ -5,7 +5,7 @@ import * as shared from '../ts/shared'
 import { SharedIntervals } from '../ts/sharedIntervals'
 import { vhToPx } from 'vhFunc'
 import { resetAnimations } from 'reset'
-import { type ActionStyle } from '../ts/shared'
+import { type ActionStyle, type ConfigSetters, type ConfigInput } from '../ts/shared'
 
 const BreathBox: FC = (prop: PropsWithChildren) => {
   const [action, setActionText] = useState<string>('Breath Box')
@@ -90,19 +90,28 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   const [inputMinutes, setInputMinutes] = useState<number>(10)
   const [inputSeconds, setInputSeconds] = useState<number>(0)
   const [ascending, setCountDirection] = useState<boolean>(false)
-  const configInput = {
+  const [validTimeInput, setValidTimeInput] = useState<boolean>(true)
+  const [validBreathHoldInput, setValidBreathHoldInput] = useState<boolean>(true)
+  const [validHoldInput, setValidHoldInput] = useState<boolean>(true)
+  const configInput: ConfigInput = {
     breathDuration,
     holdDuration,
     inputMinutes,
     inputSeconds,
-    ascending
+    ascending,
+    validTimeInput,
+    validBreathHoldInput,
+    validHoldInput
   }
-  const configSetters = {
+  const configSetters: ConfigSetters = {
     setBreathDuration,
     setHoldDuration,
     setInputMinutes,
     setInputSeconds,
-    setCountDirection
+    setCountDirection,
+    setValidTimeInput,
+    setValidBreathHoldInput,
+    setValidHoldInput
   }
 
   const animateBreathing = (): void => {
