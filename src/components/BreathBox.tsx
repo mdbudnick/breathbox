@@ -9,6 +9,7 @@ import {
   type ConfigInput
 } from '../ts/shared'
 import '../css/action.css'
+import '../css/breathbox.css'
 
 const INHALE_COLOR = '#0f5362'
 const EXHALE_COLOR = '#c08845'
@@ -57,7 +58,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     transitionProperty: '',
     transitionDuration: '',
     transitionTimingFunction: BREATH_CURVE,
-    backgroundColor: INHALE_COLOR,
+    backgroundColor: 'rgb(245, 121, 112)',
     height: `${SMALL_CIRCLE_SIZE}vh`,
     width: `${SMALL_CIRCLE_SIZE}vh`,
     bottom: '-1vh',

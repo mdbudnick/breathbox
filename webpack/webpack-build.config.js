@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
+const svgToMiniDataURI = require('mini-svg-data-uri')
 
 module.exports = function (_env, argv) {
   const isProduction = argv.mode === 'production'
@@ -15,7 +16,7 @@ module.exports = function (_env, argv) {
       path: path.resolve(__dirname, '../www/'),
       filename: 'assets/js/bundle.js',
       publicPath: '/www/',
-      assetModuleFilename: 'asset-module.js',
+      assetModuleFilename: 'assets/img/[name][ext]'
     },
     module: {
       rules: [
@@ -37,20 +38,19 @@ module.exports = function (_env, argv) {
           ],
         },
         {
-          test: /\.(png|jpg|gif)$/i,
-          use: {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              name: 'assets/img/[name].[ext]',
-              sourceMap: true,
-            },
-          },
+          test: /\.(jpg|png|gif)$/,
+          type: 'asset',
         },
         {
-          test: /\.svg$/,
-          use: ['@svgr/webpack'],
-        },
+          test: /\.svg/,
+          type: 'asset/inline',
+         generator: {
+           dataUrl: content => {
+             content = content.toString();
+             return svgToMiniDataURI(content);
+           }
+         }
+        }
       ],
     },
     resolve: {

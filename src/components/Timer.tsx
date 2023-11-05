@@ -86,7 +86,7 @@ const Timer: FC<TimerProps> = (props) => {
       <div className="timer">{timerText}</div>
       <img
         className="pause button"
-        src="img/play-pause.svg"
+        src={require('../img/play-pause.svg')}
         style={{ display: props.started ? 'flex' : 'none' }}
         onClick={props.paused ? resumeTimer : pauseTimer}
       ></img>
