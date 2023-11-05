@@ -1,0 +1,143 @@
+.control-bar {
+    display: flex;
+    margin-bottom: 5%;
+    padding: 1vh;
+    backdrop-filter: blur(2px);
+}
+
+.pause {
+    float: left;
+    color: #007bff;
+    margin-top: 2.5vh;
+    margin-left: 10px;
+    height: 4vh;
+    width: 4vh;
+    display: none;
+}
+
+.stop {
+    float: left;
+    height: 3vh;
+    width: 3vh;
+    margin-top: 3vh;
+    margin-left: 10px;
+    background-color: red;
+    display: none;
+}
+
+.timer, .start {
+    float: left;
+    font-size: 5vh;
+    color: white;
+    padding: 10px;
+    width: fit-content;
+    padding: 1vw;
+}
+
+.start {
+    border: 4px solid green;
+    background-color: lightgreen;
+    border-radius: 5vw;
+}
+
+.timer {
+    background-color: transparent;
+    border: none;
+}
+.config {
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(2px);
+    margin-top: 5%;
+    color: white;
+    height: 12vh;
+}
+
+.config input {
+    float: right;
+}
+
+#countdown-or-up:hover {
+    cursor: pointer;
+}
+
+.point-up {
+    transform: rotate(-90deg);
+}
+
+.point-down {
+    transform: rotate(90deg);
+}
+
+#time-arrow {
+    position: absolute;
+    right: 0;
+    font-weight: 900;
+}
+
+#time-arrow:hover {
+    cursor: pointer;
+}
+.action {
+    font-weight: bold;
+    transition-property: font-size, color, top, left;
+    white-space: pre;
+    text-align: center;
+    width: fit-content;
+    height: 10vh;
+    border-radius: 3vw;
+    opacity: 0.9;
+    padding: 1vw;
+    backdrop-filter: blur(1px);
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: black;
+}
+.breath-box {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border: 2px solid #f6786e;
+}
+
+.breath-box-inner {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-image: url(/www/assets/img/buddha-gnome.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.circle {
+    position: absolute;
+    width: 2vh;
+    height: 2vh;
+    background-color: rgb(245, 121, 112);
+    border-radius: 50%;
+    transform-origin: center;
+    bottom: -1vh;
+    left: -1vh;
+}
+
+.top-buffer {
+    margin-top: 19vh;
+}
+.central {
+    margin-top: 10vh;
+    justify-self: center;
+    width: 30vw;
+    height: 80vh;
+    font-family: Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+@media (max-width: 1000px) {
+    .central {
+        margin-top: 15vh;
+        width: 80vw;
+        height: 70vh;
+    }
+}
+

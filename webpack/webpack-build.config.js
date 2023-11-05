@@ -66,6 +66,7 @@ module.exports = function (_env, argv) {
         template: path.resolve(__dirname, '../src/index.html'),
         inject: true,
       }),
+      new MiniCssExtractPlugin(),
     ].filter(Boolean),
   }
 }
