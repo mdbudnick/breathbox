@@ -3,7 +3,7 @@
     justify-self: center;
     width: 30vw;
     height: 80vh;
-    font-family: Bebas Neue, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 @media (max-width: 1000px) {
@@ -12,39 +12,4 @@
         width: 80vw;
         height: 70vh;
     }
-}
-
-
-.breath-box {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    border: 2px solid #f6786e;
-}
-
-.breath-box-inner {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    background-image: url("../img/buddha-gnome.jpg");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.circle {
-    position: absolute;
-    width: 2vh;
-    height: 2vh;
-    background-color: #f6786e;
-    border-radius: 50%;
-    transform-origin: center;
-    bottom: -1vh;
-    left: -1vh;
-}
-
-.top-buffer {
-    margin-top: 19vh;
 }
