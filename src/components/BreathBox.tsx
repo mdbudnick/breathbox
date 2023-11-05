@@ -8,6 +8,7 @@ import {
   type ConfigSetters,
   type ConfigInput
 } from '../ts/shared'
+import '../css/action.css'
 
 const INHALE_COLOR = '#0f5362'
 const EXHALE_COLOR = '#c08845'
