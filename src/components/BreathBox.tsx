@@ -107,7 +107,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   const [holdDuration, setHoldDuration] = useState<number>(3)
   const [inputMinutes, setInputMinutes] = useState<number>(10)
   const [inputSeconds, setInputSeconds] = useState<number>(0)
-  const [ascending, setCountDirection] = useState<boolean>(false)
+  const [ascending, setCountDirection] = useState<boolean>(true)
   const [validTimeInput, setValidTimeInput] = useState<boolean>(true)
   const [validBreathHoldInput, setValidBreathHoldInput] =
     useState<boolean>(true)
