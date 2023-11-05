@@ -1,1 +1,1 @@
-export default __webpack_public_path__ + "assets/static/media/buddha-gnome.jpg";
+export default __webpack_public_path__ + 'assets/img/buddha-gnome.jpg'

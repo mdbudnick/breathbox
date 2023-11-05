@@ -58,7 +58,8 @@ const ControlBar: FC<ControlBarProps> = (props) => {
   return (
     <div className={props.started ? 'control-bar top-buffer' : 'control-bar'}>
       {props.started
-        ? <Timer
+        ? (
+        <Timer
           started={props.started}
           startFn={startBreathBox}
           paused={props.paused}
@@ -69,9 +70,12 @@ const ControlBar: FC<ControlBarProps> = (props) => {
           inputSeconds={props.configInput.inputSeconds}
           ascending={props.configInput.ascending}
         />
-        : <div className="start button" onClick={startBreathBox}>
+          )
+        : (
+        <div className="start button" onClick={startBreathBox}>
           Start
-        </div>}
+        </div>
+          )}
     </div>
   )
 }

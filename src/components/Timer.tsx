@@ -16,7 +16,9 @@ let minutes: number | undefined
 let seconds: number | undefined
 const Timer: FC<TimerProps> = (props) => {
   const [timerText, setTimerText] = useState<string>('')
-  const [timerInterval, setTimerInterval] = useState< ReturnType<typeof setInterval> | null>(null)
+  const [timerInterval, setTimerInterval] = useState<ReturnType<
+    typeof setInterval
+  > | null>(null)
   minutes ??= props.ascending ? 0 : props.inputMinutes
   seconds ??= props.ascending ? 0 : props.inputSeconds
 
@@ -27,9 +29,11 @@ const Timer: FC<TimerProps> = (props) => {
 
   function resumeTimer (): void {
     timerFn()
-    setTimerInterval(setInterval(() => {
-      timerFn()
-    }, 1000))
+    setTimerInterval(
+      setInterval(() => {
+        timerFn()
+      }, 1000)
+    )
     props.startFn()
   }
 
@@ -77,20 +81,22 @@ const Timer: FC<TimerProps> = (props) => {
     }
   }, [props.started])
 
-  return <div>
-    <div className="timer">{timerText}</div>
-    <img
-      className="pause button"
-      src="img/play-pause.svg"
-      style={{ display: props.started ? 'flex' : 'none' }}
-      onClick={props.paused ? resumeTimer : pauseTimer}
-    ></img>
-    <div
-      className="stop button"
-      style={{ display: props.started ? 'flex' : 'none' }}
-      onClick={stopTimer}
-    ></div>
-  </div>
+  return (
+    <div>
+      <div className="timer">{timerText}</div>
+      <img
+        className="pause button"
+        src="img/play-pause.svg"
+        style={{ display: props.started ? 'flex' : 'none' }}
+        onClick={props.paused ? resumeTimer : pauseTimer}
+      ></img>
+      <div
+        className="stop button"
+        style={{ display: props.started ? 'flex' : 'none' }}
+        onClick={stopTimer}
+      ></div>
+    </div>
+  )
 }
 
 export default Timer

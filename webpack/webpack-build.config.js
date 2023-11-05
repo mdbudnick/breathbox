@@ -42,7 +42,7 @@ module.exports = function (_env, argv) {
             loader: 'url-loader',
             options: {
               limit: 8192,
-              name: 'assets/static/media/[name].[ext]',
+              name: 'assets/img/[name].[ext]',
               sourceMap: true,
             },
           },
