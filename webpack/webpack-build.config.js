@@ -15,7 +15,7 @@ module.exports = function (_env, argv) {
     output: {
       path: path.resolve(__dirname, '../www/'),
       filename: 'assets/js/bundle.js',
-      publicPath: '/www/',
+      publicPath: '/',
       assetModuleFilename: 'assets/img/[name][ext]'
     },
     module: {
