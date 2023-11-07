@@ -1,19 +1,19 @@
 # Breathbox
 
-[Visit Breathbox](https://www.breathbox.net)
+[Visit Breathbox](https://lcsltied.azureedge.net/)
 
 ![Breathbox Icon](src/img/buddha-gnome-smaller.jpg)
 
 ## Overview
 
-**Breathbox** is a simple yet powerful JavaScript website designed to help you practice the breath box technique effortlessly. This mindfulness practice involves structured and rhythmic breathing patterns to promote relaxation and stress reduction. While the website appears deceptively simple on the outside, it is a testament to industry-standard development practices and cutting-edge technologies.
+**Breathbox** is a simple yet powerful ReactJS website designed to help you practice the breath box technique effortlessly. This mindfulness practice involves structured and rhythmic breathing patterns to promote relaxation and stress reduction. While the website appears deceptively simple on the outside, it is a testament to industry-standard development practices and cutting-edge technologies.
 
 ## Features
 
-- Built with TypeScript modules
-- Compiled using the industry-standard WebPack
-- Deployed effortlessly with Terraform
-- Hosted on Microsoft Azure, ensuring reliability and scalability for end-users
+- Built with ReactJS
+- Compiled using WebPack
+- Deployed with Terraform
+- Hosted on Microsoft Azure
 
 ## About
 
@@ -21,7 +21,7 @@ Breathbox is just a small example of my commitment to robust development practic
 
 ## Try It Out
 
-Visit [Breathbox](https://www.breathbox.net) to experience the benefits of the breath box technique firsthand. It's a simple tool designed to enhance your well-being and mindfulness.
+Visit [Breathbox](https://lcsltied.azureedge.net/) to experience the benefits of the breath box technique firsthand. It's a simple tool designed to enhance your well-being and mindfulness.
 
 ## Get Involved
 
