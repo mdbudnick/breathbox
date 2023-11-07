@@ -16,7 +16,7 @@ module.exports = function (_env, argv) {
       path: path.resolve(__dirname, '../www/'),
       filename: 'assets/js/bundle.js',
       publicPath: isProduction ? '/' : '/www/',
-      assetModuleFilename: 'assets/img/[name][ext]'
+      assetModuleFilename: 'assets/img/[name][ext]',
     },
     module: {
       rules: [
@@ -44,13 +44,13 @@ module.exports = function (_env, argv) {
         {
           test: /\.svg/,
           type: 'asset/inline',
-         generator: {
-           dataUrl: content => {
-             content = content.toString();
-             return svgToMiniDataURI(content);
-           }
-         }
-        }
+          generator: {
+            dataUrl: (content) => {
+              content = content.toString()
+              return svgToMiniDataURI(content)
+            },
+          },
+        },
       ],
     },
     resolve: {

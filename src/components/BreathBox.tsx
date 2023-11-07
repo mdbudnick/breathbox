@@ -305,7 +305,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   )
   const ConfigComponent = (
     <Config
-    key={['config', started].join('_')}
+      key={['config', started].join('_')}
       started={started}
       configInput={configInput}
       configSetters={configSetters}
