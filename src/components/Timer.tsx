@@ -12,15 +12,16 @@ interface TimerProps {
   ascending: boolean
 }
 
+const tone = new Audio('assets/audio/tone.mp3')
 let minutes: number | undefined
 let seconds: number | undefined
+let timerInterval: ReturnType<typeof setInterval> | null
 const Timer: FC<TimerProps> = (props) => {
   const [timerText, setTimerText] = useState<string>('')
-  const [timerInterval, setTimerInterval] = useState<ReturnType<
-    typeof setInterval
-  > | null>(null)
+  const [initialized, setInitialized] = useState<boolean>(false)
   minutes ??= props.ascending ? 0 : props.inputMinutes
   seconds ??= props.ascending ? 0 : props.inputSeconds
+  const targetTime = props.inputMinutes * 60 + props.inputSeconds
 
   function pauseTimer (): void {
     props.pauseFn()
@@ -29,16 +30,15 @@ const Timer: FC<TimerProps> = (props) => {
 
   function resumeTimer (): void {
     timerFn()
-    setTimerInterval(
-      setInterval(() => {
-        timerFn()
-      }, 1000)
-    )
-    props.startFn()
+    timerInterval = setInterval(timerFn, 1000)
+    if (initialized) {
+      props.startFn()
+    }
   }
 
   function timerFn (): void {
     props.ascending ? incrementTimer() : decrementTimer()
+    checkTimer()
   }
 
   function stopTimer (): void {
@@ -69,16 +69,33 @@ const Timer: FC<TimerProps> = (props) => {
   function clearTimerInterval (): void {
     if (timerInterval !== null) {
       clearInterval(timerInterval)
-      setTimerInterval(null)
+      timerInterval = null
+    }
+  }
+
+  function checkTimer (): void {
+    if (minutes! * 60 + seconds! > targetTime) {
+      props.setTimeReached(true)
+      void tone.play()
+      setTimeout(() => {
+        alert('You have reached your target!')
+      }, 50)
+      stopTimer()
     }
   }
 
   useEffect(() => {
+    // we +-1 here because of initial render and pause logic calling increment or decrement twice
+    seconds! += props.ascending ? -1 : 1
     if (props.started && !props.paused) {
       // Clear to be safe
       clearTimerInterval()
+      // we +-1 here because of initial render and pause logic calling increment or decrement twice
+      seconds! += props.ascending ? -1 : 1
       resumeTimer()
     }
+    timerFn()
+    setInitialized(true)
   }, [props.started])
 
   return (

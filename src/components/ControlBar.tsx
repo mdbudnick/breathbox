@@ -1,4 +1,4 @@
-import React, { useState, type FC } from 'react'
+import React, { type FC } from 'react'
 import '../css/control-bar.css'
 import '../img/play-pause.svg'
 import Timer from './Timer'
@@ -20,37 +20,17 @@ interface ControlBarProps {
   configInput: ConfigInput
 }
 
-const tone = new Audio('assets/audio/tone.mp3')
-
 const ControlBar: FC<ControlBarProps> = (props) => {
-  const [internalTimer, setInternalTimer] = useState<number>(0)
-  const { inputMinutes, inputSeconds } = props.configInput
-  let targetTime = 0
-  function checkTimer (): void {
-    setInternalTimer(internalTimer + 1)
-    if (props.started && internalTimer >= targetTime) {
-      props.setTimeReached(true)
-      void tone.play()
-      setTimeout(() => {
-        alert('You have reached your target!')
-      }, 50)
-      stopBreathBox()
-    }
-  }
-
-  let checkTimerInterval: ReturnType<typeof setInterval> | null
   function startBreathBox (): void {
     props.startFn()
     props.setTimeReached(false)
-    targetTime = inputMinutes * 60 + inputSeconds
-    checkTimerInterval = setInterval(checkTimer, 1000)
+  }
+
+  function pauseBreathBox (): void {
+    props.pauseFn()
   }
 
   function stopBreathBox (): void {
-    if (checkTimerInterval !== null) {
-      clearInterval(checkTimerInterval)
-    }
-    setInternalTimer(0)
     props.setTimeReached(false)
     props.stopFn()
   }
@@ -63,7 +43,7 @@ const ControlBar: FC<ControlBarProps> = (props) => {
           started={props.started}
           startFn={startBreathBox}
           paused={props.paused}
-          pauseFn={props.pauseFn}
+          pauseFn={pauseBreathBox}
           setTimeReached={props.setTimeReached}
           stopFn={stopBreathBox}
           inputMinutes={props.configInput.inputMinutes}

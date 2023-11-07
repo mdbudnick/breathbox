@@ -233,25 +233,29 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   }
 
   function validInputs (): boolean {
+    let valid = true
     if (inputMinutes === 0 && inputSeconds === 0) {
       setValidTimeInput(false)
+      valid = false
     } else {
       setValidTimeInput(true)
     }
 
     if (breathDuration === 0) {
       setValidBreathHoldInput(false)
+      valid = false
     } else {
       setValidBreathHoldInput(true)
     }
 
     if (holdDuration === 0) {
       setValidHoldInput(false)
+      valid = false
     } else {
       setValidHoldInput(true)
     }
 
-    return validTimeInput && validBreathHoldInput && validHoldInput
+    return valid
   }
 
   function startBreathBox (): void {
@@ -283,7 +287,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
 
   const ControlBarComponent = (
     <ControlBar
-      key="controlBar"
+      key={['controlBar', started, paused].join('_')}
       started={started}
       setStarted={setStarted}
       paused={paused}
@@ -301,7 +305,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   )
   const ConfigComponent = (
     <Config
-      key="config"
+    key={['config', started].join('_')}
       started={started}
       configInput={configInput}
       configSetters={configSetters}
