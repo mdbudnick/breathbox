@@ -287,7 +287,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
 
   const ControlBarComponent = (
     <ControlBar
-      key={['controlBar', started, paused].join('_')}
+      key='ControlBar'
       started={started}
       setStarted={setStarted}
       paused={paused}
@@ -305,7 +305,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   )
   const ConfigComponent = (
     <Config
-      key={['config', started].join('_')}
+      key='Config'
       started={started}
       configInput={configInput}
       configSetters={configSetters}
