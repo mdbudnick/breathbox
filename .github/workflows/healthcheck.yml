@@ -7,7 +7,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          curl https://www.breathbox.net
-          curl https://breathbox.net
-          curl www.breathbox.net
-          curl breathbox.net
+          curl dagadgadgdagdgd.com
