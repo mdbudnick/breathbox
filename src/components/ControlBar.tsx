@@ -31,7 +31,6 @@ const ControlBar: FC<ControlBarProps> = (props) => {
   }
 
   function stopBreathBox (): void {
-    props.setTimeReached(false)
     props.stopFn()
   }
 

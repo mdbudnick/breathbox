@@ -315,7 +315,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
 
   return (
     <div className="breath-box" ref={boxRef}>
-      timeReached ? <Congrats timeReached={timeReached} setTimeReached={setTimeReached} inputMinutes={inputMinutes} inputSeconds={inputSeconds} /> : []
+      {timeReached ? <Congrats timeReached={timeReached} setTimeReached={setTimeReached} inputMinutes={inputMinutes} inputSeconds={inputSeconds} /> : []}
       <div className="breath-box-inner">
         {started ? ControlBarComponent : [ControlBarComponent, ConfigComponent]}
         <div className="action" style={actionStyle}>
