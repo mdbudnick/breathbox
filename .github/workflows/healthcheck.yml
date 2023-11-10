@@ -1,8 +1,13 @@
+name: Domain Health Check
+
 on:
   workflow_dispatch:
 jobs:
-  use_api:
+  check_domain:
     runs-on: ubuntu-latest
     steps:
       - run: |
           curl https://www.breathbox.net
+          curl https://breathbox.net
+          curl www.breathbox.net
+          curl breathbox.net
