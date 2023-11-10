@@ -288,7 +288,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
 
   const ControlBarComponent = (
     <ControlBar
-      key='ControlBar'
+      key="ControlBar"
       started={started}
       setStarted={setStarted}
       paused={paused}
@@ -306,7 +306,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   )
   const ConfigComponent = (
     <Config
-      key='Config'
+      key="Config"
       started={started}
       configInput={configInput}
       configSetters={configSetters}
@@ -315,7 +315,18 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
 
   return (
     <div className="breath-box" ref={boxRef}>
-      {timeReached ? <Congrats timeReached={timeReached} setTimeReached={setTimeReached} inputMinutes={inputMinutes} inputSeconds={inputSeconds} /> : []}
+      {timeReached
+        ? (
+        <Congrats
+          timeReached={timeReached}
+          setTimeReached={setTimeReached}
+          inputMinutes={inputMinutes}
+          inputSeconds={inputSeconds}
+        />
+          )
+        : (
+            []
+          )}
       <div className="breath-box-inner">
         {started ? ControlBarComponent : [ControlBarComponent, ConfigComponent]}
         <div className="action" style={actionStyle}>
