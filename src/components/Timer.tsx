@@ -12,7 +12,6 @@ interface TimerProps {
   ascending: boolean
 }
 
-const tone = new Audio('assets/audio/tone.mp3')
 let minutes: number | undefined
 let seconds: number | undefined
 let timerInterval: ReturnType<typeof setInterval> | null
@@ -76,10 +75,6 @@ const Timer: FC<TimerProps> = (props) => {
   function checkTimer (): void {
     if (minutes! * 60 + seconds! > targetTime) {
       props.setTimeReached(true)
-      void tone.play()
-      setTimeout(() => {
-        alert('You have reached your target!')
-      }, 50)
       stopTimer()
     }
   }
