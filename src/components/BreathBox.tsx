@@ -1,6 +1,7 @@
 import React, { useRef, useState, type FC, type PropsWithChildren } from 'react'
 import ControlBar from './ControlBar'
 import Config from './Config'
+import Congrats from './Congratulations'
 import { SharedIntervals } from '../ts/sharedIntervals'
 import { vhToPx } from '../ts/vhFunc'
 import {
@@ -314,6 +315,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
 
   return (
     <div className="breath-box" ref={boxRef}>
+      timeReached ? <Congrats timeReached={timeReached} inputMinutes={inputMinutes} inputSeconds={inputSeconds} /> : []
       <div className="breath-box-inner">
         {started ? ControlBarComponent : [ControlBarComponent, ConfigComponent]}
         <div className="action" style={actionStyle}>
