@@ -15,8 +15,8 @@ const Congrats: FC<CongratsProps> = (props) => {
   }
 
   void tone.play()
-  return <div className="congratulations"><p>Congratulations!<br />You have breathed for {props.inputMinutes} minutes and {props.inputSeconds} seconds!</p>
-        <button onClick={closeWindow}></button></div>
+  return <div className="congratulations"><p>Congratulations!<br/>You breathed for {props.inputMinutes} minutes and {props.inputSeconds} seconds!</p>
+        <br/><span className='close-congrats' onClick={closeWindow}>Close</span></div>
 }
 
 export default Congrats
