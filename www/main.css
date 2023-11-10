@@ -126,6 +126,36 @@
 .top-buffer {
     margin-top: 19vh;
 }
+
+.congratulations {
+    border: 2000px solid rgba(0, 0, 0, .5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 34vw;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, .78);
+    z-index: 1;
+    text-align: center;
+    font-size: 2vh;
+}
+
+@media (max-width: 1000px) {
+    .congratulations {
+        width: 40vw;
+    }
+}
+
+.close-congrats {
+    cursor: pointer;
+    height: 20%;
+    margin-top: 4vh;
+    border: 1px solid darkgrey;
+    background-color: lightgreen;
+    font-weight: bold;
+    padding: 5px;
+}
 .central {
     margin-top: 10vh;
     justify-self: center;
