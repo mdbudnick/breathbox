@@ -1,7 +1,9 @@
+name: Domain Health Check
+
 on:
   workflow_dispatch:
 jobs:
-  use_api:
+  check_domain:
     runs-on: ubuntu-latest
     steps:
       - run: |
