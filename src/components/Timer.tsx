@@ -1,4 +1,13 @@
 import React, { useEffect, useState, type FC } from 'react'
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from 'react-native'
+import { screenHeight, screenWidth } from '../ts/windowDimensions'
 
 interface TimerProps {
   started: boolean
@@ -11,6 +20,44 @@ interface TimerProps {
   inputSeconds: number
   ascending: boolean
 }
+
+const styles = StyleSheet.create({
+  pause: {
+    alignSelf: 'flex-start',
+    color: '#007bff',
+    marginTop: '3%',
+    marginLeft: 10,
+    height: '4%',
+    width: '4%',
+    display: 'none'
+  },
+  stop: {
+    alignSelf: 'flex-start',
+    height: '3%',
+    width: '3%',
+    marginTop: '3.5%',
+    marginLeft: 10,
+    backgroundColor: 'red',
+    display: 'none'
+  },
+  timer: {
+    alignSelf: 'flex-start',
+    fontSize: screenHeight * 0.05,
+    color: 'white',
+    padding: 10,
+    paddingVertical: screenHeight * 0.01
+  },
+  start: {
+    alignSelf: 'flex-start',
+    fontSize: screenHeight * 0.05,
+    borderWidth: 4,
+    borderColor: 'green',
+    backgroundColor: 'lightgreen',
+    borderRadius: screenWidth * 0.05,
+    padding: 10,
+    paddingVertical: screenHeight * 0.01
+  }
+})
 
 let minutes: number | undefined
 let seconds: number | undefined
@@ -94,20 +141,19 @@ const Timer: FC<TimerProps> = (props) => {
   }, [props.started])
 
   return (
-    <div>
-      <div className="timer">{timerText}</div>
-      <img
-        className="pause button"
-        src={require('../img/play-pause.svg')}
-        style={{ display: props.started ? 'flex' : 'none' }}
-        onClick={props.paused ? resumeTimer : pauseTimer}
-      ></img>
-      <div
-        className="stop button"
-        style={{ display: props.started ? 'flex' : 'none' }}
-        onClick={stopTimer}
-      ></div>
-    </div>
+    <View>
+      <Text style={styles.timer}>{timerText}</Text>
+      <TouchableOpacity onPress={props.paused ? resumeTimer : pauseTimer}>
+        <Image
+          style={[styles.pause, { display: props.started ? 'flex' : 'none' }]}
+          source={require('../img/play-pause.svg')}
+        ></Image>
+      </TouchableOpacity>
+      <Pressable
+        style={[styles.stop, { display: props.started ? 'flex' : 'none' }]}
+        onPress={stopTimer}
+      ></Pressable>
+    </View>
   )
 }
 
