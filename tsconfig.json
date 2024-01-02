@@ -19,7 +19,6 @@
   },
   "include": [
     "src/index.ts",
-    "src/pageNotFound.ts",
     "src/ts/*.ts",
     "src/styles/*.ts",
     "src/components/*.tsx",
