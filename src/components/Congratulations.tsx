@@ -1,4 +1,6 @@
 import React, { type FC } from 'react'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { screenHeight, screenWidth } from 'windowDimensions'
 
 interface CongratsProps {
   timeReached: boolean
@@ -9,6 +11,32 @@ interface CongratsProps {
 
 const tone = new Audio('assets/audio/tone.mp3')
 
+const styles = StyleSheet.create({
+  congratulations: {
+    borderWidth: 2000,
+    borderColor: 'rgba(0, 0, 0, 0.5)',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: -50 }, { translateY: -50 }],
+    width: screenWidth * (screenWidth <= 1000 ? 0.4 : 0.34),
+    padding: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.78)',
+    zIndex: 1,
+    textAlign: 'center',
+    fontSize: screenHeight * 2
+  },
+  closeCongrats: {
+    height: '20%',
+    marginTop: '4%',
+    borderWidth: 1,
+    borderColor: 'darkgrey',
+    backgroundColor: 'lightgreen',
+    fontWeight: 'bold',
+    padding: 5
+  }
+})
+
 const Congrats: FC<CongratsProps> = (props) => {
   function closeWindow (): void {
     props.setTimeReached(false)
@@ -16,18 +44,18 @@ const Congrats: FC<CongratsProps> = (props) => {
 
   void tone.play()
   return (
-    <div className="congratulations">
-      <p>
+    <View style={styles.congratulations}>
+      <Text>
         Congratulations!
-        <br />
+        {'\n'}
         You breathed for {props.inputMinutes} minutes and {props.inputSeconds}{' '}
         seconds!
-      </p>
-      <br />
-      <span className="close-congrats" onClick={closeWindow}>
+      </Text>
+      {'\n'}
+      <Pressable style={styles.closeCongrats} onPress={closeWindow}>
         Close
-      </span>
-    </div>
+      </Pressable>
+    </View>
   )
 }
 
