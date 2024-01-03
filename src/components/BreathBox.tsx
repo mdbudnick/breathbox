@@ -53,6 +53,18 @@ const styles = StyleSheet.create({
     transformOrigin: 'center',
     bottom: '-1%',
     left: '-1%'
+  },
+  action: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    height: '10%',
+    borderRadius: 3,
+    opacity: 0.9,
+    padding: '1%', // Adjust as needed
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    textShadowColor: 'black',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 0.5
   }
 })
 
