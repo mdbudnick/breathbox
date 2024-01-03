@@ -1,12 +1,33 @@
 import React, { type FC } from 'react'
 import { type ConfigInput, type ConfigSetters } from 'shared'
-import '../css/config.css'
+import {
+  StyleSheet
+} from 'react-native'
 
 interface ControlBarProps {
   started: boolean
   configInput: ConfigInput
   configSetters: ConfigSetters
 }
+
+const styles = StyleSheet.create({
+  config: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0, 0, 0, 0.2)',
+    marginTop: '5%',
+    color: 'white',
+    height: '12%'
+  },
+  pointDown: {
+    transform: [{ rotate: '90deg' }]
+  },
+  pointUp: {
+    transform: [{ rotate: '-90deg' }]
+  }
+})
 
 const Config: FC<ControlBarProps> = (props) => {
   return (
