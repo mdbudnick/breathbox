@@ -9,8 +9,9 @@ import {
   type ConfigSetters,
   type ConfigInput
 } from '../ts/shared'
-import '../css/action.css'
-import '../css/breathbox.css'
+import {
+  StyleSheet
+} from 'react-native'
 
 const INHALE_COLOR = '#0f5362'
 const EXHALE_COLOR = '#c08845'
@@ -26,6 +27,37 @@ const INHALE_SIZE = 8
 const EXHALE_SIZE = 4
 const DEFAULT_ACTION_FONT_SIZE = '5vh'
 
+const styles = StyleSheet.create({
+  breathBox: {
+    position: 'relative',
+    height: '100%',
+    width: '100%',
+    borderWidth: 2,
+    borderColor: '#f6786e',
+  },
+  breathBoxInner: {
+    display: 'flex',
+    flexDirection: 'column-reverse',
+    alignItems: 'center',
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'transparent',
+    // backgroundImage: require('../img/buddha-gnome.jpg'),
+    resizeMode: 'cover',
+    justifyContent: 'center',
+  },
+  circle: {
+    position: 'absolute',
+    width: '2%',
+    height: '2%',
+    backgroundColor: 'rgb(245, 121, 112)',
+    borderRadius: 50,
+    transformOrigin: 'center',
+    bottom: '-1%',
+    left: '-1%'
+  }
+})
+
 const BreathBox: FC = (prop: PropsWithChildren) => {
   const [action, setActionText] = useState<string>('Breath Box')
   const [actionStyle, setActionStyle] = useState<ActionStyle>({
@@ -35,7 +67,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     color: RESET_ORANGE
   })
 
-  function resetActionText (): void {
+  function resetActionText(): void {
     setActionText('Breath Box')
     setActionStyle({
       ...actionStyle,
@@ -66,7 +98,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     left: '-1vh'
   })
 
-  function resetCircleStyle (): void {
+  function resetCircleStyle(): void {
     setCircleStyle({
       transitionProperty: '',
       transitionDuration: '',
@@ -134,7 +166,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
 
   const boxRef = useRef<HTMLDivElement>(null)
   let boxSize = { width: 0, height: 0 }
-  function getBoxSize (): void {
+  function getBoxSize(): void {
     if (boxRef.current != null) {
       const { width, height } = boxRef.current.getBoundingClientRect()
       boxSize = { width, height }
@@ -233,7 +265,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     )
   }
 
-  function validInputs (): boolean {
+  function validInputs(): boolean {
     let valid = true
     if (inputMinutes === 0 && inputSeconds === 0) {
       setValidTimeInput(false)
@@ -259,7 +291,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     return valid
   }
 
-  function startBreathBox (): void {
+  function startBreathBox(): void {
     if (!validInputs() || (started && !paused)) {
       return
     }
@@ -270,7 +302,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     animateBreathing()
   }
 
-  function stopBreathBox (): void {
+  function stopBreathBox(): void {
     setStarted(false)
     setPaused(false)
     SharedIntervals.resetAnimations()
@@ -278,7 +310,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     resetCircleStyle()
   }
 
-  function pauseBreathBox (): void {
+  function pauseBreathBox(): void {
     SharedIntervals.resetAnimations()
     setPaused(true)
     setActionText('Paused')
@@ -317,16 +349,16 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     <div className="breath-box" ref={boxRef}>
       {timeReached
         ? (
-        <Congrats
-          timeReached={timeReached}
-          setTimeReached={setTimeReached}
-          inputMinutes={inputMinutes}
-          inputSeconds={inputSeconds}
-        />
-          )
+          <Congrats
+            timeReached={timeReached}
+            setTimeReached={setTimeReached}
+            inputMinutes={inputMinutes}
+            inputSeconds={inputSeconds}
+          />
+        )
         : (
-            []
-          )}
+          []
+        )}
       <div className="breath-box-inner">
         {started ? ControlBarComponent : [ControlBarComponent, ConfigComponent]}
         <div className="action" style={actionStyle}>
