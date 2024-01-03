@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 
 const Config: FC<ControlBarProps> = (props) => {
   const roundAndSetInputSeconds = (value: string): number => {
-    const numericValue = parseFloat(value)
+    const numericValue = Number(value)
 
     // Enforce minimum and maximum values and step
     const minValue = 0
@@ -48,6 +48,25 @@ const Config: FC<ControlBarProps> = (props) => {
     } else {
       props.configSetters.setInputSeconds(minValue)
       return minValue
+    }
+  }
+
+  const roundAndSetInputMinutes = (value: string): number => {
+    const numericValue = Number(value)
+
+    // Enforce minimum and maximum values and step
+    const minValue = 1
+    const maxValue = 60
+
+    if (!isNaN(numericValue)) {
+      const clampedValue = Math.min(Math.max(minValue, numericValue), maxValue)
+
+      props.configSetters.setInputSeconds(clampedValue)
+      return clampedValue
+    } else {
+      // 10 minute default
+      props.configSetters.setInputSeconds(10)
+      return 10
     }
   }
 
@@ -82,17 +101,13 @@ const Config: FC<ControlBarProps> = (props) => {
           onChangeText={(value) => roundAndSetInputSeconds(value)}
           value={props.configInput.inputSeconds.toString()}
         />
-        <label htmlFor="countdown-minutes">Time (mm:ss)</label>
-        <input
-          type="number"
-          id="countdown-minutes"
-          min="0"
-          max="60"
-          value={props.configInput.inputMinutes}
-          className={props.configInput.validTimeInput ? undefined : 'red'}
-          onChange={(e) => {
-            props.configSetters.setInputMinutes(Number(e.target.value ?? 0))
-          }}
+        <Text>Time (mm:ss)</Text>
+        <TextInput
+          style={props.configInput.validTimeInput ? [] : [commonStyles.red]}
+          keyboardType="numeric"
+          maxLength={2}
+          onChangeText={(value) => roundAndSetInputMinutes(value)}
+          value={props.configInput.inputMinutes.toString()}
         />
       </View>
       <div className="count-up-or-down">
