@@ -9,7 +9,7 @@ import {
   type ConfigSetters,
   type ConfigInput
 } from '../ts/shared'
-import { StyleSheet, View, type ViewStyle } from 'react-native'
+import { StyleSheet, Text, View, type ViewStyle } from 'react-native'
 
 const INHALE_COLOR = '#0f5362'
 const EXHALE_COLOR = '#c08845'
@@ -352,9 +352,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
           )}
       <View style={styles.breathBoxInner}>
         {started ? ControlBarComponent : [ControlBarComponent, ConfigComponent]}
-        <div className="action" style={actionStyle}>
-          {action}
-        </div>
+        <Text style={styles.action}>{action}</Text>
       </View>
       <View style={[styles.circle, circleStyle]}></View>
     </View>
