@@ -9,9 +9,7 @@ import {
   type ConfigSetters,
   type ConfigInput
 } from '../ts/shared'
-import {
-  StyleSheet
-} from 'react-native'
+import { StyleSheet, View, type ViewStyle } from 'react-native'
 
 const INHALE_COLOR = '#0f5362'
 const EXHALE_COLOR = '#c08845'
@@ -33,7 +31,7 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     borderWidth: 2,
-    borderColor: '#f6786e',
+    borderColor: '#f6786e'
   },
   breathBoxInner: {
     display: 'flex',
@@ -44,7 +42,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     // backgroundImage: require('../img/buddha-gnome.jpg'),
     resizeMode: 'cover',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   circle: {
     position: 'absolute',
@@ -67,7 +65,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     color: RESET_ORANGE
   })
 
-  function resetActionText(): void {
+  function resetActionText (): void {
     setActionText('Breath Box')
     setActionStyle({
       ...actionStyle,
@@ -76,29 +74,18 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     })
   }
 
-  interface CircleStyle {
-    transitionProperty: string
-    transitionDuration: string
-    transitionTimingFunction: string
-    backgroundColor: string
-    height: string
-    width: string
-    bottom: string
-    left: string
-  }
-
-  const [circleStyle, setCircleStyle] = useState<CircleStyle>({
+  const [circleStyle, setCircleStyle] = useState<ViewStyle>({
     transitionProperty: '',
     transitionDuration: '',
     transitionTimingFunction: BREATH_CURVE,
     backgroundColor: 'rgb(245, 121, 112)',
-    height: `${SMALL_CIRCLE_SIZE}vh`,
-    width: `${SMALL_CIRCLE_SIZE}vh`,
-    bottom: '-1vh',
-    left: '-1vh'
+    height: `${SMALL_CIRCLE_SIZE}%`,
+    width: `${SMALL_CIRCLE_SIZE}%`,
+    bottom: '-1%',
+    left: '-1%'
   })
 
-  function resetCircleStyle(): void {
+  function resetCircleStyle (): void {
     setCircleStyle({
       transitionProperty: '',
       transitionDuration: '',
@@ -166,7 +153,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
 
   const boxRef = useRef<HTMLDivElement>(null)
   let boxSize = { width: 0, height: 0 }
-  function getBoxSize(): void {
+  function getBoxSize (): void {
     if (boxRef.current != null) {
       const { width, height } = boxRef.current.getBoundingClientRect()
       boxSize = { width, height }
@@ -187,14 +174,11 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     getBoxSize()
     setCircleStyle({
       ...circleStyle,
-      transitionProperty: 'height width background-color left bottom',
-      transitionDuration: `${breathDuration}s`,
-      transitionTimingFunction: BREATH_CURVE,
       backgroundColor: INHALE_COLOR,
-      height: `${LARGE_CIRCLE_SIZE}vh`,
-      width: `${LARGE_CIRCLE_SIZE}vh`,
-      bottom: `${boxSize.height - vhToPx(LARGE_CIRCLE_SIZE) / 2}px`,
-      left: `-${LARGE_CIRCLE_SIZE / 2}vh`
+      height: `${LARGE_CIRCLE_SIZE}%`,
+      width: `${LARGE_CIRCLE_SIZE}%`,
+      bottom: boxSize.height - vhToPx(LARGE_CIRCLE_SIZE) / 2,
+      left: LARGE_CIRCLE_SIZE / 2
     })
 
     // Hold In (right)
@@ -206,10 +190,8 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
         getBoxSize()
         setCircleStyle({
           ...circleStyle,
-          transitionDuration: `${holdDuration}s`,
-          transitionTimingFunction: 'linear',
-          bottom: `${boxSize.height - vhToPx(SMALL_CIRCLE_SIZE) / 2}px`,
-          left: `${boxSize.width - vhToPx(SMALL_CIRCLE_SIZE) / 2}px`
+          bottom: boxSize.height - vhToPx(SMALL_CIRCLE_SIZE) / 2,
+          left: boxSize.width - vhToPx(SMALL_CIRCLE_SIZE) / 2
         })
 
         // Exhale (down)
@@ -228,14 +210,11 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
             getBoxSize()
             setCircleStyle({
               ...circleStyle,
-              transitionProperty: 'height width color left bottom',
-              transitionDuration: `${breathDuration}s`,
-              transitionTimingFunction: BREATH_CURVE,
               backgroundColor: EXHALE_COLOR,
-              height: `${SMALL_CIRCLE_SIZE}vh`,
-              width: `${SMALL_CIRCLE_SIZE}vh`,
-              bottom: `-${SMALL_CIRCLE_SIZE / 2}vh`,
-              left: `${boxSize.width - vhToPx(SMALL_CIRCLE_SIZE) / 2}px`
+              height: `${SMALL_CIRCLE_SIZE}%`,
+              width: `${SMALL_CIRCLE_SIZE}%`,
+              bottom: -SMALL_CIRCLE_SIZE / 2,
+              left: boxSize.width - vhToPx(SMALL_CIRCLE_SIZE) / 2
             })
 
             // Hold out (left)
@@ -265,7 +244,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     )
   }
 
-  function validInputs(): boolean {
+  function validInputs (): boolean {
     let valid = true
     if (inputMinutes === 0 && inputSeconds === 0) {
       setValidTimeInput(false)
@@ -291,7 +270,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     return valid
   }
 
-  function startBreathBox(): void {
+  function startBreathBox (): void {
     if (!validInputs() || (started && !paused)) {
       return
     }
@@ -302,7 +281,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     animateBreathing()
   }
 
-  function stopBreathBox(): void {
+  function stopBreathBox (): void {
     setStarted(false)
     setPaused(false)
     SharedIntervals.resetAnimations()
@@ -310,7 +289,7 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     resetCircleStyle()
   }
 
-  function pauseBreathBox(): void {
+  function pauseBreathBox (): void {
     SharedIntervals.resetAnimations()
     setPaused(true)
     setActionText('Paused')
@@ -346,27 +325,27 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   )
 
   return (
-    <div className="breath-box" ref={boxRef}>
+    <View style={styles.breathBox}>
       {timeReached
         ? (
-          <Congrats
-            timeReached={timeReached}
-            setTimeReached={setTimeReached}
-            inputMinutes={inputMinutes}
-            inputSeconds={inputSeconds}
-          />
-        )
+        <Congrats
+          timeReached={timeReached}
+          setTimeReached={setTimeReached}
+          inputMinutes={inputMinutes}
+          inputSeconds={inputSeconds}
+        />
+          )
         : (
-          []
-        )}
-      <div className="breath-box-inner">
+            []
+          )}
+      <View style={styles.breathBoxInner}>
         {started ? ControlBarComponent : [ControlBarComponent, ConfigComponent]}
         <div className="action" style={actionStyle}>
           {action}
         </div>
-      </div>
-      <div className="circle" style={circleStyle}></div>
-    </div>
+      </View>
+      <View style={[styles.circle, circleStyle]}></View>
+    </View>
   )
 }
 
