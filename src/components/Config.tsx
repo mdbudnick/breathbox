@@ -31,6 +31,26 @@ const styles = StyleSheet.create({
 })
 
 const Config: FC<ControlBarProps> = (props) => {
+  const roundAndSetInputSeconds = (value: string): number => {
+    const numericValue = parseFloat(value)
+
+    // Enforce minimum and maximum values and step
+    const minValue = 0
+    const maxValue = 45
+    const stepValue = 15
+
+    if (!isNaN(numericValue)) {
+      const clampedValue = Math.min(Math.max(minValue, numericValue), maxValue)
+      const roundedValue = Math.round(clampedValue / stepValue) * stepValue
+
+      props.configSetters.setInputSeconds(roundedValue)
+      return roundedValue
+    } else {
+      props.configSetters.setInputSeconds(minValue)
+      return minValue
+    }
+  }
+
   return (
     <View style={props.started ? styles.config : [styles.config, commonStyles.hidden]}>
       <View>
@@ -53,18 +73,14 @@ const Config: FC<ControlBarProps> = (props) => {
           value={props.configInput.holdDuration.toString()}
         />
       </View>
-      <div className="countdown-input">
-        <input
-          type="number"
-          id="countdown-seconds"
-          min="0"
-          max="45"
-          value={props.configInput.inputSeconds}
-          step="15"
-          className={props.configInput.validTimeInput ? undefined : 'red'}
-          onChange={(e) => {
-            props.configSetters.setInputSeconds(Number(e.target.value ?? 0))
-          }}
+      <View>
+        <Text>Countdown Seconds</Text>
+        <TextInput
+          style={props.configInput.validTimeInput ? [] : [commonStyles.red]}
+          keyboardType="numeric"
+          maxLength={2}
+          onChangeText={(value) => roundAndSetInputSeconds(value)}
+          value={props.configInput.inputSeconds.toString()}
         />
         <label htmlFor="countdown-minutes">Time (mm:ss)</label>
         <input
@@ -78,7 +94,7 @@ const Config: FC<ControlBarProps> = (props) => {
             props.configSetters.setInputMinutes(Number(e.target.value ?? 0))
           }}
         />
-      </div>
+      </View>
       <div className="count-up-or-down">
         <label htmlFor="countdown">Count Direction</label>
         <span
