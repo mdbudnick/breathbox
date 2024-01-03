@@ -1,8 +1,9 @@
 import React, { type FC } from 'react'
 import { type ConfigInput, type ConfigSetters } from 'shared'
 import {
-  StyleSheet
+  StyleSheet, Text, TextInput, View
 } from 'react-native'
+import commonStyles from '../styles/stylesheet'
 
 interface ControlBarProps {
   started: boolean
@@ -31,21 +32,16 @@ const styles = StyleSheet.create({
 
 const Config: FC<ControlBarProps> = (props) => {
   return (
-    <div className={props.started ? 'config' : 'config hidden'}>
-      <div className="breath-time">
-        <label htmlFor="breath-time">Breathe (seconds)</label>
-        <input
-          type="number"
-          id="breath-time"
-          min="1"
-          max="10"
-          value={props.configInput.breathDuration}
-          className={props.configInput.validBreathHoldInput ? undefined : 'red'}
-          onChange={(e) => {
-            props.configSetters.setBreathDuration(Number(e.target.value ?? 0))
-          }}
+    <View style={props.started ? styles.config : [styles.config, commonStyles.hidden]}>
+      <View>
+        <Text>Breathe (seconds)</Text>
+        <TextInput
+          style={props.configInput.validBreathHoldInput ? [] : [commonStyles.red]}
+          keyboardType="numeric"
+          onChangeText={(value) => { props.configSetters.setBreathDuration(Number(value)) }}
+          value={props.configInput.breathDuration.toString()}
         />
-      </div>
+      </View>
       <div className="hold-time">
         <label htmlFor="hold">Hold (seconds)</label>
         <input
@@ -98,7 +94,7 @@ const Config: FC<ControlBarProps> = (props) => {
           &#10148;
         </span>
       </div>
-    </div>
+    </View>
   )
 }
 
