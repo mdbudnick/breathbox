@@ -31,6 +31,16 @@ const styles = StyleSheet.create({
 })
 
 const Config: FC<ControlBarProps> = (props) => {
+  const enforceBreathAndHoldTimeRange = (value: string): number => {
+    const numericValue = Number(value)
+
+    // Enforce minimum and maximum values
+    const minValue = 3
+    const maxValue = 15
+
+    return Math.min(Math.max(minValue, numericValue), maxValue)
+  }
+
   const roundAndSetInputSeconds = (value: string): number => {
     const numericValue = Number(value)
 
@@ -54,7 +64,7 @@ const Config: FC<ControlBarProps> = (props) => {
   const roundAndSetInputMinutes = (value: string): number => {
     const numericValue = Number(value)
 
-    // Enforce minimum and maximum values and step
+    // Enforce minimum and maximum values
     const minValue = 1
     const maxValue = 60
 
@@ -77,8 +87,8 @@ const Config: FC<ControlBarProps> = (props) => {
         <TextInput
           style={props.configInput.validBreathHoldInput ? [] : [commonStyles.red]}
           keyboardType="numeric"
-          maxLength={3}
-          onChangeText={(value) => { props.configSetters.setBreathDuration(Number(value)) }}
+          maxLength={2}
+          onChangeText={(value) => { props.configSetters.setBreathDuration(enforceBreathAndHoldTimeRange(value)) }}
           value={props.configInput.breathDuration.toString()}
         />
       </View>
@@ -87,8 +97,8 @@ const Config: FC<ControlBarProps> = (props) => {
         <TextInput
           style={props.configInput.validHoldInput ? [] : [commonStyles.red]}
           keyboardType="numeric"
-          maxLength={3}
-          onChangeText={(value) => { props.configSetters.setHoldDuration(Number(value)) }}
+          maxLength={2}
+          onChangeText={(value) => { props.configSetters.setHoldDuration(enforceBreathAndHoldTimeRange(value)) }}
           value={props.configInput.holdDuration.toString()}
         />
       </View>
