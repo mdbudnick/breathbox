@@ -12,6 +12,10 @@ const commonStyles = StyleSheet.create({
   },
   hidden: {
     display: 'none'
+  },
+  red: {
+    borderColor: 'red',
+    borderWidth: 1
   }
 })
 
