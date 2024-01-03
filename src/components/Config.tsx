@@ -1,7 +1,7 @@
 import React, { type FC } from 'react'
 import { type ConfigInput, type ConfigSetters } from 'shared'
 import {
-  StyleSheet, Text, TextInput, View
+  StyleSheet, Text, TextInput, TouchableOpacity, View
 } from 'react-native'
 import commonStyles from '../styles/stylesheet'
 
@@ -120,18 +120,16 @@ const Config: FC<ControlBarProps> = (props) => {
           value={props.configInput.inputMinutes.toString()}
         />
       </View>
-      <div className="count-up-or-down">
-        <label htmlFor="countdown">Count Direction</label>
-        <span
-          id="time-arrow"
-          className={props.configInput.ascending ? 'point-up' : 'point-down'}
-          onClick={() => {
-            props.configSetters.setCountDirection(!props.configInput.ascending)
-          }}
+      <TouchableOpacity onPress={() => {
+        props.configSetters.setCountDirection(!props.configInput.ascending)
+      }}>
+        <Text>Count Direction</Text>
+        <Text
+          style={props.configInput.ascending ? styles.pointUp : styles.pointDown}
         >
           &#10148;
-        </span>
-      </div>
+        </Text>
+      </TouchableOpacity>
     </View>
   )
 }
