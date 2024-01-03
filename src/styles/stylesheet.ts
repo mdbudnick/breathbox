@@ -9,6 +9,9 @@ const commonStyles = StyleSheet.create({
   linkText: {
     color: 'blue',
     textDecorationLine: 'underline'
+  },
+  hidden: {
+    display: 'none'
   }
 })
 
