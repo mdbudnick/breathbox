@@ -1,8 +1,14 @@
 import React, { type FC } from 'react'
-import '../css/control-bar.css'
+import '../styles/control-bar.css'
 import '../img/play-pause.svg'
 import Timer from './Timer'
 import { type ActionStyle, type ConfigInput } from '../ts/shared'
+import {
+  Pressable,
+  StyleSheet,
+  View
+} from 'react-native'
+import { screenHeight, screenWidth } from '../ts/windowDimensions'
 
 interface ControlBarProps {
   started: boolean
@@ -20,6 +26,31 @@ interface ControlBarProps {
   configInput: ConfigInput
 }
 
+const styles = StyleSheet.create({
+  controlBar: {
+    display: 'flex',
+    marginTop: '2%',
+    marginBottom: '2%',
+    paddingVertical: '1%',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0, 0, 0, 0.2)'
+  },
+  start: {
+    alignSelf: 'flex-start',
+    fontSize: screenHeight * 0.05,
+    borderWidth: 4,
+    borderColor: 'green',
+    backgroundColor: 'lightgreen',
+    borderRadius: screenWidth * 0.05,
+    padding: 10,
+    paddingVertical: screenHeight * 0.01
+  },
+  topBuffer: {
+    marginTop: '19%'
+  }
+})
+
 const ControlBar: FC<ControlBarProps> = (props) => {
   function startBreathBox (): void {
     props.startFn()
@@ -35,7 +66,13 @@ const ControlBar: FC<ControlBarProps> = (props) => {
   }
 
   return (
-    <div className={props.started ? 'control-bar top-buffer' : 'control-bar'}>
+    <View
+      style={
+        props.started
+          ? [styles.controlBar, styles.topBuffer]
+          : [styles.controlBar]
+      }
+    >
       {props.started
         ? (
         <Timer
@@ -51,11 +88,11 @@ const ControlBar: FC<ControlBarProps> = (props) => {
         />
           )
         : (
-        <div className="start button" onClick={startBreathBox}>
+        <Pressable style={styles.start} onPress={startBreathBox}>
           Start
-        </div>
+        </Pressable>
           )}
-    </div>
+    </View>
   )
 }
 
