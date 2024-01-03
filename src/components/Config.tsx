@@ -38,24 +38,21 @@ const Config: FC<ControlBarProps> = (props) => {
         <TextInput
           style={props.configInput.validBreathHoldInput ? [] : [commonStyles.red]}
           keyboardType="numeric"
+          maxLength={3}
           onChangeText={(value) => { props.configSetters.setBreathDuration(Number(value)) }}
           value={props.configInput.breathDuration.toString()}
         />
       </View>
-      <div className="hold-time">
-        <label htmlFor="hold">Hold (seconds)</label>
-        <input
-          type="number"
-          id="hold-time"
-          min="1"
-          max="10"
-          value={props.configInput.holdDuration}
-          className={props.configInput.validHoldInput ? undefined : 'red'}
-          onChange={(e) => {
-            props.configSetters.setHoldDuration(Number(e.target.value ?? 0))
-          }}
+      <View>
+        <Text>Hold (seconds)</Text>
+        <TextInput
+          style={props.configInput.validHoldInput ? [] : [commonStyles.red]}
+          keyboardType="numeric"
+          maxLength={3}
+          onChangeText={(value) => { props.configSetters.setHoldDuration(Number(value)) }}
+          value={props.configInput.holdDuration.toString()}
         />
-      </div>
+      </View>
       <div className="countdown-input">
         <input
           type="number"
