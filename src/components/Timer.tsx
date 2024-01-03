@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-import { screenHeight, screenWidth } from '../ts/windowDimensions'
+import { screenHeight } from '../ts/windowDimensions'
 
 interface TimerProps {
   started: boolean
@@ -44,16 +44,6 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     fontSize: screenHeight * 0.05,
     color: 'white',
-    padding: 10,
-    paddingVertical: screenHeight * 0.01
-  },
-  start: {
-    alignSelf: 'flex-start',
-    fontSize: screenHeight * 0.05,
-    borderWidth: 4,
-    borderColor: 'green',
-    backgroundColor: 'lightgreen',
-    borderRadius: screenWidth * 0.05,
     padding: 10,
     paddingVertical: screenHeight * 0.01
   }
