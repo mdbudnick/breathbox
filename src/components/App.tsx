@@ -21,9 +21,11 @@ const styles = StyleSheet.create({
 
 const App: FC = (prop: PropsWithChildren) => {
   return (
-    <div className="central">
+    <View
+      style={screenWidth < 1000 ? styles.centralResponsive : styles.central}
+    >
       <BreathBox />
-    </div>
+    </View>
   )
 }
 
