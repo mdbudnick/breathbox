@@ -66,6 +66,35 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     setCountDirection
   }
 
+  function animateBreathing (): void {
+    // Inhale (up)
+    setInhale(!inhale)
+
+    // Hold In (right)
+    SharedIntervals.setHoldInAnimation(
+      setTimeout(() => {
+        setHoldInhale(!holdInhale)
+        // Exhale (down)
+        SharedIntervals.setExhaleAnimation(
+          setTimeout(() => {
+            setExhale(!exhale)
+            // Hold out (left)
+            SharedIntervals.setHoldOutAnimation(
+              setTimeout(() => {
+                setHoldExhale(!holdExhale)
+                SharedIntervals.setInhaleAnimation(
+                  setTimeout(() => {
+                    animateBreathing() // Restart the cycle
+                  }, holdDuration * 1000)
+                )
+              }, breathDuration * 1000)
+            )
+          }, holdDuration * 1000)
+        )
+      }, breathDuration * 1000)
+    )
+  }
+
   function validInputs (): boolean {
     let valid = true
     if (inputMinutes === 0 && inputSeconds === 0) {
@@ -98,16 +127,20 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
     }
     setStarted(true)
     setPaused(false)
+    animateBreathing()
   }
 
   function stopBreathBox (): void {
+    SharedIntervals.resetAnimations()
     setStarted(false)
     setPaused(false)
+    setReset(!reset)
   }
 
   function pauseBreathBox (): void {
     SharedIntervals.resetAnimations()
     setPaused(true)
+    setReset(!reset)
   }
 
   const ControlBarComponent = (
