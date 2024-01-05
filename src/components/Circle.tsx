@@ -57,12 +57,12 @@ const Circle: FC<CircleProps> = (props) => {
     }),
     Animated.timing(circleBottom, {
       toValue: 10,
-      duration: 1000,
+      duration: SMOOTH_PATH_TIMING,
       useNativeDriver: false
     }),
     Animated.timing(circleLeft, {
       toValue: -(SMALL_CIRCLE_SIZE / 2),
-      duration: 1000,
+      duration: SMOOTH_PATH_TIMING,
       useNativeDriver: false
     })
   ])
