@@ -149,7 +149,14 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
           )}
       <View style={styles.breathBoxInner}>
         {started ? ControlBarComponent : [ControlBarComponent, ConfigComponent]}
-        <ActionText></ActionText>
+        <ActionText
+          started={started}
+          paused={paused}
+          inhale={inhale}
+          holdInhale={holdInhale}
+          exhale={exhale}
+          holdExhale={holdExhale}
+        ></ActionText>
       </View>
       <Circle
         boundingHeight={500}
