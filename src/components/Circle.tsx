@@ -8,7 +8,13 @@ const SMOOTH_PATH_TIMING = 1000
 const BREATH_CURVE = Easing.bezier(0.13, 0.38, 0.48, 1.02)
 
 interface CircleProps {
-  running: boolean
+  reset: boolean
+  inhale: boolean
+  holdInhale: boolean
+  exhale: boolean
+  holdExhale: boolean
+  breathDuration: number
+  holdDuration: number
   boundingHeight: number
   boundingWidth: number
 }
@@ -48,6 +54,8 @@ const Circle: FC<CircleProps> = (props) => {
       useNativeDriver: false
     })
   ])
+  // TODO - real toBottomRight
+  const toBottomRight = toBottomLeft
   const toTopLeft = Animated.parallel([
     Animated.timing(circleSize, {
       toValue: LARGE_CIRCLE_SIZE,
@@ -66,16 +74,29 @@ const Circle: FC<CircleProps> = (props) => {
       useNativeDriver: false
     })
   ])
-
-  const clockWiseAnimation = Animated.sequence([toBottomLeft, toTopLeft])
+  // TODO - real toTopRight
+  const toTopRight = toTopLeft
 
   useEffect(() => {
-    if (props.running) {
-      clockWiseAnimation.start()
-    } else {
-      clockWiseAnimation.reset()
-    }
-  }, [props.running])
+    toTopLeft.stop()
+    toBottomLeft.start()
+  }, [props.reset])
+
+  useEffect(() => {
+    toTopLeft.start()
+  }, [props.inhale])
+
+  useEffect(() => {
+    toTopRight.start()
+  }, [props.holdInhale])
+
+  useEffect(() => {
+    toBottomRight.start()
+  }, [props.exhale])
+
+  useEffect(() => {
+    toBottomLeft.start()
+  }, [props.holdExhale])
 
   useEffect(() => {
     const diameter = parseInt(JSON.stringify(circleSize))
