@@ -1,5 +1,6 @@
 import React, { type FC, useEffect, useRef, useState } from 'react'
 import { Animated, StyleSheet, Text } from 'react-native'
+import { SharedIntervals } from '../ts/sharedIntervals'
 
 const INHALE_COLOR = '#0f5362'
 const EXHALE_COLOR = '#c08845'
@@ -98,24 +99,33 @@ const ActionText: FC<ActionTextProps> = (props) => {
   }, [props.paused])
 
   useEffect(() => {
-    setActionText('Inhale')
+    // Inhale (up)
+    SharedIntervals.setInhaleCountdownInterval(
+      startCountdownDecrement('Inhale', props.breathDuration)
+    )
     setTextStyle({ ...textStyle, color: INHALE_COLOR })
     inhaleSizeAnimation.start()
   }, [props.inhale])
 
   useEffect(() => {
-    setActionText('Hold')
+    SharedIntervals.setHoldInCountdownInterval(
+      startCountdownDecrement('Hold', props.holdDuration)
+    )
     setTextStyle({ ...textStyle, color: INHALE_COLOR })
   }, [props.holdInhale])
 
   useEffect(() => {
-    setActionText('Exhale')
+    SharedIntervals.setExhaleCountdownInterval(
+      startCountdownDecrement('Exhale', props.breathDuration)
+    )
     setTextStyle({ ...textStyle, color: EXHALE_COLOR })
     exhaleSizeAnimation.start()
   }, [props.exhale])
 
   useEffect(() => {
-    setActionText('Hold')
+    SharedIntervals.setHoldOutCountdownInterval(
+      startCountdownDecrement('Hold', props.holdDuration)
+    )
     setTextStyle({ ...textStyle, color: EXHALE_COLOR })
   }, [props.holdExhale])
 
