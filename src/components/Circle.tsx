@@ -19,8 +19,8 @@ const Circle: FC<CircleProps> = (props) => {
   const circleLeft = useRef(new Animated.Value(0)).current
 
   const [circleStyle, setCircleStyle] = useState({
-    width: circleSize,
-    height: circleSize,
+    width: SMALL_CIRCLE_SIZE,
+    height: SMALL_CIRCLE_SIZE,
     backgroundColor: 'rgb(245, 121, 112)',
     borderRadius: 50,
     transformOrigin: 'center',
@@ -78,10 +78,11 @@ const Circle: FC<CircleProps> = (props) => {
   }, [props.running])
 
   useEffect(() => {
+    const diameter = parseInt(JSON.stringify(circleSize))
     setCircleStyle({
       ...circleStyle,
-      width: circleSize,
-      height: circleSize,
+      width: diameter,
+      height: diameter,
       bottom: parseInt(JSON.stringify(circleBottom)),
       left: parseInt(JSON.stringify(circleLeft))
     })
