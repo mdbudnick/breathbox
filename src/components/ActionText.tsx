@@ -43,6 +43,28 @@ const ActionText: FC<ActionTextProps> = (props) => {
   const [actionText, setActionText] = useState(DEFAULT_TEXT)
   const [textStyle, setTextStyle] = useState(styles.action)
 
+  const startCountdownDecrement = (
+    text: string,
+    time: number
+  ): ReturnType<typeof setInterval> => {
+    let countdownInterval: ReturnType<typeof setInterval> | null
+    countdownInterval = setInterval(() => {
+      --time
+      if (time !== 0) {
+        setActionText(text + '\r\n' + time)
+      } else {
+        setActionText(text)
+        // It cancels itself
+        clearInterval(countdownInterval!)
+        countdownInterval = null
+      }
+    }, 1000)
+    // Do it the first time
+    setActionText(text + '\r\n' + time)
+
+    return countdownInterval
+  }
+
   const defaultSizeAnimation = Animated.timing(textSize, {
     toValue: DEFAULT_ACTION_FONT_SIZE,
     duration: 1000,
