@@ -1,7 +1,11 @@
 import React, { type FC } from 'react'
 import { type ConfigInput, type ConfigSetters } from 'shared'
 import {
-  StyleSheet, Text, TextInput, TouchableOpacity, View
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
 } from 'react-native'
 import commonStyles from '../styles/stylesheet'
 
@@ -81,14 +85,24 @@ const Config: FC<ControlBarProps> = (props) => {
   }
 
   return (
-    <View style={props.started ? styles.config : [styles.config, commonStyles.hidden]}>
+    <View
+      style={
+        props.started ? styles.config : [styles.config, commonStyles.hidden]
+      }
+    >
       <View>
         <Text>Breathe (seconds)</Text>
         <TextInput
-          style={props.configInput.validBreathHoldInput ? [] : [commonStyles.red]}
+          style={
+            props.configInput.validBreathHoldInput ? [] : [commonStyles.red]
+          }
           keyboardType="numeric"
           maxLength={2}
-          onChangeText={(value) => { props.configSetters.setBreathDuration(enforceBreathAndHoldTimeRange(value)) }}
+          onChangeText={(value) => {
+            props.configSetters.setBreathDuration(
+              enforceBreathAndHoldTimeRange(value)
+            )
+          }}
           value={props.configInput.breathDuration.toString()}
         />
       </View>
@@ -98,7 +112,11 @@ const Config: FC<ControlBarProps> = (props) => {
           style={props.configInput.validHoldInput ? [] : [commonStyles.red]}
           keyboardType="numeric"
           maxLength={2}
-          onChangeText={(value) => { props.configSetters.setHoldDuration(enforceBreathAndHoldTimeRange(value)) }}
+          onChangeText={(value) => {
+            props.configSetters.setHoldDuration(
+              enforceBreathAndHoldTimeRange(value)
+            )
+          }}
           value={props.configInput.holdDuration.toString()}
         />
       </View>
@@ -120,12 +138,16 @@ const Config: FC<ControlBarProps> = (props) => {
           value={props.configInput.inputMinutes.toString()}
         />
       </View>
-      <TouchableOpacity onPress={() => {
-        props.configSetters.setCountDirection(!props.configInput.ascending)
-      }}>
+      <TouchableOpacity
+        onPress={() => {
+          props.configSetters.setCountDirection(!props.configInput.ascending)
+        }}
+      >
         <Text>Count Direction</Text>
         <Text
-          style={props.configInput.ascending ? styles.pointUp : styles.pointDown}
+          style={
+            props.configInput.ascending ? styles.pointUp : styles.pointDown
+          }
         >
           &#10148;
         </Text>

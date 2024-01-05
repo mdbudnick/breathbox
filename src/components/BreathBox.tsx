@@ -156,6 +156,8 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
           holdInhale={holdInhale}
           exhale={exhale}
           holdExhale={holdExhale}
+          breathDuration={breathDuration}
+          holdDuration={holdDuration}
         ></ActionText>
       </View>
       <Circle

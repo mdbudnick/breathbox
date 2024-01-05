@@ -1,4 +1,5 @@
-export interface ActionStyle {
+import { type ViewStyle } from 'react-native'
+export interface ActionStyle extends ViewStyle {
   transitionDuration: string
   transitionTimingFunction: string
   fontSize: string

@@ -40,11 +40,15 @@ const Congrats: FC<CongratsProps> = (props) => {
   function closeWindow (): void {
     props.setTimeReached(false)
   }
-  const tone = new Sound('assets/audio/tone.mp3', Sound.MAIN_BUNDLE, (error: Error | undefined) => {
-    if (error != null) {
-      console.error('Failed to load the sound file', error)
+  const tone = new Sound(
+    'assets/audio/tone.mp3',
+    Sound.MAIN_BUNDLE,
+    (error: Error | undefined) => {
+      if (error != null) {
+        console.error('Failed to load the sound file', error)
+      }
     }
-  })
+  )
 
   if (tone?.play != null) {
     void tone.play()
