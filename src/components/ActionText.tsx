@@ -34,29 +34,51 @@ interface ActionTextProps {
   holdInhale: boolean
   exhale: boolean
   holdExhale: boolean
+  breathDuration: number
+  holdDuration: number
 }
 
 const ActionText: FC<ActionTextProps> = (props) => {
   const textSize = useRef(new Animated.Value(DEFAULT_ACTION_FONT_SIZE)).current
-
   const [actionText, setActionText] = useState(DEFAULT_TEXT)
   const [textStyle, setTextStyle] = useState(styles.action)
 
+  const defaultSizeAnimation = Animated.timing(textSize, {
+    toValue: DEFAULT_ACTION_FONT_SIZE,
+    duration: 1000,
+    useNativeDriver: false
+  })
+
+  const inhaleSizeAnimation = Animated.timing(textSize, {
+    toValue: INHALE_SIZE,
+    duration: props.breathDuration * 1000,
+    useNativeDriver: false
+  })
+
+  const exhaleSizeAnimation = Animated.timing(textSize, {
+    toValue: EXHALE_SIZE,
+    duration: props.breathDuration * 1000,
+    useNativeDriver: false
+  })
+
   useEffect(() => {
     if (!props.started) {
-    setActionText(DEFAULT_TEXT)
+      setActionText(DEFAULT_TEXT)
+      defaultSizeAnimation.start()
     }
   }, [props.started])
 
   useEffect(() => {
     if (props.started && props.paused) {
-    setActionText(PAUSE_TEXT)
+      setActionText(PAUSE_TEXT)
+      defaultSizeAnimation.start()
     }
   }, [props.paused])
 
   useEffect(() => {
     setActionText('Inhale')
     setTextStyle({ ...textStyle, color: INHALE_COLOR })
+    inhaleSizeAnimation.start()
   }, [props.inhale])
 
   useEffect(() => {
@@ -67,6 +89,7 @@ const ActionText: FC<ActionTextProps> = (props) => {
   useEffect(() => {
     setActionText('Exhale')
     setTextStyle({ ...textStyle, color: EXHALE_COLOR })
+    exhaleSizeAnimation.start()
   }, [props.exhale])
 
   useEffect(() => {
