@@ -2,12 +2,8 @@ import React, { type FC } from 'react'
 import '../styles/control-bar.css'
 import '../img/play-pause.svg'
 import Timer from './Timer'
-import { type ActionStyle, type ConfigInput } from '../ts/shared'
-import {
-  Pressable,
-  StyleSheet,
-  View
-} from 'react-native'
+import { type ConfigInput } from '../ts/shared'
+import { Pressable, StyleSheet, View } from 'react-native'
 import { screenHeight, screenWidth } from '../ts/windowDimensions'
 
 interface ControlBarProps {
@@ -19,10 +15,6 @@ interface ControlBarProps {
   startFn: () => void
   stopFn: () => void
   pauseFn: () => void
-  actionStyle: ActionStyle
-  setActionStyle: React.Dispatch<React.SetStateAction<ActionStyle>>
-  setActionText: React.Dispatch<React.SetStateAction<string>>
-  resetCircleStyle: () => void
   configInput: ConfigInput
 }
 
