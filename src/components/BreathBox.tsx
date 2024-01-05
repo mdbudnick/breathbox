@@ -32,6 +32,11 @@ const styles = StyleSheet.create({
 const BreathBox: FC = (prop: PropsWithChildren) => {
   const [started, setStarted] = useState<boolean>(false)
   const [paused, setPaused] = useState<boolean>(false)
+  const [reset, setReset] = useState<boolean>(true)
+  const [inhale, setInhale] = useState<boolean>(false)
+  const [holdInhale, setHoldInhale] = useState<boolean>(false)
+  const [exhale, setExhale] = useState<boolean>(false)
+  const [holdExhale, setHoldExhale] = useState<boolean>(false)
   const [timeReached, setTimeReached] = useState<boolean>(false)
   // Config Variables
   const [breathDuration, setBreathDuration] = useState<number>(3)
@@ -103,7 +108,6 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
   function pauseBreathBox (): void {
     SharedIntervals.resetAnimations()
     setPaused(true)
-    setActionText('Paused')
   }
 
   const ControlBarComponent = (
@@ -117,8 +121,6 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
       startFn={startBreathBox}
       stopFn={stopBreathBox}
       pauseFn={pauseBreathBox}
-      actionStyle={actionStyle}
-      setActionStyle={setActionStyle}
       configInput={configInput}
     />
   )
@@ -149,7 +151,17 @@ const BreathBox: FC = (prop: PropsWithChildren) => {
         {started ? ControlBarComponent : [ControlBarComponent, ConfigComponent]}
         <ActionText></ActionText>
       </View>
-      <Circle></Circle>
+      <Circle
+        boundingHeight={500}
+        boundingWidth={500}
+        reset={reset}
+        inhale={inhale}
+        holdInhale={holdInhale}
+        exhale={exhale}
+        holdExhale={holdExhale}
+        breathDuration={breathDuration}
+        holdDuration={holdDuration}
+      ></Circle>
     </View>
   )
 }
