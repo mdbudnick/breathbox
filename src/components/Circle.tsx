@@ -14,12 +14,13 @@ interface CircleProps {
 }
 
 const Circle: FC<CircleProps> = (props) => {
+  const circleSize = useRef(new Animated.Value(SMALL_CIRCLE_SIZE)).current
   const circleBottom = useRef(new Animated.Value(props.boundingHeight)).current
   const circleLeft = useRef(new Animated.Value(0)).current
 
   const [circleStyle, setCircleStyle] = useState({
-    width: SMALL_CIRCLE_SIZE,
-    height: SMALL_CIRCLE_SIZE,
+    width: circleSize,
+    height: circleSize,
     backgroundColor: 'rgb(245, 121, 112)',
     borderRadius: 50,
     transformOrigin: 'center',
@@ -28,6 +29,12 @@ const Circle: FC<CircleProps> = (props) => {
   })
 
   const toBottomLeft = Animated.parallel([
+    Animated.timing(circleSize, {
+      toValue: SMALL_CIRCLE_SIZE,
+      duration: SMOOTH_PATH_TIMING,
+      easing: BREATH_CURVE,
+      useNativeDriver: false
+    }),
     Animated.timing(circleBottom, {
       toValue: props.boundingHeight,
       duration: SMOOTH_PATH_TIMING,
@@ -42,6 +49,12 @@ const Circle: FC<CircleProps> = (props) => {
     })
   ])
   const toTopLeft = Animated.parallel([
+    Animated.timing(circleSize, {
+      toValue: LARGE_CIRCLE_SIZE,
+      duration: SMOOTH_PATH_TIMING,
+      easing: BREATH_CURVE,
+      useNativeDriver: false
+    }),
     Animated.timing(circleBottom, {
       toValue: 10,
       duration: 1000,
@@ -67,10 +80,12 @@ const Circle: FC<CircleProps> = (props) => {
   useEffect(() => {
     setCircleStyle({
       ...circleStyle,
+      width: circleSize,
+      height: circleSize,
       bottom: parseInt(JSON.stringify(circleBottom)),
       left: parseInt(JSON.stringify(circleLeft))
     })
-  }, [circleBottom, circleLeft])
+  }, [circleSize, circleBottom, circleLeft])
 
   return <View style={[{ position: 'absolute' }, circleStyle]} />
 }
