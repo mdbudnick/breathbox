@@ -11,7 +11,7 @@ module.exports = function (_env, argv) {
   return {
     mode: argv.mode,
     devtool: isDevelopment && 'cheap-module-source-map',
-    entry: './src/index.ts',
+    entry: './src/App.tsx',
     output: {
       path: path.resolve(__dirname, '../www/'),
       filename: 'assets/js/bundle.js',
