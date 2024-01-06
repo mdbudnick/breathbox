@@ -14,7 +14,12 @@
     "declaration": true,
     "sourceMap": true,
     "typeRoots": ["./src/types", "node_modules/@types"],
-    "baseUrl": "src/ts",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"],
+      "tests": ["tests/*"],
+      "@components/*": ["src/components/*"],
+    },
     "jsx": "react"
   },
   "include": [
@@ -22,7 +27,8 @@
     "src/ts/*.ts",
     "src/styles/*.ts",
     "src/components/*.tsx",
-    "./babel.config.js"
-, "src/App.tsx"  ],
+    "./babel.config.js", 
+    "./App.tsx"
+  ],
   "exclude": ["node_modules", "tests"]
 }
