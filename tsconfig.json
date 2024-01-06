@@ -23,6 +23,6 @@
     "src/styles/*.ts",
     "src/components/*.tsx",
     "./babel.config.js"
-  ],
+, "src/App.tsx"  ],
   "exclude": ["node_modules", "tests"]
 }
