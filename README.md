@@ -1,6 +1,6 @@
 # Breathbox
 
-[Visit Breathbox](https://lcsltied.azureedge.net/)
+[Visit Breathbox](https://breathbox.net/)
 
 ![Breathbox Icon](src/img/buddha-gnome-smaller.jpg)
 
@@ -21,7 +21,7 @@ Breathbox is just a small example of my commitment to robust development practic
 
 ## Try It Out
 
-Visit [Breathbox](https://lcsltied.azureedge.net/) to experience the benefits of the breath box technique firsthand. It's a simple tool designed to enhance your well-being and mindfulness.
+Visit [Breathbox](https://breathbox.net/) to experience the benefits of the breath box technique firsthand. It's a simple tool designed to enhance your well-being and mindfulness.
 
 ## Get Involved
 
