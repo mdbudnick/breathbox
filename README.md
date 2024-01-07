@@ -1,3 +1,5 @@
+![healthcheck](https://github.com/mdbudnick/breathbox/actions/workflows/healthcheck.yml/badge.svg)
+
 # Breathbox
 
 [Visit Breathbox](https://breathbox.net/)
